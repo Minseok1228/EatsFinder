@@ -34,7 +34,7 @@ const config: Config = {
         800: '#262626',
         900: '#0D0D0D',
       },
-      red: '#E62900',
+      error: '#E62900',
       green: '#03C75A',
       white: '#FFFFFF',
     },
