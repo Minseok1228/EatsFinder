@@ -9,6 +9,7 @@ interface Textfield_btnProps {
   buttonMessage: string;
   timer?: string;
   placeholder: string;
+  underStoke?: boolean;
 }
 export const Textfield_btn = ({
   label,
@@ -18,6 +19,7 @@ export const Textfield_btn = ({
   errormessage,
   timer,
   placeholder,
+  underStoke,
 }: Textfield_btnProps) => {
   return (
     <>
@@ -27,6 +29,7 @@ export const Textfield_btn = ({
         message={message}
         timer={timer}
         error={error}
+        underStoke={underStoke}
         button={
           <Button variant={'primary'} size={'mini'}>
             {buttonMessage}

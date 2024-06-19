@@ -11,8 +11,15 @@ export default function Test() {
         message='입력하세요'
         error='에러'
         timer='타이머'
+        underStoke={true}
       />
-      <Textfield underStoke={true} label='안녕' message='ddd' timer='dd' />
+      <Textfield
+        underStoke={true}
+        label='안녕'
+        message='ddd'
+        error='dd'
+        timer='dd'
+      />
     </div>
   );
 }
