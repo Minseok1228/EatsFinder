@@ -8,6 +8,7 @@ interface AuthInputProps extends ComponentProps<'input'> {
   icon?: ReactNode;
   button?: ReactNode;
   timer?: string;
+  underStoke?: boolean;
 }
 export const Textfield = ({
   label,
@@ -17,6 +18,7 @@ export const Textfield = ({
   icon,
   button,
   timer,
+  underStoke,
   ...props
 }: AuthInputProps) => {
   //input focus되면 안에 버튼이 보이게?
@@ -31,7 +33,11 @@ export const Textfield = ({
       <div className='relative flex'>
         <input
           {...props}
-          className={`w-[370px] rounded border border-gray-100 p-[10px] text-gray-900 caret-primary-400 body-16 ${error && `border-error`} focus:border-primary-400 ${icon && `pr-6`} disabled:bg-gray-50 ${button && `pr-[98px]`}`}
+          className={`w-[370px] p-[10px] text-gray-900 caret-primary-400 body-16 focus:outline-none ${
+            underStoke
+              ? 'border-b border-b-gray-100 focus:border-b-primary-400'
+              : 'rounded border border-gray-100 focus:border-primary-400'
+          } ${error && `border-error`} ${icon && `pr-6`} ${button && `pr-[98px]`} disabled:bg-gray-50`}
         />
         {(icon || button) && (
           <div className='absolute right-1 top-1/2 flex -translate-y-1/2'>

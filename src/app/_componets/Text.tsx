@@ -12,7 +12,7 @@ export default function Test() {
         error='에러'
         timer='타이머'
       />
-      <Textfield label='안녕' message='ddd' error='dd' timer='dd' />
+      <Textfield underStoke={true} label='안녕' message='ddd' timer='dd' />
     </div>
   );
 }
