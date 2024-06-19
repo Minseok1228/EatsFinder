@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { twMerge } from 'tailwind-merge';
+import { customTwMerge } from '@/utils/customTwMerge';
 
 const buttonVariants = cva(
   'flex justify-center items-center h-[60px] p-[10px] rounded-[16px] subTitle-18',
@@ -42,7 +42,7 @@ export const Button = ({
 }: ButtonProps) => {
   return (
     <button
-      className={twMerge(buttonVariants({ variant, size, className }))}
+      className={customTwMerge(buttonVariants({ variant, size, className }))}
       disabled={variant === 'gray' ? true : disabled}
       {...props}
     />
