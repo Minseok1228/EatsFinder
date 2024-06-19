@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Button } from '../atoms';
-import { Textfield } from '../atoms/Textfield';
-interface Textfield_btnProps {
+import { TextField } from '../atoms/TextField';
+interface TextFieldWithBtnProps {
   label: string;
   message?: string;
   error?: string;
@@ -11,7 +11,7 @@ interface Textfield_btnProps {
   placeholder: string;
   underStoke?: boolean;
 }
-export const Textfield_btn = ({
+export const TextFieldWithBtn = ({
   label,
   message,
   buttonMessage,
@@ -20,10 +20,10 @@ export const Textfield_btn = ({
   timer,
   placeholder,
   underStoke,
-}: Textfield_btnProps) => {
+}: TextFieldWithBtnProps) => {
   return (
     <>
-      <Textfield
+      <TextField
         label={label}
         placeholder={placeholder}
         message={message}

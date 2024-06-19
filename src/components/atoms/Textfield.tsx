@@ -10,7 +10,7 @@ interface AuthInputProps extends ComponentProps<'input'> {
   timer?: string;
   underStoke?: boolean;
 }
-export const Textfield = ({
+export const TextField = ({
   label,
   message,
   error,
