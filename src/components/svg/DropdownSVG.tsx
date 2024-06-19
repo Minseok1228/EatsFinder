@@ -1,4 +1,4 @@
-export const DropdownSVG = () => {
+export const DropDownSVG = () => {
   return (
     <svg
       width='24'
