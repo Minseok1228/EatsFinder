@@ -2,6 +2,7 @@
 
 import { TextField } from '@/components/atoms/TextField';
 import { TextFieldWithBtn } from '@/components/molecules/TexTFieldWithBtn';
+import { SocialGoogleSVG } from '@/components/svg/SocialSVG';
 
 export default function Test() {
   return (

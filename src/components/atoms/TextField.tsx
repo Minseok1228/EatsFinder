@@ -1,4 +1,4 @@
-import { ComponentProps, ReactElement, ReactNode } from 'react';
+import { ComponentProps, ReactNode } from 'react';
 
 interface AuthInputProps extends ComponentProps<'input'> {
   label: string;
