@@ -29,7 +29,6 @@ export const Checkbox = ({
           {CheckBoxBlankSVG()}
         </span>
         {label}
-        asdfasdfsadf
       </label>
     </>
   );
