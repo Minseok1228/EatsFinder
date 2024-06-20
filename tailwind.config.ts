@@ -4,43 +4,45 @@ import plugin from 'tailwindcss/plugin';
 const pxToRem = (px: number) => `${px / 16}rem`;
 
 const config: Config = {
+  important: true,
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    colors: {
-      primary: {
-        25: '#FFF8F5',
-        50: '#FEE0D2',
-        100: '#FDBEA0',
-        200: '#FD9C6D',
-        300: '#FC7A3B',
-        400: '#FB5607',
-        500: '#CE4503',
-        600: '#9C3403',
-        700: '#692302',
-        800: '#371201',
-        900: '#050200',
+    extend: {
+      colors: {
+        primary: {
+          25: '#FFF8F5',
+          50: '#FEE0D2',
+          100: '#FDBEA0',
+          200: '#FD9C6D',
+          300: '#FC7A3B',
+          400: '#FB5607',
+          500: '#CE4503',
+          600: '#9C3403',
+          700: '#692302',
+          800: '#371201',
+          900: '#050200',
+        },
+        gray: {
+          50: '#F2F2F2',
+          100: '#D9D9D9',
+          200: '#BFBFBF',
+          300: '#A6A6A6',
+          400: '#8C8C8C',
+          500: '#737373',
+          600: '#595959',
+          700: '#404040',
+          800: '#262626',
+          900: '#0D0D0D',
+        },
+        error: '#E62900',
+        green: '#03C75A',
+        white: '#FFFFFF',
       },
-      gray: {
-        50: '#F2F2F2',
-        100: '#D9D9D9',
-        200: '#BFBFBF',
-        300: '#A6A6A6',
-        400: '#8C8C8C',
-        500: '#737373',
-        600: '#595959',
-        700: '#404040',
-        800: '#262626',
-        900: '#0D0D0D',
-      },
-      error: '#E62900',
-      green: '#03C75A',
-      white: '#FFFFFF',
     },
-    extend: {},
   },
   plugins: [
     plugin(({ matchUtilities, theme }) => {
@@ -82,6 +84,19 @@ const config: Config = {
           },
         },
       );
+    }),
+    plugin(({ addUtilities }) => {
+      addUtilities({
+        '.visually-hidden': {
+          position: 'absolute',
+          clip: 'rect(0 0 0 0)',
+          clipPath: 'inset(50%)',
+          height: '1px',
+          width: '1px',
+          overflow: 'hidden',
+          whiteSpace: 'nowrap',
+        },
+      });
     }),
   ],
 };
