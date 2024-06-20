@@ -1,7 +1,7 @@
 import { ComponentProps, ReactNode } from 'react';
 
 interface AuthInputProps extends ComponentProps<'input'> {
-  label: string;
+  label?: string;
   message?: string;
   error?: string;
   errormessage?: string;

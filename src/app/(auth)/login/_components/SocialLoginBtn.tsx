@@ -21,7 +21,6 @@ const SocialLoginBtn = ({
     </div>
   );
 };
-
 export const SocialLoginBtnGroup = () => {
   return (
     <div className='flex justify-center gap-6'>
