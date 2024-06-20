@@ -1,6 +1,8 @@
 import type { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
 
+const pxToRem = (px: number) => `${px / 16}rem`;
+
 const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -62,21 +64,21 @@ const config: Config = {
         },
         {
           values: {
-            12: '12px',
-            14: '14px',
-            16: '16px',
-            18: '18px',
-            20: '20px',
-            22: '22px',
-            24: '24px',
-            26: '26px',
-            28: '28px',
-            30: '30px',
-            32: '32px',
-            34: '34px',
-            36: '36px',
-            38: '38px',
-            40: '40px',
+            12: pxToRem(12),
+            14: pxToRem(14),
+            16: pxToRem(16),
+            18: pxToRem(18),
+            20: pxToRem(20),
+            22: pxToRem(22),
+            24: pxToRem(24),
+            26: pxToRem(26),
+            28: pxToRem(28),
+            30: pxToRem(30),
+            32: pxToRem(32),
+            34: pxToRem(34),
+            36: pxToRem(36),
+            38: pxToRem(38),
+            40: pxToRem(40),
           },
         },
       );
