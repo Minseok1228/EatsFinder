@@ -15,7 +15,6 @@ export const LoginPage = () => {
       </h2>
       <Spacer y={24} />
       <LoginForm />
-
       <Spacer y={32} />
       <SocialLoginBtnGroup />
       <Spacer y={120} />
