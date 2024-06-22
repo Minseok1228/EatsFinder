@@ -25,6 +25,9 @@ const meta: Meta<typeof Button> = {
         defaultValue: { summary: 'medium' },
       },
     },
+    disabled: {
+      control: 'boolean',
+    },
   },
 };
 
