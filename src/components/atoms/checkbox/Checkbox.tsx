@@ -35,8 +35,8 @@ export const Checkbox = ({
           className,
         )}
       >
-        <input className='visually-hidden peer' type='checkbox' {...props} />
-        <span className='mr-1 flex cursor-pointer items-center justify-center peer-focus-visible:outline [&>svg:first-child]:hidden peer-checked:[&>svg:first-child]:block peer-checked:[&>svg:last-child]:hidden'>
+        <input className='peer visually-hidden' type='checkbox' {...props} />
+        <span className='mr-1 flex cursor-pointer items-center justify-center rounded-md peer-focus-visible:outline peer-focus-visible:outline-2 [&>svg:first-child]:hidden peer-checked:[&>svg:first-child]:block peer-checked:[&>svg:last-child]:hidden'>
           {icon[variant].map((it, idx) => (
             <React.Fragment key={idx}>{it}</React.Fragment>
           ))}
