@@ -8,10 +8,10 @@ import {
   BookmarkFillSVG,
 } from '@/components/svg/BookmarkSVG';
 import { FavDefaultSVG, FavFillSVG } from '@/components/svg/FavSVG';
-import { twMerge } from 'tailwind-merge';
+import { customTwMerge } from '@/utils/customTwMerge';
 
 const icon = {
-  default: [CheckBoxCheckedSVG(), CheckBoxBlankSVG()],
+  checkbox: [CheckBoxCheckedSVG(), CheckBoxBlankSVG()],
   bookmark: [BookmarkFillSVG(), BookmarkDefaultSVG()],
   fav: [FavFillSVG(), FavDefaultSVG()],
 };
@@ -22,26 +22,23 @@ interface CheckBoxProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Checkbox = ({
-  variant = 'default',
+  variant = 'checkbox',
   label,
   className,
   ...props
 }: CheckBoxProps) => {
   return (
     <>
-      <label
-        className={twMerge(
-          'inline-flex items-center text-gray-700 body-14',
-          className,
-        )}
-      >
+      <label className={customTwMerge('text-gray-700 body-14', className)}>
         <input className='peer visually-hidden' type='checkbox' {...props} />
-        <span className='mr-1 flex cursor-pointer items-center justify-center rounded-md peer-focus-visible:outline peer-focus-visible:outline-2 [&>svg:first-child]:hidden peer-checked:[&>svg:first-child]:block peer-checked:[&>svg:last-child]:hidden'>
+        <span className='flex cursor-pointer rounded-md peer-focus-visible:outline peer-focus-visible:outline-2 [&>svg:first-child]:hidden peer-checked:[&>svg:first-child]:block peer-checked:[&>svg:last-of-type]:hidden'>
           {icon[variant].map((it, idx) => (
             <React.Fragment key={idx}>{it}</React.Fragment>
           ))}
+          <span className={customTwMerge('ml-1', label || 'visually-hidden')}>
+            {label || variant}
+          </span>
         </span>
-        {label}
       </label>
     </>
   );
