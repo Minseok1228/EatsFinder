@@ -46,6 +46,7 @@ jobs:
           onlyChanged: true
 
       - name: PR Comment
+        if: github.event_name == 'pull_request'
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: '🚀Deploy: storybook-url ${{ steps.chromatic.outputs.storybookUrl }}'
