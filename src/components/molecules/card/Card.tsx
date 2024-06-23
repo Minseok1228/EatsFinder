@@ -21,9 +21,10 @@ export const Card = () => {
           <span className='text-gray-500 body-14'>
             서울 중구 만리재로 209-1
           </span>
-          <span className='flex text-primary-400 subTitle-20'>
-            {RatingstarFillSVG()} 4.5
-          </span>
+          <div className='flex items-center gap-1 text-primary-400 subTitle-20'>
+            <span>{RatingstarFillSVG()}</span>
+            <span>4.5</span>
+          </div>
         </div>
       </div>
     </div>
