@@ -63,10 +63,3 @@ export const Gray: Story = {
     variant: 'gray',
   },
 };
-
-export const Test: Story = {
-  args: {
-    children: 'button',
-    variant: 'gray',
-  },
-};
