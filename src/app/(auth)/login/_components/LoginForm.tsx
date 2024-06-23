@@ -6,21 +6,23 @@ import { CheckBoxDefaultSVG } from '@/components/svg/CheckBoxSVG';
 import { VisibilitySVG } from '@/components/svg/VisibilitySVG';
 import Link from 'next/link';
 import React from 'react';
-import { saveLoginState } from '../../_hooks/saveLoginState';
 import { SaveLoginState } from './SaveLoginState';
+import { useToggleHandler } from '../../_hooks/useToggleHandler';
+import { InvisigilitySVG } from '@/components/svg/InvisigilitySVG';
 
 export const LoginForm = () => {
-  const { loginSave, setLoginSave } = saveLoginState();
+  const { value, handleValue } = useToggleHandler();
+  console.log(value);
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <div className='flex flex-col gap-3'>
         <TextField placeholder='이메일을 입력하세요.' />
         <TextField
-          type='password'
+          type={value ? 'text' : 'password'}
           placeholder='비밀번호를 입력하세요.'
           icon={
-            <button>
-              <VisibilitySVG />
+            <button onClick={handleValue}>
+              {value ? <VisibilitySVG /> : <InvisigilitySVG />}
             </button>
           }
         />

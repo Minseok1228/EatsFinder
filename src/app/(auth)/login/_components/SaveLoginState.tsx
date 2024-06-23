@@ -2,13 +2,10 @@ import {
   CheckBoxCheckedSVG,
   CheckBoxDefaultSVG,
 } from '@/components/svg/CheckBoxSVG';
-import { useState } from 'react';
+import { useSaveLoginState } from '../../_hooks/useSaveLoginState';
 
 export const SaveLoginState = () => {
-  const [loginSave, setLoginSave] = useState<boolean>(false);
-  const handleLoginSave = () => {
-    setLoginSave((prev) => !prev);
-  };
+  const { loginSave, handleLoginSave } = useSaveLoginState();
   return (
     <button onClick={handleLoginSave} className='flex items-center gap-1'>
       {loginSave ? <CheckBoxDefaultSVG /> : <CheckBoxCheckedSVG />}
