@@ -37,9 +37,15 @@ jobs:
         run: npm ci
 
       - name: Run Chromatic
+        id: chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitZeroOnChanges: true
           exitOnceUploaded: true
           onlyChanged: true
+
+      - name: PR Comment
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: '🚀storybook: ${{ steps.chromatic.outputs.storybookUrl }}'
