@@ -6,7 +6,6 @@ export const Card = () => {
   return (
     <div className='w-[250px]'>
       <div className='relative mb-2 h-[250px] overflow-hidden rounded-[24px] bg-gray-100'>
-        <Checkbox className='absolute left-5 top-5' />
         <Checkbox variant='bookmark' className='absolute right-5 top-5' />
       </div>
       <div>
