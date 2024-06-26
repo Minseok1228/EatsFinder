@@ -38,7 +38,11 @@ const config: Config = {
       green: '#03C75A',
       white: '#FFFFFF',
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        pretendard: [`var(--font-pretendard)`],
+      },
+    },
   },
   plugins: [
     plugin(({ matchUtilities, theme }) => {
