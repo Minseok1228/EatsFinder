@@ -17,19 +17,13 @@ export const LoginForm = () => {
   const onSubmit: SubmitHandler<LoginFormType> = (data) => console.log(data);
   const { register, handleSubmit } = useForm<LoginFormType>();
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        handleSubmit(onSubmit);
-      }}
-    >
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className='flex flex-col gap-3'>
-        <input {...register('email')} />
-        <TextField placeholder='이메일을 입력하세요.' />
+        <TextField placeholder='이메일을 입력하세요.' {...register('email')} />
         <TextField
-          {...register('password')}
           type={value ? 'text' : 'password'}
           placeholder='비밀번호를 입력하세요.'
+          {...register('password')}
           icon={
             <button onClick={handleValue}>
               {value ? <VisibilitySVG /> : <InvisigilitySVG />}
