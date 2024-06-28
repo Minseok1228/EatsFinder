@@ -8,8 +8,8 @@ export const CurrentLoginMsgSVG = () => {
       xmlns='http://www.w3.org/2000/svg'
     >
       <path
-        fill-rule='evenodd'
-        clip-rule='evenodd'
+        fillRule='evenodd'
+        clipRule='evenodd'
         d='M43.4952 2C43.1103 1.33333 42.148 1.33333 41.7631 2L38.0104 8.5H12C5.37258 8.5 0 13.8726 0 20.5V36.5C0 43.1274 5.37258 48.5 12 48.5H73C79.6274 48.5 85 43.1274 85 36.5V20.5C85 13.8726 79.6274 8.5 73 8.5H47.248L43.4952 2Z'
         fill='#F2F2F2'
       />

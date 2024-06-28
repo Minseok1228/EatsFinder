@@ -12,6 +12,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        pretendard: [`var(--font-pretendard)`],
+      },
       colors: {
         primary: {
           25: '#FFF8F5',

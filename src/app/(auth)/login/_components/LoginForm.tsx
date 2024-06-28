@@ -9,19 +9,25 @@ import React from 'react';
 import { SaveLoginState } from './SaveLoginState';
 import { useToggleHandler } from '../../_hooks/useToggleHandler';
 import { InvisigilitySVG } from '@/components/svg/InvisigilitySVG';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { LoginFormType } from '@/app/types/authType';
 
 export const LoginForm = () => {
   const { value, handleValue } = useToggleHandler();
+  const onSubmit: SubmitHandler<LoginFormType> = (data) => console.log(data);
+  const { register, handleSubmit } = useForm<LoginFormType>();
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        console.log('hi');
+        handleSubmit(onSubmit);
       }}
     >
       <div className='flex flex-col gap-3'>
+        <input {...register('email')} />
         <TextField placeholder='이메일을 입력하세요.' />
         <TextField
+          {...register('password')}
           type={value ? 'text' : 'password'}
           placeholder='비밀번호를 입력하세요.'
           icon={
