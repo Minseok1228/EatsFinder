@@ -2,22 +2,19 @@
 import { Button } from '@/components/atoms';
 import { TextField } from '@/components/atoms/textField/TextField';
 import { Spacer } from '@/components/atoms/spacer/Spacer';
-import { CheckBoxDefaultSVG } from '@/components/svg/CheckBoxSVG';
 import { VisibilitySVG } from '@/components/svg/VisibilitySVG';
 import Link from 'next/link';
 import React from 'react';
 import { SaveLoginState } from './SaveLoginState';
 import { useToggleHandler } from '../../_hooks/useToggleHandler';
 import { InvisigilitySVG } from '@/components/svg/InvisigilitySVG';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { LoginFormType } from '@/app/types/authType';
+import { useLogin } from '../../_hooks/useFormData';
 
 export const LoginForm = () => {
   const { value, handleValue } = useToggleHandler();
-  const onSubmit: SubmitHandler<LoginFormType> = (data) => console.log(data);
-  const { register, handleSubmit } = useForm<LoginFormType>();
+  const { register, handleSubmit } = useLogin();
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit}>
       <div className='flex flex-col gap-3'>
         <TextField placeholder='이메일을 입력하세요.' {...register('email')} />
         <TextField
