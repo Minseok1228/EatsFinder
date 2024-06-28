@@ -1,7 +1,7 @@
 'use client';
 import { Button } from '@/components/atoms';
-import { TextField } from '@/components/atoms/TextField';
-import { Spacer } from '@/components/atoms/button/Spacer';
+import { TextField } from '@/components/atoms/textField/TextField';
+import { Spacer } from '@/components/atoms/spacer/Spacer';
 import { CheckBoxDefaultSVG } from '@/components/svg/CheckBoxSVG';
 import { VisibilitySVG } from '@/components/svg/VisibilitySVG';
 import Link from 'next/link';
@@ -12,9 +12,13 @@ import { InvisigilitySVG } from '@/components/svg/InvisigilitySVG';
 
 export const LoginForm = () => {
   const { value, handleValue } = useToggleHandler();
-  console.log(value);
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        console.log('hi');
+      }}
+    >
       <div className='flex flex-col gap-3'>
         <TextField placeholder='이메일을 입력하세요.' />
         <TextField
@@ -35,7 +39,9 @@ export const LoginForm = () => {
         </div>
       </div>
       <Spacer y={32} />
-      <Button size={'large'}>로그인 하기</Button>
+      <Button type='submit' size={'large'}>
+        로그인 하기
+      </Button>
     </form>
   );
 };

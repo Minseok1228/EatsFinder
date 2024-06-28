@@ -1,5 +1,5 @@
 import { Button } from '@/components/atoms';
-import { Spacer } from '@/components/atoms/button/Spacer';
+import { Spacer } from '@/components/atoms/spacer/Spacer';
 import { SocialLoginBtnGroup } from './SocialLoginBtn';
 import Link from 'next/link';
 import { LoginForm } from './LoginForm';

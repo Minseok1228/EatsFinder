@@ -1,6 +1,5 @@
-import { ReactNode } from 'react';
-import { Button } from '../atoms';
-import { TextField } from '../atoms/TextField';
+import { Button } from '@/components/atoms';
+import { TextField } from '@/components/atoms/textField';
 interface TextFieldWithBtnProps {
   label: string;
   message?: string;

@@ -1,4 +1,4 @@
-import { Spacer } from '@/components/atoms/button/Spacer';
+import { Spacer } from '@/components/atoms/spacer/Spacer';
 import { AuthHeader } from './_components/AuthHeader';
 
 type LayoutPops = {
