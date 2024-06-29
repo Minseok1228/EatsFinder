@@ -1,4 +1,4 @@
-export const Close_loginSVG = () => {
+export const CloseLoginSVG = () => {
   return (
     <svg
       width='18'
