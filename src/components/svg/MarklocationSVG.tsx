@@ -1,4 +1,4 @@
-export const MarkLocationMyListSVG = () => {
+export const MarklocationMyListSVG = () => {
   return (
     <svg
       width='48'
@@ -16,7 +16,7 @@ export const MarkLocationMyListSVG = () => {
   );
 };
 
-export const MarkLocationNomalSVG = () => {
+export const MarklocationNomalSVG = () => {
   return (
     <svg
       width='48'

@@ -32,7 +32,7 @@ export const LoginForm = () => {
           <p>
             <SaveLoginState />
           </p>
-          <Link href='/find-account'>아이디 / 비밀번호 찾기</Link>
+          <Link href='/find-account'>비밀번호 찾기</Link>
         </div>
       </div>
       <Spacer y={32} />

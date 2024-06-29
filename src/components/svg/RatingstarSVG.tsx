@@ -1,4 +1,4 @@
-export const RatingStarFillSVG = () => {
+export const RatingstarFillSVG = () => {
   return (
     <svg
       width='24'
@@ -14,7 +14,7 @@ export const RatingStarFillSVG = () => {
     </svg>
   );
 };
-export const RatingStarHalfSVG = () => {
+export const RatingstarHalfSVG = () => {
   return (
     <svg
       width='24'
@@ -32,7 +32,7 @@ export const RatingStarHalfSVG = () => {
     </svg>
   );
 };
-export const RatingStarDefaultSVG = () => {
+export const RatingstarDefaultSVG = () => {
   return (
     <svg
       width='24'

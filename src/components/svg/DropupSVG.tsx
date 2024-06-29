@@ -1,4 +1,4 @@
-export const DropUpSVG = () => {
+export const DropupSVG = () => {
   return (
     <svg
       width='24'
