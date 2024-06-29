@@ -11,7 +11,7 @@ interface AuthInputProps extends ComponentProps<'input'> {
   underStoke?: boolean;
 }
 export const TextField = forwardRef<HTMLInputElement, AuthInputProps>(
-  (
+  function TextField(
     {
       label,
       message,
@@ -24,7 +24,7 @@ export const TextField = forwardRef<HTMLInputElement, AuthInputProps>(
       ...props
     },
     ref,
-  ) => {
+  ) {
     //input focus되면 안에 버튼이 보이게?
 
     return (
