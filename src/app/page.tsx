@@ -1,4 +1,4 @@
-import Test from './_componets/Text';
+import Test from './_componets/Test';
 
 export default function Home() {
   return (

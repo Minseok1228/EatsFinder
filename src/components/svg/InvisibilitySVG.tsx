@@ -1,4 +1,4 @@
-export const InvisigilitySVG = () => {
+export const InvisibilitySVG = () => {
   return (
     <svg
       width='18'

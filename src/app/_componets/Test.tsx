@@ -1,7 +1,8 @@
 'use client';
 
-import { TextField } from '@/components/atoms/TextField';
-import { TextFieldWithBtn } from '@/components/molecules/TexTFieldWithBtn';
+import { TextField } from '@/components/atoms/textField/TextField';
+import { TextFieldWithBtn } from '@/components/molecules/texTFieldWithBtn/TexTFieldWithBtn';
+import { SocialGoogleSVG } from '@/components/svg/SocialSVG';
 
 export default function Test() {
   return (
