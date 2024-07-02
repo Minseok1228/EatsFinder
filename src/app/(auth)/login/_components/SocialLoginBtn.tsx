@@ -23,7 +23,7 @@ const SocialLoginBtn = ({
 };
 export const SocialLoginBtnGroup = () => {
   return (
-    <div className='flex justify-center gap-6'>
+    <div className='mb-[120px] flex justify-center gap-6'>
       <SocialLoginBtn icon={<SocialNaverSVG />} recentLogin={true} />
       <SocialLoginBtn icon={<SocialKakaoSVG />} recentLogin={false} />
       <SocialLoginBtn icon={<SocialGoogleSVG />} recentLogin={false} />
