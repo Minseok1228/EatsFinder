@@ -1,7 +1,7 @@
 'use client';
 import { VisibilitySVG } from '@/components/svg/VisibilitySVG';
 import { InvisibilitySVG } from '@/components/svg/InvisibilitySVG';
-import { useToggleHandler } from '@/app/hooks/useToggleHandler';
+import { useToggleHandler } from '@/hooks/useToggleHandler';
 
 export const VisibilityButtonIcon = () => {
   const { value: isVisible, handleValue: handleIsVisible } = useToggleHandler();

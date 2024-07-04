@@ -1,4 +1,4 @@
-import { LoginFormType, SignupFormType } from '@/app/types/authType';
+import { LoginFormType, SignupFormType } from '@/types/authType';
 import { SubmitHandler, useForm } from 'react-hook-form';
 export const useLogin = () => {
   const { register, handleSubmit, resetField } = useForm<LoginFormType>();

@@ -1,4 +1,4 @@
-import { useToggleHandler } from '@/app/hooks/useToggleHandler';
+import { useToggleHandler } from '@/hooks/useToggleHandler';
 
 export const useSaveLoginState = () => {
   const { value: loginSave, handleValue: handleLoginSave } = useToggleHandler();
