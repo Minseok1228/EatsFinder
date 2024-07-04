@@ -1,5 +1,6 @@
 import React from 'react';
+import { SignupPage } from './_components/SignupPage';
 
 export default function page() {
-  return <div>회원가입</div>;
+  return <SignupPage />;
 }

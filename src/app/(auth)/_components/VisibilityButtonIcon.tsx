@@ -1,3 +1,4 @@
+'use client';
 import { VisibilitySVG } from '@/components/svg/VisibilitySVG';
 import { InvisibilitySVG } from '@/components/svg/InvisibilitySVG';
 import { useToggleHandler } from '@/app/hooks/useToggleHandler';

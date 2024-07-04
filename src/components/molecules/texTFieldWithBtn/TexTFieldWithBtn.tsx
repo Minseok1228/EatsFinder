@@ -1,5 +1,6 @@
 import { Button } from '@/components/atoms';
 import { TextField } from '@/components/atoms/textField';
+import { forwardRef } from 'react';
 interface TextFieldWithBtnProps {
   label: string;
   message?: string;
@@ -7,22 +8,32 @@ interface TextFieldWithBtnProps {
   errormessage?: string;
   buttonMessage: string;
   timer?: string;
-  placeholder: string;
+  placeholder?: string;
   underStoke?: boolean;
+  buttonDisabled?: boolean;
 }
-export const TextFieldWithBtn = ({
-  label,
-  message,
-  buttonMessage,
-  error,
-  errormessage,
-  timer,
-  placeholder,
-  underStoke,
-}: TextFieldWithBtnProps) => {
+export const TextFieldWithBtn = forwardRef<
+  HTMLInputElement,
+  TextFieldWithBtnProps
+>(function TextTieldWithBtn(
+  {
+    label,
+    message,
+    buttonMessage,
+    error,
+    timer,
+    placeholder,
+    underStoke,
+    buttonDisabled,
+    ...props
+  },
+  ref,
+) {
   return (
     <>
       <TextField
+        {...props}
+        ref={ref}
         label={label}
         placeholder={placeholder}
         message={message}
@@ -30,11 +41,16 @@ export const TextFieldWithBtn = ({
         error={error}
         underStoke={underStoke}
         button={
-          <Button variant={'primary'} size={'mini'}>
+          <Button
+            type='button'
+            variant={'primary'}
+            size={'mini'}
+            disabled={buttonDisabled}
+          >
             {buttonMessage}
           </Button>
         }
       />
     </>
   );
-};
+});

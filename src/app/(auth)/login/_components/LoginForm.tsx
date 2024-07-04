@@ -5,7 +5,7 @@ import Link from 'next/link';
 import React from 'react';
 import { SaveLoginState } from './SaveLoginState';
 import { useLogin } from '../../_hooks/useFormData';
-import { VisibilityButtonIcon } from './VisibilityButtonIcon';
+import { VisibilityButtonIcon } from '../../_components/VisibilityButtonIcon';
 export const LoginForm = () => {
   const { register, handleSubmit } = useLogin();
   const { visibility, ButtonIcon } = VisibilityButtonIcon();
