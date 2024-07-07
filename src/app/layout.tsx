@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Header, Footer } from '@/components/organisms';
 import { Pretendard } from '@/assets/fonts';
 import './globals.css';
 
@@ -14,7 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ko' className={`${Pretendard.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
