@@ -1,5 +1,5 @@
 'use client';
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo } from 'react';
 import { FeedCard } from '@/components/molecules';
 import { NextButton, PrevButton } from '@/components/atoms';
 import { customTwMerge } from '@/utils/customTwMerge';
@@ -8,7 +8,7 @@ const CARD_WIDTH = 250;
 const MARGIN_LEFT = 29.5;
 const NUMBER_PER_SCROLL = 5;
 
-export const CardCarousel = ({ data }: { data: number[] }) => {
+export const CardCarousel = ({ data }: { data: [] }) => {
   const [slide, setSlide] = useState(0);
 
   const maxSlide = useMemo(() => {
@@ -41,7 +41,7 @@ export const CardCarousel = ({ data }: { data: number[] }) => {
     <div className='relative'>
       <div className='overflow-hidden'>
         <div
-          className={customTwMerge('flex transition-transform duration-700')}
+          className='flex transition-transform duration-700'
           style={{ transform: `translate3d(${-calculateTranslate}px, 0, 0)` }}
         >
           {data.map((_, idx) => {
@@ -53,10 +53,20 @@ export const CardCarousel = ({ data }: { data: number[] }) => {
           })}
         </div>
       </div>
-      <div className='absolute top-1/2 -translate-y-1/2'>
+      <div
+        className={customTwMerge(
+          'absolute top-1/2 -translate-y-1/2',
+          slide === 0 && 'hidden',
+        )}
+      >
         <PrevButton onClick={handlePrev} />
       </div>
-      <div className='absolute right-0 top-1/2 -translate-y-1/2'>
+      <div
+        className={customTwMerge(
+          'absolute right-0 top-1/2 -translate-y-1/2',
+          slide === maxSlide && 'hidden',
+        )}
+      >
         <NextButton onClick={handleNext} />
       </div>
     </div>
