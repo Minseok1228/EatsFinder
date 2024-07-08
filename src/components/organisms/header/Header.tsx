@@ -26,7 +26,7 @@ const NAV_DATA = [
 
 export const Header = () => {
   const path = usePathname();
-  if (path.startsWith('/login')) {
+  if (path.startsWith('/login') || path.startsWith('/signup')) {
     return <AuthHeader />;
   }
 
