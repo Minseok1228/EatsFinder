@@ -8,7 +8,7 @@ const CARD_WIDTH = 250;
 const MARGIN_LEFT = 29.5;
 const NUMBER_PER_SCROLL = 5;
 
-export const CardCarousel = ({ data }: { data: [] }) => {
+export const CardCarousel = ({ data }: { data: number[] }) => {
   const [slide, setSlide] = useState(0);
 
   const maxSlide = useMemo(() => {
