@@ -13,9 +13,10 @@ export const NextButton = ({
         className,
       )}
       type='button'
+      aria-label='next slide'
       {...props}
     >
-      <div className='fill-primary-400 [&>svg]:h-10 [&>svg]:w-10'>
+      <div className='fill-primary-400 align-middle [&>svg]:h-10 [&>svg]:w-10'>
         <RightSVG />
       </div>
     </button>
@@ -33,6 +34,7 @@ export const PrevButton = ({
         className,
       )}
       type='button'
+      aria-label='prev slide'
       {...props}
     >
       <div className='fill-primary-400 [&>svg]:h-10 [&>svg]:w-10'>
