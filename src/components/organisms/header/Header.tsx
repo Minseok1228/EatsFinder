@@ -31,27 +31,29 @@ export const Header = () => {
   }
 
   return (
-    <header className='mb-[3.75rem] flex h-20 items-center justify-around px-9'>
-      <div>
-        <Link href='/'>
-          <LogoImgSVG />
-        </Link>
-      </div>
-      <div>
-        <ul className='flex gap-[60px]'>
-          {NAV_DATA.map((link, index) => {
-            return (
-              <li key={index}>
-                <NavLink className='w-[90px]' href={link.href}>
-                  {link.label}
-                </NavLink>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-      <div>
-        <ProfileImage size={50} />
+    <header className='mb-[3.75rem] flex h-20 items-center justify-around'>
+      <div className='flex w-full max-w-[1440px] items-center justify-between px-9'>
+        <div>
+          <Link href='/'>
+            <LogoImgSVG />
+          </Link>
+        </div>
+        <div>
+          <ul className='flex gap-[60px]'>
+            {NAV_DATA.map((link, index) => {
+              return (
+                <li key={index}>
+                  <NavLink className='w-[90px]' href={link.href}>
+                    {link.label}
+                  </NavLink>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <div>
+          <ProfileImage size={50} />
+        </div>
       </div>
     </header>
   );
