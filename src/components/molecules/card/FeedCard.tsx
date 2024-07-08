@@ -1,9 +1,13 @@
 import { Checkbox } from '@/components/atoms';
 import Image from 'next/image';
 
-export const FeedCard = () => {
+interface FeedCardProps {
+  onClick?: () => void;
+}
+
+export const FeedCard = ({ onClick }: FeedCardProps) => {
   return (
-    <div className='flex w-[250px] flex-col gap-1'>
+    <div className='flex w-[250px] flex-col gap-1' onClick={onClick}>
       <div className='relative h-[350px] overflow-hidden rounded-3xl'>
         <Image
           className='object-cover'
