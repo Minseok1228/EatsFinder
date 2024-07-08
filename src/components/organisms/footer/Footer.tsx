@@ -2,7 +2,7 @@ import { LogoImgSVG } from '@/components/svg/LogoSVG';
 
 export const Footer = () => {
   return (
-    <footer className='flex flex-col items-center justify-center gap-3 bg-gray-800 py-10 text-gray-100 body-12'>
+    <footer className='mt-[60px] flex flex-col items-center justify-center gap-3 bg-gray-800 py-10 text-gray-100 body-12'>
       <div>
         <LogoImgSVG />
       </div>
