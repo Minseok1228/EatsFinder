@@ -11,6 +11,7 @@ interface TextFieldWithBtnProps {
   placeholder?: string;
   underStoke?: boolean;
   buttonDisabled?: boolean;
+  onButtonClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 export const TextFieldWithBtn = forwardRef<
   HTMLInputElement,
@@ -25,6 +26,7 @@ export const TextFieldWithBtn = forwardRef<
     placeholder,
     underStoke,
     buttonDisabled,
+    onButtonClick,
     ...props
   },
   ref,
@@ -42,6 +44,7 @@ export const TextFieldWithBtn = forwardRef<
         underStoke={underStoke}
         button={
           <Button
+            onClick={onButtonClick}
             type='button'
             variant={'primary'}
             size={'mini'}

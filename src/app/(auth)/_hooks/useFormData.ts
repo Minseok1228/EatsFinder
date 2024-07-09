@@ -17,7 +17,8 @@ export const useLogin = () => {
   };
 };
 export const useSignup = () => {
-  const { register, handleSubmit, resetField } = useForm<SignupFormType>();
+  const { register, handleSubmit, resetField, watch } =
+    useForm<SignupFormType>();
   const resetInput = () => {
     resetField('name');
     resetField('nickname');
@@ -33,5 +34,6 @@ export const useSignup = () => {
   return {
     register,
     handleSubmit: handleSubmit(onSubmit),
+    watch,
   };
 };
