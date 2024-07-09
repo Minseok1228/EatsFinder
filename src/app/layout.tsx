@@ -16,9 +16,11 @@ export default function RootLayout({
   return (
     <html lang='ko' className={`${Pretendard.variable}`}>
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <div className='flex min-h-screen flex-col'>
+          <Header />
+          <div className='grow'>{children}</div>
+          <Footer />
+        </div>
       </body>
     </html>
   );
