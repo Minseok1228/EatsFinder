@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 export const AuthHeader = () => {
   return (
-    <header>
-      <Link href='/' className='flex h-20 items-center justify-center mb-[60px]'>
+    <header className='mb-[60px] flex h-20 items-center justify-center'>
+      <Link href='/'>
         <LogoTxtSVG />
       </Link>
     </header>
