@@ -11,7 +11,7 @@ export const LoginPage = () => {
         <LoginForm />
         <SocialLoginBtnGroup />
       </div>
-      <Link href='/signup'>
+      <Link className='mb-6' href='/signup'>
         <Button size={'large'} variant={'stroke'}>
           회원가입하기
         </Button>
