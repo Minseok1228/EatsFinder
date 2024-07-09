@@ -1,5 +1,5 @@
-import { Checkbox } from '@/components/atoms';
 import Image from 'next/image';
+import { Checkbox, ProfileImage } from '@/components/atoms';
 
 interface FeedCardProps {
   onClick?: () => void;
@@ -17,11 +17,14 @@ export const FeedCard = ({ onClick }: FeedCardProps) => {
         />
       </div>
       <div className='flex justify-between'>
-        <div className='flex flex-col'>
-          <span className='text-gray-500 subTitle-20'>betty_eat</span>
-          <span className='text-gray-500 body-14'>파스타 참 맛있는 집</span>
+        <div className='flex items-center justify-center gap-2'>
+          <ProfileImage size={40} />
+          <div className='flex flex-col'>
+            <span className='text-gray-500 subTitle-20'>betty_eat</span>
+            <span className='text-gray-500 body-14'>파스타 참 맛있는 집</span>
+          </div>
         </div>
-        <div className='flex flex-col items-end'>
+        <div className='flex w-9 flex-col items-center justify-center'>
           <Checkbox variant='fav' />
           <span className='text-gray-600 body-14'>2400</span>
         </div>
