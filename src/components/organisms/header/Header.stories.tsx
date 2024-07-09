@@ -11,3 +11,13 @@ export default meta;
 type Story = StoryObj<typeof Header>;
 
 export const Default: Story = {};
+
+export const AuthHeader: Story = {
+  parameters: {
+    nextjs: {
+      navigation: {
+        pathname: '/login',
+      },
+    },
+  },
+};
