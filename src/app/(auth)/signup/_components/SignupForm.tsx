@@ -15,6 +15,7 @@ const SignupForm = () => {
     VisibilityButtonIcon();
   const { visibility: checkPwVisibility, ButtonIcon: CheckPwButtonIcon } =
     VisibilityButtonIcon();
+
   return (
     <form className='flex flex-col gap-9' onSubmit={handleSubmit}>
       <TextField label='이름' placeholder='홍길동' {...register('name')} />
@@ -24,7 +25,7 @@ const SignupForm = () => {
         message="'-'를 제외하고 입력해주세요."
         placeholder='010-1234-5678'
       />
-      <ConfirmEmail {...register('email')} watch={watch} />
+      <ConfirmEmail register={register} watch={watch} />
       <TextField
         {...register('password')}
         type={pwVisibility}
