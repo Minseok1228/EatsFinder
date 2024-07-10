@@ -11,6 +11,7 @@ export const ConfirmEmail = forwardRef<HTMLInputElement, ConfrimEmailProps>(
   function ConfirmEmail({ register, watch }, ref) {
     const { sendEmail, authButtonState, formatTime, time, confirmEmail } =
       useEmailConfirm();
+    //연속으로 호출 시 디비에 이메일이 두개가 들어가서 에러가남 => 디바운싱처리
     return (
       <div className='flex flex-col gap-9'>
         <TextFieldWithBtn

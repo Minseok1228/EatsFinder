@@ -1,14 +1,16 @@
 import { LoginFormType, SignupFormType } from '@/types/authType';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { signup } from './useSignup';
+import { login } from './useLogin';
 export const useLogin = () => {
   const { register, handleSubmit, resetField } = useForm<LoginFormType>();
   const resetInput = () => {
     resetField('email');
     resetField('password');
   };
-  const onSubmit: SubmitHandler<LoginFormType> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
+    const res = await login(data);
+    console.log(res);
     resetInput();
   };
 
@@ -28,8 +30,8 @@ export const useSignup = () => {
     resetField('phoneNumber');
   };
   const onSubmit: SubmitHandler<SignupFormType> = async (data) => {
-    const aaa = await signup(data);
-    console.log(aaa);
+    const res = await signup(data);
+    console.log(res);
     resetInput();
   };
 
