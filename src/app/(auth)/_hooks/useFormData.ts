@@ -1,14 +1,12 @@
 import { LoginFormType, SignupFormType } from '@/types/authType';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { signup } from './useSignup';
-import { login } from './useLogin';
-import { useRouter } from 'next/router';
+import { login, signup } from './useAuth';
 export const useLogin = () => {
   const { register, handleSubmit, resetField } = useForm<LoginFormType>();
-  const resetInput = () => {
-    resetField('email');
-    resetField('password');
-  };
+  // const resetInput = () => {
+  //   resetField('email');
+  //   resetField('password');
+  // };
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
     const res = await login(data);
     const accessToken = res.accessToken;

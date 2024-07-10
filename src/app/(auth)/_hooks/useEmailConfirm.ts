@@ -6,14 +6,14 @@ export const useEmailConfirm = () => {
   const [authButtonState, setAuthButtonState] = useState(true);
   const { time, startTimer, formatTime } = useTimer(300);
   const sendEmail = (email: string) => async () => {
-    const aaa = await sendCode(email);
+    const res = await sendCode(email);
     setAuthButtonState(false);
     startTimer();
-    return console.log(aaa);
+    return console.log(res);
   };
   const confirmEmail = (data: EmailConfirmType) => async () => {
-    const bbb = await confirmCode(data);
-    return console.log(bbb);
+    const res = await confirmCode(data);
+    return console.log(res);
   };
 
   return { sendEmail, authButtonState, formatTime, time, confirmEmail };
