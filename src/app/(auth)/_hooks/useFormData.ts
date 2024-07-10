@@ -2,6 +2,7 @@ import { LoginFormType, SignupFormType } from '@/types/authType';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { signup } from './useSignup';
 import { login } from './useLogin';
+import { useRouter } from 'next/router';
 export const useLogin = () => {
   const { register, handleSubmit, resetField } = useForm<LoginFormType>();
   const resetInput = () => {
@@ -10,8 +11,11 @@ export const useLogin = () => {
   };
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
     const res = await login(data);
+    const accessToken = res.accessToken;
     console.log(res);
-    resetInput();
+    if (accessToken) {
+      window.location.href = '/';
+    }
   };
 
   return {
