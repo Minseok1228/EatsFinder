@@ -7,6 +7,7 @@ export const useEmailConfirm = () => {
   const [authButtonState, setAuthButtonState] = useState(true);
   const { time, startTimer, formatTime } = useTimer(300);
   const sendEmail = (email: string) =>
+    //쓰로틀링이 더 나을까?
     debounce(async () => {
       const res = await sendCode(email);
       setAuthButtonState(false);

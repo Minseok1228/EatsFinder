@@ -6,12 +6,13 @@ import { useEmailConfirm } from '../../_hooks/useEmailConfirm';
 type ConfrimEmailProps = {
   register: UseFormRegister<SignupFormType>;
   watch: UseFormWatch<SignupFormType>;
+  errormessage?: string;
 };
 export const ConfirmEmail = forwardRef<HTMLInputElement, ConfrimEmailProps>(
-  function ConfirmEmail({ register, watch }) {
+  function ConfirmEmail({ register, watch, errormessage }) {
     const { sendEmail, authButtonState, formatTime, time, confirmEmail } =
       useEmailConfirm();
-    //연속으로 호출 시 디비에 이메일이 두개가 들어가서 에러가남 => 디바운싱처리
+    console.log(errormessage);
     return (
       <div className='flex flex-col gap-9'>
         <TextFieldWithBtn
@@ -20,6 +21,7 @@ export const ConfirmEmail = forwardRef<HTMLInputElement, ConfrimEmailProps>(
           buttonMessage='발송하기'
           placeholder='abcd@gamil.com'
           onButtonClick={sendEmail(watch('email'))}
+          errormessage={errormessage}
         />
         <TextFieldWithBtn
           label='인증번호'

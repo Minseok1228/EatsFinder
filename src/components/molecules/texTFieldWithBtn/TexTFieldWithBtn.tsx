@@ -4,7 +4,6 @@ import { forwardRef } from 'react';
 interface TextFieldWithBtnProps {
   label: string;
   message?: string;
-  error?: string;
   errormessage?: string;
   buttonMessage: string;
   timer?: string;
@@ -21,7 +20,7 @@ export const TextFieldWithBtn = forwardRef<
     label,
     message,
     buttonMessage,
-    error,
+    errormessage,
     timer,
     placeholder,
     underStoke,
@@ -31,6 +30,7 @@ export const TextFieldWithBtn = forwardRef<
   },
   ref,
 ) {
+  console.log('twb', errormessage);
   return (
     <>
       <TextField
@@ -40,7 +40,7 @@ export const TextFieldWithBtn = forwardRef<
         placeholder={placeholder}
         message={message}
         timer={timer}
-        error={error}
+        errormessage={errormessage}
         underStoke={underStoke}
         button={
           <Button
