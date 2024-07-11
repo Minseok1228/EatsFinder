@@ -43,11 +43,18 @@ export const useSignup = () => {
     resetField('passwordCheck');
     resetField('phoneNumber');
   };
+  //statuscode에 따른 값
   const onSubmit: SubmitHandler<SignupFormType> = async (data) => {
     if (Object.keys(errors).length === 0) {
       const res = await signup(data);
       console.log(res);
-      window.location.href = '/login';
+      if (res.statusCode) {
+        alert(res.message);
+      }
+      if (!res.statusCode) {
+        alert('회원가입이 완료되셨습니다.');
+        window.location.href = '/login';
+      }
     }
   };
 
