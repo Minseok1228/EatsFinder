@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
-const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+export const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
 const phoneRegex = /^010\d{8}$/;
 const passwordRegex =
-  /^(?=.*[a-zA-Z])(?=.*\d|[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/;
+  /^(?=.*[A-Za-z].*[0-9]|[A-Za-z].*[@$!%*?&]|[0-9].*[@$!%*?&]|[0-9].*[A-Za-z]|[@$!%*?&].*[A-Za-z]|[@$!%*?&].*[0-9])[A-Za-z0-9@$!%*?&]{10,}$/;
 const nicknameRegex =
   /^(?=.*[\p{Hangul}])(?=.*[a-zA-Z])(?=.*\d)[\p{Hangul}a-zA-Z\d]{2,12}$/;
 export const loginSchema = z.object({
@@ -14,7 +14,7 @@ export const loginSchema = z.object({
     .string({ required_error: '비밀번호를 입력해주세요.' })
     .regex(passwordRegex, {
       message:
-        '영문,숫자,특수문자 중 2가지 이상을 사용하여 최소 10자리 이상 입력해주세요.',
+        '영문,숫자,특수문자(@,$,!,%,*,?,&) 중 2가지 이상을 사용하여 최소 10자리 이상 입력해주세요.',
     }),
 });
 export const signupSchema = z
@@ -30,7 +30,7 @@ export const signupSchema = z
       .string({ required_error: '비밀번호를 입력해주세요.' })
       .regex(passwordRegex, {
         message:
-          '영문,숫자,특수문자 중 2가지 이상을 사용하여 최소 10자리 이상 입력해주세요.',
+          '영문, 숫자, 특수문자(@,$,!,*,?) 중 2개 이상 포함하여 10자 이상 입력해주세요.',
       }),
     passwordCheck: z.string({ required_error: '비밀번호를 입력해주세요.' }),
     name: z

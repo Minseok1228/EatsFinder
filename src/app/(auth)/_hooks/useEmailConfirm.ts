@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useTimer } from './useTimer';
 import { EmailConfirmType } from '@/types/authType';
 import { debounce } from 'lodash';
+import { emailRegex } from '@/utils/zodSchema';
 
 export const useEmailConfirm = () => {
   const [authButtonState, setAuthButtonState] = useState(true);
@@ -9,6 +10,11 @@ export const useEmailConfirm = () => {
   const sendEmail = (email: string) =>
     //쓰로틀링이 더 나을까?
     debounce(async () => {
+      if (isValidEmail(email)) {
+        console.log('hi');
+      } else {
+        console.log('none');
+      }
       const res = await sendCode(email);
       setAuthButtonState(false);
       startTimer();
@@ -48,4 +54,7 @@ const confirmCode = async (data: EmailConfirmType) => {
     },
   );
   return res.json();
+};
+const isValidEmail = (email: string) => {
+  return emailRegex.test(email);
 };

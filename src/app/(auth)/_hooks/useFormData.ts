@@ -10,6 +10,7 @@ export const useLogin = () => {
     resetField,
     formState: { errors },
   } = useForm<LoginFormType>({
+    mode: 'onBlur',
     resolver: zodResolver(loginSchema),
   });
 
@@ -35,7 +36,10 @@ export const useSignup = () => {
     resetField,
     watch,
     formState: { errors },
-  } = useForm<SignupFormType>({ resolver: zodResolver(signupSchema) });
+  } = useForm<SignupFormType>({
+    mode: 'onBlur',
+    resolver: zodResolver(signupSchema),
+  });
   const resetInput = () => {
     resetField('name');
     resetField('nickname');
@@ -45,16 +49,14 @@ export const useSignup = () => {
   };
   //statuscode에 따른 값
   const onSubmit: SubmitHandler<SignupFormType> = async (data) => {
-    if (Object.keys(errors).length === 0) {
-      const res = await signup(data);
-      console.log(res);
-      if (res.statusCode) {
-        alert(res.message);
-      }
-      if (!res.statusCode) {
-        alert('회원가입이 완료되셨습니다.');
-        window.location.href = '/login';
-      }
+    const res = await signup(data);
+    console.log(res);
+    if (res.statusCode) {
+      alert(res.message);
+    }
+    if (!res.statusCode) {
+      alert('회원가입이 완료되셨습니다.');
+      window.location.href = '/login';
     }
   };
 

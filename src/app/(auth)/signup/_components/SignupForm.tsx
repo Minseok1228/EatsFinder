@@ -27,7 +27,7 @@ const SignupForm = () => {
         {...register('phoneNumber')}
         label='전화번호를 입력해주세요.'
         message="'-'를 제외하고 입력해주세요."
-        placeholder='010-1234-5678'
+        placeholder='01012345678'
         errormessage={errors.phoneNumber?.message}
       />
       <ConfirmEmail
@@ -40,7 +40,7 @@ const SignupForm = () => {
         type={pwVisibility}
         label='비밀번호'
         placeholder='비밀번호를 입력하세요.'
-        message='영문,숫자,특수문자 중 2종류 이상을 조합하여 최소 10자리 이상'
+        message='영문,숫자,특수문자(@,$,!,%,*,?,&) 중 2종류 이상을 조합하여 최소 10자리 이상'
         icon={<PwButtonIcon />}
         errormessage={errors.password?.message}
       />
