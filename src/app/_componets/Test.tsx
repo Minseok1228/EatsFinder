@@ -12,17 +12,10 @@ export default function Test() {
         buttonMessage='버튼'
         placeholder='안녕'
         message='입력하세요'
-        error='에러'
         timer='타이머'
         underStoke={true}
       />
-      <TextField
-        underStoke={true}
-        label='안녕'
-        message='ddd'
-        error='dd'
-        timer='dd'
-      />
+      <TextField underStoke={true} label='안녕' message='ddd' timer='dd' />
     </div>
   );
 }
