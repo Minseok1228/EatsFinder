@@ -1,6 +1,11 @@
 import { Hashtag, Button } from '@/components/atoms';
-import { Card, FollowCard, HomeSection } from '@/components/molecules';
-import { Search } from '@/components/molecules/search';
+import {
+  Card,
+  Search,
+  FollowCard,
+  HomeSection,
+  Category,
+} from '@/components/molecules';
 import { CardCarousel } from '@/components/organisms';
 
 const data = new Array(23).fill(0);
@@ -50,7 +55,9 @@ const HomePage = () => {
           </div>
         </HomeSection>
         <HomeSection title='오늘 뭐먹지?'>
-          <div></div>
+          <div>
+            <Category />
+          </div>
         </HomeSection>
       </div>
     </>
