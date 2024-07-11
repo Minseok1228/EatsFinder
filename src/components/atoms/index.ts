@@ -7,3 +7,5 @@ export * from './profileImage';
 export * from './navLink';
 
 export * from './hashtag';
+
+export * from './categoryImg';
