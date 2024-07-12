@@ -1,5 +1,7 @@
 export * from './card';
 
+export * from './comment';
+
 export * from './homeSection';
 
 export * from './search';
