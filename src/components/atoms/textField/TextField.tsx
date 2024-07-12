@@ -3,7 +3,6 @@ import { ComponentProps, ReactNode, forwardRef } from 'react';
 interface AuthInputProps extends ComponentProps<'input'> {
   label?: string;
   message?: string;
-  error?: string;
   errormessage?: string;
   icon?: ReactNode;
   button?: ReactNode;
@@ -12,25 +11,13 @@ interface AuthInputProps extends ComponentProps<'input'> {
 }
 export const TextField = forwardRef<HTMLInputElement, AuthInputProps>(
   function TextField(
-    {
-      label,
-      message,
-      error,
-      errormessage,
-      icon,
-      button,
-      timer,
-      underStoke,
-      ...props
-    },
+    { label, message, errormessage, icon, button, timer, underStoke, ...props },
     ref,
   ) {
-    //input focus되면 안에 버튼이 보이게?
-
     return (
       <div className='flex w-[370px] flex-col'>
         <label
-          className={`text-gray-400 subTitle-16 ${error && `text-primary-500`}`}
+          className={`text-gray-400 subTitle-16 ${errormessage && `text-primary-500`}`}
         >
           {label}
         </label>
@@ -42,7 +29,7 @@ export const TextField = forwardRef<HTMLInputElement, AuthInputProps>(
               underStoke
                 ? 'border-b border-b-gray-100 focus:border-b-primary-400'
                 : 'rounded border border-gray-100 focus:border-primary-400'
-            } ${error && `border-error`} ${icon && `pr-6`} ${button && `pr-[98px]`} disabled:bg-gray-50`}
+            } ${errormessage && `border-error`} ${icon && `pr-6`} ${button && `pr-[98px]`} disabled:bg-gray-50`}
           />
           {(icon || button) && (
             <div className='absolute right-1 top-1/2 flex -translate-y-1/2'>
@@ -53,8 +40,10 @@ export const TextField = forwardRef<HTMLInputElement, AuthInputProps>(
 
         {message && (
           <div className='flex justify-between'>
-            <p className={`body-12 ${error ? 'text-error' : 'text-gray-400'}`}>
-              {error ? error : message}
+            <p
+              className={`body-12 ${errormessage ? 'text-error' : 'text-gray-400'}`}
+            >
+              {errormessage ? errormessage : message}
             </p>
             {timer && <p className={`text-error body-12`}>{timer}</p>}
           </div>
