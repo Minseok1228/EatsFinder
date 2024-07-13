@@ -4,11 +4,12 @@ import { DefaultIconSVG } from '@/components/svg/DefaultIconSVG';
 
 interface ProfileImageProps {
   src?: string;
-  size: 50 | 60 | 70 | 100;
+  size: 40 | 50 | 60 | 70 | 100;
 }
 
 const profileImageSize = {
-  50: 'h-[50px] w-[50px] ',
+  40: 'h-[40px] w-[40px]',
+  50: 'h-[50px] w-[50px]',
   60: 'h-[60px] w-[60px]',
   70: 'h-[70px] w-[70px]',
   100: 'h-[100px] w-[100px]',
