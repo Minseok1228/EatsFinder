@@ -14,7 +14,7 @@ const example = [
     alt: '1',
   },
   {
-    src: 'https://plus.unsplash.com/premium_photo-1719955774018-5cf1d8a19d1c?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    src: 'https://images.unsplash.com/photo-1720440906281-b4367a242a86?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     alt: '2',
   },
   {
@@ -55,46 +55,44 @@ export const ImageCarousel = ({ images = example }) => {
   };
 
   return (
-    <div className='h-80 w-80'>
-      <div className='relative h-full w-full'>
-        <div className='absolute right-1/2 top-6 z-50 flex translate-x-1/2 gap-6'>
-          {images.map((it, idx) => (
-            <Dot
-              key={it.alt}
-              active={idx === curIndex}
-              onClick={() => {
-                handleDotClick(idx);
-              }}
-            />
+    <div className='relative h-full w-full'>
+      <div className='absolute right-1/2 top-6 z-50 flex translate-x-1/2 gap-6'>
+        {images.map((it, idx) => (
+          <Dot
+            key={it.alt}
+            active={idx === curIndex}
+            onClick={() => {
+              handleDotClick(idx);
+            }}
+          />
+        ))}
+      </div>
+      <div className='h-full w-full overflow-hidden'>
+        <div
+          className='flex h-full w-full transition-transform duration-500'
+          style={{ transform: `translate3d(${-curIndex * 100}%, 0, 0)` }}
+        >
+          {images.map((it) => (
+            <div className='relative h-full w-full shrink-0' key={it.alt}>
+              <Image
+                className='object-cover'
+                src={it.src}
+                alt={it.alt}
+                fill={true}
+              />
+            </div>
           ))}
         </div>
-        <div className='h-full w-full overflow-hidden'>
-          <div
-            className='flex h-full w-full transition-transform duration-500'
-            style={{ transform: `translate3d(${-curIndex * 100}%, 0, 0)` }}
-          >
-            {images.map((it) => (
-              <div className='relative h-full w-full shrink-0' key={it.alt}>
-                <Image
-                  className='object-cover'
-                  src={it.src}
-                  alt={it.alt}
-                  fill={true}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-        <div
-          className={customTwMerge('absolute left-6 top-1/2 -translate-y-1/2')}
-        >
-          <PrevButton onClick={handlePrevClick} />
-        </div>
-        <div
-          className={customTwMerge('absolute right-6 top-1/2 -translate-y-1/2')}
-        >
-          <NextButton onClick={handleNextClick} />
-        </div>
+      </div>
+      <div
+        className={customTwMerge('absolute left-6 top-1/2 -translate-y-1/2')}
+      >
+        <PrevButton onClick={handlePrevClick} />
+      </div>
+      <div
+        className={customTwMerge('absolute right-6 top-1/2 -translate-y-1/2')}
+      >
+        <NextButton onClick={handleNextClick} />
       </div>
     </div>
   );
