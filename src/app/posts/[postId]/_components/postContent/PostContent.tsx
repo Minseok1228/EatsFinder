@@ -6,7 +6,7 @@ import Keywords from './Keywords';
 
 const PostContent = () => {
   return (
-    <section className='grid grid-cols-2 gap-6'>
+    <section className='mb-20 grid grid-cols-2 gap-6'>
       <div className='overflow-hidden rounded-s-3xl'>
         <ImageCarousel />
       </div>

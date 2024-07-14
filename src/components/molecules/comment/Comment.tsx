@@ -3,11 +3,14 @@ import { ThumbsUpSVG } from '@/components/svg/ThumbsSVG';
 import { customTwMerge } from '@/utils/customTwMerge';
 
 interface CommentProps {
-  isLiked: boolean;
+  isLiked?: boolean;
   isAuthor?: boolean;
 }
 
-export const Comment = ({ isLiked, isAuthor = false }: CommentProps) => {
+export const Comment = ({
+  isLiked = false,
+  isAuthor = false,
+}: CommentProps) => {
   return (
     <div
       className={customTwMerge(
