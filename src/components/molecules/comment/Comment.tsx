@@ -3,12 +3,18 @@ import { ThumbsUpSVG } from '@/components/svg/ThumbsSVG';
 import { customTwMerge } from '@/utils/customTwMerge';
 
 interface CommentProps {
-  liked: boolean;
+  isLiked: boolean;
+  isAuthor?: boolean;
 }
 
-export const Comment = ({ liked }: CommentProps) => {
+export const Comment = ({ isLiked, isAuthor = false }: CommentProps) => {
   return (
-    <div className='flex rounded-3xl bg-gray-50 p-5'>
+    <div
+      className={customTwMerge(
+        'flex rounded-3xl p-5',
+        isAuthor && 'bg-gray-50',
+      )}
+    >
       <div className='mr-6 flex items-center'>
         <ProfileImage size={70} />
       </div>
@@ -27,7 +33,7 @@ export const Comment = ({ liked }: CommentProps) => {
           <div
             className={customTwMerge(
               '[&>svg]:h-[18px] [&>svg]:w-[18px]',
-              liked ? 'fill-primary-400' : 'fill-gray-400',
+              isLiked ? 'fill-primary-400' : 'fill-gray-400',
             )}
           >
             <ThumbsUpSVG />
