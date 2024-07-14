@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { Header, Footer } from '@/components/organisms';
 import { Pretendard, TossFace } from '@/assets/fonts';
 import './globals.css';
@@ -21,6 +22,10 @@ export default function RootLayout({
           <main className='mx-auto w-[1440px] grow p-9'>{children}</main>
           <Footer />
         </div>
+        <Script
+          src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_API_KEY}&libraries=services,clusterer&autoload=false`}
+          strategy='beforeInteractive'
+        />
       </body>
     </html>
   );
