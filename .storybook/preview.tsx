@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Preview } from '@storybook/react';
-import { Pretendard } from '../src/assets/fonts';
+import { Pretendard, TossFace } from '../src/assets/fonts';
 import '../src/app/globals.css';
 
 const preview: Preview = {
@@ -19,7 +19,7 @@ const preview: Preview = {
   decorators: [
     (Story) => {
       return (
-        <div className={Pretendard.variable}>
+        <div className={`${Pretendard.variable} ${TossFace.variable}`}>
           <Story />
         </div>
       );

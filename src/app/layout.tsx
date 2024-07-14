@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Header, Footer } from '@/components/organisms';
-import { Pretendard } from '@/assets/fonts';
+import { Pretendard, TossFace } from '@/assets/fonts';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='ko' className={`${Pretendard.variable}`}>
+    <html lang='ko' className={`${Pretendard.variable} ${TossFace.variable}`}>
       <body>
         <div className='flex min-h-screen flex-col'>
           <Header />
