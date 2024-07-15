@@ -56,7 +56,7 @@ export const ImageCarousel = ({ images = example }) => {
 
   return (
     <div className='relative h-full w-full'>
-      <div className='absolute right-1/2 top-6 z-50 flex translate-x-1/2 gap-2'>
+      <div className='absolute right-1/2 top-6 z-50 flex translate-x-1/2 gap-6'>
         {images.map((it, idx) => (
           <Dot
             key={it.alt}
@@ -79,6 +79,7 @@ export const ImageCarousel = ({ images = example }) => {
                 src={it.src}
                 alt={it.alt}
                 fill={true}
+                sizes='50vw'
               />
             </div>
           ))}

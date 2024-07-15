@@ -1,11 +1,17 @@
 'use client';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import { PlacesType } from '@/types/postType';
 
-const StoreMap = () => {
+interface StoreMapProps {
+  places: PlacesType;
+}
+
+const StoreMap = ({ places }: StoreMapProps) => {
+  const { roadAddress, x, y } = places;
   return (
     <div className='py-[10px]'>
       <div className='mb-2 flex justify-between body-16'>
-        <span className='text-gray-600'>부산 동구 중앙대로 225</span>
+        <span className='text-gray-600'>{roadAddress}</span>
         <span
           className='cursor-pointer text-gray-300'
           onClick={() => {
@@ -16,12 +22,9 @@ const StoreMap = () => {
           주소복사
         </span>
       </div>
-      <Map
-        className='h-[150px] w-full rounded-3xl'
-        center={{ lat: 33.5563, lng: 126.79581 }}
-      >
+      <Map className='h-[150px] w-full rounded-3xl' center={{ lat: y, lng: x }}>
         <MapMarker
-          position={{ lat: 33.55635, lng: 126.795841 }}
+          position={{ lat: y, lng: x }}
           image={{ src: '/marker.png', size: { width: 48, height: 48 } }}
         />
       </Map>

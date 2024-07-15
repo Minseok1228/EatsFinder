@@ -1,10 +1,15 @@
 import PostContent from './postContent';
 import PostComment from './postComments';
+import { PostContentType } from '@/types/postType';
 
-const PostPage = () => {
+interface PostPageProps {
+  postContent: PostContentType;
+}
+
+const PostPage = ({ postContent }: PostPageProps) => {
   return (
     <>
-      <PostContent />
+      <PostContent postContent={postContent} />
       <PostComment />
     </>
   );

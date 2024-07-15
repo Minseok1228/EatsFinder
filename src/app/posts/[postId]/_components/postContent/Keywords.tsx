@@ -1,12 +1,16 @@
 import { Chip } from '@/components/atoms';
+import parseKeywords from '@/utils/parseKeywords';
 import { KEYWORDS } from '@/constants/keywords';
 
-const example: Array<keyof typeof KEYWORDS> = [1, 2, 3, 5, 6, 11, 14, 15];
+interface KeywordsProps {
+  keywords: string;
+}
 
-const Keywords = () => {
+const Keywords = ({ keywords }: KeywordsProps) => {
+  const parsedKeywords = parseKeywords(keywords);
   return (
     <div className='flex flex-wrap gap-2'>
-      {example.map((it) => (
+      {parsedKeywords.map((it) => (
         <Chip key={it} text={KEYWORDS[it].text} emoji={KEYWORDS[it].emoji} />
       ))}
     </div>
