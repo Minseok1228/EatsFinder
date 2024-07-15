@@ -5,7 +5,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'images.unsplash.com' },
       {
         protocol: 'https',
-        hostname: 'eatsfinder-bucket.s3.ap-northeast-2.amazonaws.com',
+        hostname: process.env.NEXT_PUBLIC_S3_SERVER,
       },
     ],
   },
