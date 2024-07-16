@@ -14,11 +14,14 @@ export const loginSchema = z.object({
     .string({ required_error: '비밀번호를 입력해주세요.' })
     .regex(passwordRegex, {
       message:
-        '영문,숫자,특수문자(@,$,!,%,*,?,&) 중 2가지 이상을 사용하여 최소 10자리 이상 입력해주세요.',
+        '영문, 숫자, 특수문자(@,$,!,*,?)을 포함한 8~16자리를 입력해주세요.',
     }),
 });
 export const signupSchema = z
   .object({
+    name: z
+      .string({ required_error: '이름을 입력해주세요.' })
+      .min(3, { message: '이름은 2글자 이상이어야 합니다.' }),
     phoneNumber: z
       .string({ required_error: '전화번호를 입력해주세요.' })
       .regex(phoneRegex, { message: '전화번호 양식에 맞게 작성해주세요.' }),
@@ -30,15 +33,11 @@ export const signupSchema = z
       .string({ required_error: '비밀번호를 입력해주세요.' })
       .regex(passwordRegex, {
         message:
-          '영문, 숫자, 특수문자(@,$,!,*,?) 중 2개 이상 포함하여 10자 이상 입력해주세요.',
+          '영문, 숫자, 특수문자(@,$,!,*,?)을 포함한 8~16자리를 입력해주세요.',
       }),
     passwordCheck: z.string({ required_error: '비밀번호를 입력해주세요.' }),
-    name: z
-      .string({ required_error: '이름을 입력해주세요.' })
-      .min(2, { message: '이름은 2글자 이상이어야 합니다.' }),
 
-    nickname: z.string({ required_error: '닉네임을 입력해주세요.' }).min(3, {
-      // .regex(nicknameRegex, {
+    nickname: z.string({ required_error: '닉네임을 입력해주세요.' }).min(2, {
       message:
         '한글,영문,숫자를 사용하여 최소 2자에서 최대 12자의 닉네임을 입력해주세요.',
     }),

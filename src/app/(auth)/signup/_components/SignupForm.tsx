@@ -10,7 +10,8 @@ import { useSignup } from '../../_hooks/useFormData';
 
 const SignupForm = () => {
   const { register, handleSubmit, watch, errors } = useSignup();
-
+  console.log(errors);
+  console.log(errors.name?.message);
   const { visibility: pwVisibility, ButtonIcon: PwButtonIcon } =
     VisibilityButtonIcon();
   const { visibility: checkPwVisibility, ButtonIcon: CheckPwButtonIcon } =

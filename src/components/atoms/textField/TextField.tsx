@@ -38,7 +38,7 @@ export const TextField = forwardRef<HTMLInputElement, AuthInputProps>(
           )}
         </div>
 
-        {message && (
+        {(message || errormessage) && (
           <div className='flex justify-between'>
             <p
               className={`body-12 ${errormessage ? 'text-error' : 'text-gray-400'}`}
