@@ -3,7 +3,7 @@ import { customTwMerge } from '@/utils/customTwMerge';
 import { DefaultIconSVG } from '@/components/svg/DefaultIconSVG';
 
 interface ProfileImageProps {
-  src?: string;
+  src?: string | null;
   size: 40 | 50 | 60 | 70 | 100;
 }
 

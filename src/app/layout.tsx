@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { Header, Footer } from '@/components/organisms';
-import { Pretendard } from '@/assets/fonts';
+import { Pretendard, TossFace } from '@/assets/fonts';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -14,13 +15,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='ko' className={`${Pretendard.variable}`}>
+    <html lang='ko' className={`${Pretendard.variable} ${TossFace.variable}`}>
       <body>
         <div className='flex min-h-screen flex-col'>
           <Header />
-          <div className='mx-auto w-[1440px] grow p-9'>{children}</div>
+          <main className='mx-auto w-[1440px] grow p-9'>{children}</main>
           <Footer />
         </div>
+        <Script
+          src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_API_KEY}&libraries=services,clusterer&autoload=false`}
+          strategy='beforeInteractive'
+        />
       </body>
     </html>
   );

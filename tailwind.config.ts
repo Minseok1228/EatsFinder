@@ -14,6 +14,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         pretendard: [`var(--font-pretendard)`],
+        tossface: ['var(--font-tossface)'],
       },
       colors: {
         primary: {

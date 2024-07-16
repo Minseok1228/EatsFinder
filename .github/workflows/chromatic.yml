@@ -44,6 +44,8 @@ jobs:
           exitZeroOnChanges: true
           exitOnceUploaded: true
           onlyChanged: true
+        env:
+          NEXT_PUBLIC_S3_SERVER: ${{ secrets.NEXT_PUBLIC_S3_SERVER }}
 
       - name: PR Comment
         if: github.event_name == 'pull_request'

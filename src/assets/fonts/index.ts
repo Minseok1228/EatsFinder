@@ -5,3 +5,9 @@ export const Pretendard = localFont({
   display: 'swap',
   variable: '--font-pretendard',
 });
+
+export const TossFace = localFont({
+  src: './TossFaceFontWeb.otf',
+  display: 'swap',
+  variable: '--font-tossface',
+});

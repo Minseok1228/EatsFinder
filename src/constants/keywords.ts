@@ -1,0 +1,17 @@
+export const KEYWORDS = {
+  1: { category: '음식/가격', emoji: '😋', text: '맛있어요' },
+  2: { category: '음식/가격', emoji: '🍚', text: '양이 많아요' },
+  3: { category: '음식/가격', emoji: '⏰', text: '빨리 나와요' },
+  4: { category: '음식/가격', emoji: '💸', text: '가성비 굿' },
+  5: { category: '음식/가격', emoji: '🧂', text: '간이 세요' },
+  6: { category: '분위기', emoji: '🌉', text: '근사해요' },
+  7: { category: '분위기', emoji: '📸', text: '사진이 잘나와요' },
+  8: { category: '분위기', emoji: '🏞', text: '공간이 넓어요' },
+  9: { category: '분위기', emoji: '🧘‍♀️', text: '아늑해요' },
+  10: { category: '분위기', emoji: '💬', text: '대화하기 좋아요' },
+  11: { category: '분위기', emoji: '🛋', text: '좌석이 편해요' },
+  12: { category: '분위기', emoji: '🍛', text: '혼밥하기 좋아요' },
+  13: { category: '분위기', emoji: '🏝', text: '이국적이에요' },
+  14: { category: '서비스/기타', emoji: '😊', text: '친절해요' },
+  15: { category: '서비스/기타', emoji: '🚙', text: '주차가 편해요' },
+};
