@@ -7,11 +7,9 @@ const passwordRegex =
 const nicknameRegex =
   /^(?=.*[\p{Hangul}])(?=.*[a-zA-Z])(?=.*\d)[\p{Hangul}a-zA-Z\d]{2,12}$/;
 export const loginSchema = z.object({
-  email: z.string({ required_error: '이메일을 입력해주세요.' }).regex(
-    emailRegex,
-
-    { message: '이메일 양식에 맞게 작성해주세요.' },
-  ),
+  email: z
+    .string({ required_error: '이메일을 입력해주세요.' })
+    .regex(emailRegex, { message: '이메일 양식에 맞게 작성해주세요.' }),
   password: z
     .string({ required_error: '비밀번호를 입력해주세요.' })
     .regex(passwordRegex, {
