@@ -7,9 +7,11 @@ const passwordRegex =
 const nicknameRegex =
   /^(?=.*[\p{Hangul}])(?=.*[a-zA-Z])(?=.*\d)[\p{Hangul}a-zA-Z\d]{2,12}$/;
 export const loginSchema = z.object({
-  email: z
-    .string({ required_error: '이메일을 입력해주세요.' })
-    .regex(emailRegex, { message: '이메일 양식에 맞게 작성해주세요.' }),
+  email: z.string({ required_error: '이메일을 입력해주세요.' }).regex(
+    emailRegex,
+
+    { message: '이메일 양식에 맞게 작성해주세요.' },
+  ),
   password: z
     .string({ required_error: '비밀번호를 입력해주세요.' })
     .regex(passwordRegex, {
@@ -21,7 +23,7 @@ export const signupSchema = z
   .object({
     name: z
       .string({ required_error: '이름을 입력해주세요.' })
-      .min(3, { message: '이름은 2글자 이상이어야 합니다.' }),
+      .min(2, { message: '이름은 2글자 이상이어야 합니다.' }),
     phoneNumber: z
       .string({ required_error: '전화번호를 입력해주세요.' })
       .regex(phoneRegex, { message: '전화번호 양식에 맞게 작성해주세요.' }),
@@ -32,7 +34,7 @@ export const signupSchema = z
     password: z
       .string({ required_error: '비밀번호를 입력해주세요.' })
       .regex(passwordRegex, {
-        message: `영문, 숫자, 특수문자(@,$,!,*,?,#,^,%,&)을 포함한 8~16자리를 입력해주세요.`,
+        message: `영문, 숫자, 특수문자(@  $ ! * ? # ^ % &)을 포함한 8~16자리를 입력해주세요.`,
       }),
     passwordCheck: z.string({ required_error: '비밀번호를 입력해주세요.' }),
 
