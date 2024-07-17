@@ -14,7 +14,7 @@ export const loginSchema = z.object({
     .string({ required_error: '비밀번호를 입력해주세요.' })
     .regex(passwordRegex, {
       message:
-        '영문, 숫자, 특수문자(@,$,!,*,?)을 포함한 8~16자리를 입력해주세요.',
+        '영문, 숫자, 특수문자(@,$,!,*,?,#,^)을 포함한 8~16자리를 입력해주세요.',
     }),
 });
 export const signupSchema = z
@@ -32,8 +32,7 @@ export const signupSchema = z
     password: z
       .string({ required_error: '비밀번호를 입력해주세요.' })
       .regex(passwordRegex, {
-        message:
-          '영문, 숫자, 특수문자(@,$,!,*,?)을 포함한 8~16자리를 입력해주세요.',
+        message: `영문, 숫자, 특수문자(@,$,!,*,?,#,^,%,&)을 포함한 8~16자리를 입력해주세요.`,
       }),
     passwordCheck: z.string({ required_error: '비밀번호를 입력해주세요.' }),
 

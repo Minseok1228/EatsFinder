@@ -11,7 +11,6 @@ import { useSignup } from '../../_hooks/useFormData';
 const SignupForm = () => {
   const { register, handleSubmit, watch, errors } = useSignup();
   console.log(errors);
-  console.log(errors.name?.message);
   const { visibility: pwVisibility, ButtonIcon: PwButtonIcon } =
     VisibilityButtonIcon();
   const { visibility: checkPwVisibility, ButtonIcon: CheckPwButtonIcon } =
@@ -41,7 +40,7 @@ const SignupForm = () => {
         type={pwVisibility}
         label='비밀번호'
         placeholder='비밀번호를 입력하세요.'
-        message='영문,숫자,특수문자(@,$,!,%,*,?,&) 중 2종류 이상을 조합하여 최소 10자리 이상'
+        message='영문, 숫자, 특수문자(@,$,!,*,?,#,^,%,&)을 포함한 8~16자리'
         icon={<PwButtonIcon />}
         errormessage={errors.password?.message}
       />

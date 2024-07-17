@@ -29,7 +29,7 @@ export const ConfirmEmail = forwardRef<HTMLInputElement, ConfrimEmailProps>(
           placeholder='인증번호를 입력해주세요.'
           message='이메일로 발송된 인증번호를 입력하세요.'
           timer={formatTime(time)}
-          buttonDisabled={authButtonState}
+          buttonDisabled={!authButtonState}
           onButtonClick={confirmEmail({
             email: watch('email'),
             code: watch('code'),

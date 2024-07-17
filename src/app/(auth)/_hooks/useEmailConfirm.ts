@@ -5,20 +5,16 @@ import { debounce } from 'lodash';
 import { emailRegex } from '@/utils/zodSchema';
 
 export const useEmailConfirm = () => {
-  const [authButtonState, setAuthButtonState] = useState(true);
+  const [authButtonState, setAuthButtonState] = useState(false);
   const { time, startTimer, formatTime } = useTimer(300);
   const sendEmail = (email: string) =>
     //쓰로틀링이 더 나을까?
     debounce(async () => {
       if (isValidEmail(email)) {
-        console.log('hi');
-      } else {
-        console.log('none');
+        const res = await sendCode(email);
+        setAuthButtonState(true);
+        startTimer();
       }
-      const res = await sendCode(email);
-      setAuthButtonState(false);
-      startTimer();
-      return console.log(res);
     }, 1000);
   const confirmEmail = (data: EmailConfirmType) => async () => {
     const res = await confirmCode(data);
