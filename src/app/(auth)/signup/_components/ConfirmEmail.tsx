@@ -1,17 +1,24 @@
 import { TextFieldWithBtn } from '@/components/molecules/texTFieldWithBtn';
 import React, { forwardRef } from 'react';
 import { SignupFormType } from '@/types/authType';
-import { UseFormRegister, UseFormWatch } from 'react-hook-form';
+import {
+  FieldErrors,
+  UseFormRegister,
+  UseFormSetValue,
+  UseFormWatch,
+} from 'react-hook-form';
 import { useEmailConfirm } from '../../_hooks/useEmailConfirm';
+import { Checkbox } from '@/components/atoms';
 type ConfrimEmailProps = {
   register: UseFormRegister<SignupFormType>;
   watch: UseFormWatch<SignupFormType>;
-  errormessage?: string;
+  errormessage?: FieldErrors<SignupFormType>;
+  setValue: UseFormSetValue<SignupFormType>;
 };
 export const ConfirmEmail = forwardRef<HTMLInputElement, ConfrimEmailProps>(
-  function ConfirmEmail({ register, watch, errormessage }) {
+  function ConfirmEmail({ register, watch, errormessage, setValue }, ref) {
     const { sendEmail, authButtonState, formatTime, time, confirmEmail } =
-      useEmailConfirm();
+      useEmailConfirm(setValue);
     return (
       <div className='flex flex-col gap-9'>
         <TextFieldWithBtn
@@ -20,7 +27,13 @@ export const ConfirmEmail = forwardRef<HTMLInputElement, ConfrimEmailProps>(
           buttonMessage='발송하기'
           placeholder='abcd@gamil.com'
           onButtonClick={sendEmail(watch('email'))}
-          errormessage={errormessage}
+          errormessage={errormessage?.email?.message}
+        />
+        {/**에러를 보여줄려면 field가 필요해서 만들어둔 안보이는 인풋 */}
+        <input
+          type='checkbox'
+          className='hidden'
+          {...register('codeValidation')}
         />
         <TextFieldWithBtn
           label='인증번호'
@@ -34,6 +47,7 @@ export const ConfirmEmail = forwardRef<HTMLInputElement, ConfrimEmailProps>(
             email: watch('email'),
             code: watch('code'),
           })}
+          errormessage={errormessage?.codeValidation?.message}
         />
       </div>
     );

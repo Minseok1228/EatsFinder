@@ -7,7 +7,6 @@ export const useLogin = () => {
   const {
     register,
     handleSubmit,
-    resetField,
     formState: { errors },
   } = useForm<LoginFormType>({
     mode: 'onBlur',
@@ -29,34 +28,38 @@ export const useLogin = () => {
     errors,
   };
 };
+/**
+ * code도 boolean => 인증메세지 받으면 true
+ * 모든 폼이 작성되고, accept랑 code가 true 일경우에만 발송
+ */
 export const useSignup = () => {
   const {
     register,
     handleSubmit,
     resetField,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<SignupFormType>({
     mode: 'onBlur',
     resolver: zodResolver(signupSchema),
   });
-  const resetInput = () => {
-    resetField('name');
-    resetField('nickname');
-    resetField('password');
-    resetField('passwordCheck');
-    resetField('phoneNumber');
-  };
+
   //statuscode에 따른 값
   const onSubmit: SubmitHandler<SignupFormType> = async (data) => {
-    const res = await signup(data);
-    console.log(res);
-    if (res.statusCode) {
-      alert(res.message);
-    }
-    if (!res.statusCode) {
-      alert('회원가입이 완료되셨습니다.');
-      window.location.href = '/login';
+    const { acceptPrivacyPolicy, acceptTerms, code } = data;
+    if (acceptPrivacyPolicy && acceptTerms && code) {
+      const res = await signup(data);
+      console.log(res);
+      if (res.statusCode) {
+        alert(res.message);
+      }
+      if (!res.statusCode) {
+        alert('회원가입이 완료되셨습니다.');
+        window.location.href = '/login';
+      }
+    } else if (!acceptPrivacyPolicy) {
+      console.log('개인정보 수집•이용에 동의해주세요');
     }
   };
 
@@ -65,5 +68,6 @@ export const useSignup = () => {
     handleSubmit: handleSubmit(onSubmit),
     watch,
     errors,
+    setValue,
   };
 };

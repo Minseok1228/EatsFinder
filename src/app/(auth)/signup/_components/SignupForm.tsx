@@ -9,11 +9,18 @@ import { AgreeTerms } from './AgreeTerms';
 import { useSignup } from '../../_hooks/useFormData';
 
 const SignupForm = () => {
-  const { register, handleSubmit, watch, errors } = useSignup();
+  const { register, handleSubmit, watch, errors, setValue } = useSignup();
   const { visibility: pwVisibility, ButtonIcon: PwButtonIcon } =
     VisibilityButtonIcon();
   const { visibility: checkPwVisibility, ButtonIcon: CheckPwButtonIcon } =
     VisibilityButtonIcon();
+  console.log('watch', watch());
+  console.log('error', errors);
+  //toast로 처리?
+  if (errors.codeValidation) console.log(errors.codeValidation?.message);
+  if (errors.acceptPrivacyPolicy)
+    console.log(errors.acceptPrivacyPolicy.message);
+  if (errors.acceptTerms) console.log(errors.acceptTerms.message);
   return (
     <form className='flex flex-col gap-9' onSubmit={handleSubmit}>
       <TextField
@@ -32,14 +39,15 @@ const SignupForm = () => {
       <ConfirmEmail
         register={register}
         watch={watch}
-        errormessage={errors.email?.message}
+        errormessage={errors}
+        setValue={setValue}
       />
       <TextField
         {...register('password')}
         type={pwVisibility}
         label='비밀번호'
         placeholder='비밀번호를 입력하세요.'
-        message='영문, 숫자, 특수문자(@,$,!,*,?,#,^,%,&)을 포함한 8~16자리'
+        message='영문, 숫자, 특수문자(! ? @ # $ % ^ & *)을 포함한 8~16자리를 입력해주세요.'
         icon={<PwButtonIcon />}
         errormessage={errors.password?.message}
       />
@@ -59,7 +67,7 @@ const SignupForm = () => {
         message='한글,영문,숫자 조합 최소 2자~ 최대 12 까지 설정'
         errormessage={errors.nickname?.message}
       />
-      <AgreeTerms />
+      <AgreeTerms register={register} />
       <Button type='submit' size={'large'}>
         완료하기
       </Button>

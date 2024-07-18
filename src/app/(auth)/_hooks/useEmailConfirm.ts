@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useTimer } from './useTimer';
-import { EmailConfirmType } from '@/types/authType';
+import { EmailConfirmType, SignupFormType } from '@/types/authType';
 import { debounce } from 'lodash';
 import { emailRegex } from '@/utils/zodSchema';
+import { UseFormSetValue } from 'react-hook-form';
 
-export const useEmailConfirm = () => {
+export const useEmailConfirm = (setValue: UseFormSetValue<SignupFormType>) => {
   const [authButtonState, setAuthButtonState] = useState(false);
   const { time, startTimer, formatTime } = useTimer(300);
   const sendEmail = (email: string) =>
@@ -16,8 +17,15 @@ export const useEmailConfirm = () => {
         startTimer();
       }
     }, 1000);
+
   const confirmEmail = (data: EmailConfirmType) => async () => {
     const res = await confirmCode(data);
+    console.log(res.statusCode);
+    if (res.statusCode === 'SUCCESS') setValue('codeValidation', true);
+    if (res.statusCode === 'ERROR') {
+      setValue('codeValidation', false);
+      console.log('인증번호를 다시 확인해주시기 바랍니다.');
+    }
     return console.log(res);
   };
 
@@ -49,6 +57,7 @@ const confirmCode = async (data: EmailConfirmType) => {
       headers: { accept: '*/*' },
     },
   );
+
   return res.json();
 };
 const isValidEmail = (email: string) => {
