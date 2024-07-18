@@ -7,7 +7,7 @@ export type SignupFormType = {
   phoneNumber: string;
   email: string;
   code: string;
-  codeValidation: boolean;
+  codeValidation: string;
   password: string;
   passwordCheck: string;
   nickname: string;

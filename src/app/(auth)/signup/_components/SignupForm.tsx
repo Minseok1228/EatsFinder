@@ -9,7 +9,8 @@ import { AgreeTerms } from './AgreeTerms';
 import { useSignup } from '../../_hooks/useFormData';
 
 const SignupForm = () => {
-  const { register, handleSubmit, watch, errors, setValue } = useSignup();
+  const { register, handleSubmit, watch, errors, setValue, trigger } =
+    useSignup();
   const { visibility: pwVisibility, ButtonIcon: PwButtonIcon } =
     VisibilityButtonIcon();
   const { visibility: checkPwVisibility, ButtonIcon: CheckPwButtonIcon } =
@@ -41,6 +42,7 @@ const SignupForm = () => {
         watch={watch}
         errormessage={errors}
         setValue={setValue}
+        trigger={trigger}
       />
       <TextField
         {...register('password')}

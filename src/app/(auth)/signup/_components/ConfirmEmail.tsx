@@ -5,20 +5,28 @@ import {
   FieldErrors,
   UseFormRegister,
   UseFormSetValue,
+  UseFormTrigger,
   UseFormWatch,
 } from 'react-hook-form';
 import { useEmailConfirm } from '../../_hooks/useEmailConfirm';
-import { Checkbox } from '@/components/atoms';
 type ConfrimEmailProps = {
   register: UseFormRegister<SignupFormType>;
   watch: UseFormWatch<SignupFormType>;
   errormessage?: FieldErrors<SignupFormType>;
   setValue: UseFormSetValue<SignupFormType>;
+  trigger: UseFormTrigger<SignupFormType>;
 };
+//컨펌보낼 때 사용중인 이메일인지 확인도 해야할듯?
 export const ConfirmEmail = forwardRef<HTMLInputElement, ConfrimEmailProps>(
-  function ConfirmEmail({ register, watch, errormessage, setValue }, ref) {
+  function ConfirmEmail(
+    { register, watch, errormessage, setValue, trigger },
+    ref,
+  ) {
     const { sendEmail, authButtonState, formatTime, time, confirmEmail } =
-      useEmailConfirm(setValue);
+      useEmailConfirm(setValue, trigger);
+    console.log('!!!!!', watch('codeValidation'));
+    console.log('!!!!!', errormessage?.code?.message);
+    console.log('!!!!!', errormessage?.codeValidation?.message);
     return (
       <div className='flex flex-col gap-9'>
         <TextFieldWithBtn
@@ -30,11 +38,7 @@ export const ConfirmEmail = forwardRef<HTMLInputElement, ConfrimEmailProps>(
           errormessage={errormessage?.email?.message}
         />
         {/**에러를 보여줄려면 field가 필요해서 만들어둔 안보이는 인풋 */}
-        <input
-          type='checkbox'
-          className='hidden'
-          {...register('codeValidation')}
-        />
+
         <TextFieldWithBtn
           label='인증번호'
           {...register('code')}

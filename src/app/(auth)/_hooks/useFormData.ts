@@ -36,12 +36,12 @@ export const useSignup = () => {
   const {
     register,
     handleSubmit,
-    resetField,
     watch,
     setValue,
+    trigger,
     formState: { errors },
   } = useForm<SignupFormType>({
-    mode: 'onBlur',
+    mode: 'onChange',
     resolver: zodResolver(signupSchema),
   });
 
@@ -58,8 +58,6 @@ export const useSignup = () => {
         alert('회원가입이 완료되셨습니다.');
         window.location.href = '/login';
       }
-    } else if (!acceptPrivacyPolicy) {
-      console.log('개인정보 수집•이용에 동의해주세요');
     }
   };
 
@@ -69,5 +67,6 @@ export const useSignup = () => {
     watch,
     errors,
     setValue,
+    trigger,
   };
 };

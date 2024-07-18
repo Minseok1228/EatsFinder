@@ -28,19 +28,16 @@ export const signupSchema = z
       .string({ required_error: '이메일을 입력해주세요.' })
       .regex(emailRegex, { message: '이메일 양식에 맞게 작성해주세요.' }),
     code: z.string(),
-    codeValidation: z
-      .boolean()
-      .default(false)
-      .refine((data) => data === true, {
-        message: '이메일 인증을 해야 합니다.',
-      }),
+    codeValidation: z.string().refine((data) => data === 'SUCCESS', {
+      message: '인증번호가 올바르지 않습니다',
+    }),
     password: z
       .string({ required_error: '비밀번호를 입력해주세요.' })
       .regex(passwordRegex, {
         message:
           '영문, 숫자, 특수문자(! ? @ # $ % ^ & *)을 포함한 8~16자리를 입력해주세요.',
       }),
-    passwordCheck: z.string({ required_error: '비밀번호를 입력해주세요.' }),
+    passwordCheck: z.string({ required_error: '비밀번호를 확인해주세요.' }),
 
     nickname: z
       .string({ required_error: '닉네임을 입력해주세요.' })
