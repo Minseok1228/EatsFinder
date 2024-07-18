@@ -37,7 +37,6 @@ export const ConfirmEmail = forwardRef<HTMLInputElement, ConfrimEmailProps>(
           onButtonClick={sendEmail(watch('email'))}
           errormessage={errormessage?.email?.message}
         />
-        {/**에러를 보여줄려면 field가 필요해서 만들어둔 안보이는 인풋 */}
 
         <TextFieldWithBtn
           label='인증번호'

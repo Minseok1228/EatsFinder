@@ -25,14 +25,13 @@ export const useEmailConfirm = (
     const res = await confirmCode(data);
     console.log(res.statusCode);
     if (res.statusCode === 'SUCCESS') {
-      setValue('codeValidation', 'SUCCESS');
+      setValue('codeValidation', true);
       trigger('codeValidation');
     }
 
     if (res.statusCode === 'ERROR') {
-      setValue('codeValidation', 'ERROR');
+      setValue('codeValidation', false);
       trigger('codeValidation');
-      console.log('인증번호를 다시 확인해주시기 바랍니다.');
     }
     return console.log(res);
   };

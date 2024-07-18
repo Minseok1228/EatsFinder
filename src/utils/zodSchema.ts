@@ -28,7 +28,7 @@ export const signupSchema = z
       .string({ required_error: '이메일을 입력해주세요.' })
       .regex(emailRegex, { message: '이메일 양식에 맞게 작성해주세요.' }),
     code: z.string(),
-    codeValidation: z.string().refine((data) => data === 'SUCCESS', {
+    codeValidation: z.boolean().refine((data) => data === true, {
       message: '인증번호가 올바르지 않습니다',
     }),
     password: z
