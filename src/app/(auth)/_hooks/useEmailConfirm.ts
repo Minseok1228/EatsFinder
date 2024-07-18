@@ -1,28 +1,38 @@
 import { useState } from 'react';
 import { useTimer } from './useTimer';
-import { EmailConfirmType } from '@/types/authType';
+import { EmailConfirmType, SignupFormType } from '@/types/authType';
 import { debounce } from 'lodash';
 import { emailRegex } from '@/utils/zodSchema';
+import { UseFormSetValue, UseFormTrigger } from 'react-hook-form';
 
-export const useEmailConfirm = () => {
-  const [authButtonState, setAuthButtonState] = useState(true);
+export const useEmailConfirm = (
+  setValue: UseFormSetValue<SignupFormType>,
+  trigger: UseFormTrigger<SignupFormType>,
+) => {
+  const [authButtonState, setAuthButtonState] = useState(false);
   const { time, startTimer, formatTime } = useTimer(300);
   const sendEmail = (email: string) =>
     //쓰로틀링이 더 나을까?
     debounce(async () => {
       if (isValidEmail(email)) {
-        console.log('hi');
-      } else {
-        console.log('none');
+        const res = await sendCode(email);
+        setAuthButtonState(true);
+        startTimer();
       }
-      const res = await sendCode(email);
-      setAuthButtonState(false);
-      startTimer();
-      return console.log(res);
     }, 1000);
+
   const confirmEmail = (data: EmailConfirmType) => async () => {
     const res = await confirmCode(data);
-    return console.log(res);
+    if (res.statusCode === 'SUCCESS') {
+      setValue('codeValidation', true);
+      trigger('codeValidation');
+    }
+
+    if (res.statusCode === 'ERROR') {
+      setValue('codeValidation', false);
+      trigger('codeValidation');
+    }
+    return res;
   };
 
   return { sendEmail, authButtonState, formatTime, time, confirmEmail };
@@ -53,6 +63,7 @@ const confirmCode = async (data: EmailConfirmType) => {
       headers: { accept: '*/*' },
     },
   );
+
   return res.json();
 };
 const isValidEmail = (email: string) => {

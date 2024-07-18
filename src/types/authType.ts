@@ -7,11 +7,21 @@ export type SignupFormType = {
   phoneNumber: string;
   email: string;
   code: string;
+  codeValidation: boolean;
   password: string;
   passwordCheck: string;
   nickname: string;
+  acceptTerms: boolean;
+  acceptPrivacyPolicy: boolean;
 };
-export type SignupType = Omit<SignupFormType, 'passwordCheck' | 'code'>;
+export type SignupType = Omit<
+  SignupFormType,
+  | 'passwordCheck'
+  | 'code'
+  | 'acceptTerms'
+  | 'acceptPrivacyPolicy'
+  | 'codeValidation'
+>;
 export type EmailConfirmType = {
   email: string;
   code: string;

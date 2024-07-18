@@ -1,17 +1,29 @@
 import { TextFieldWithBtn } from '@/components/molecules/texTFieldWithBtn';
 import React, { forwardRef } from 'react';
 import { SignupFormType } from '@/types/authType';
-import { UseFormRegister, UseFormWatch } from 'react-hook-form';
+import {
+  FieldErrors,
+  UseFormRegister,
+  UseFormSetValue,
+  UseFormTrigger,
+  UseFormWatch,
+} from 'react-hook-form';
 import { useEmailConfirm } from '../../_hooks/useEmailConfirm';
 type ConfrimEmailProps = {
   register: UseFormRegister<SignupFormType>;
   watch: UseFormWatch<SignupFormType>;
-  errormessage?: string;
+  errormessage?: FieldErrors<SignupFormType>;
+  setValue: UseFormSetValue<SignupFormType>;
+  trigger: UseFormTrigger<SignupFormType>;
 };
+//컨펌보낼 때 사용중인 이메일인지 확인도 해야할듯?
 export const ConfirmEmail = forwardRef<HTMLInputElement, ConfrimEmailProps>(
-  function ConfirmEmail({ register, watch, errormessage }) {
+  function ConfirmEmail(
+    { register, watch, errormessage, setValue, trigger },
+    ref,
+  ) {
     const { sendEmail, authButtonState, formatTime, time, confirmEmail } =
-      useEmailConfirm();
+      useEmailConfirm(setValue, trigger);
     return (
       <div className='flex flex-col gap-9'>
         <TextFieldWithBtn
@@ -20,8 +32,9 @@ export const ConfirmEmail = forwardRef<HTMLInputElement, ConfrimEmailProps>(
           buttonMessage='발송하기'
           placeholder='abcd@gamil.com'
           onButtonClick={sendEmail(watch('email'))}
-          errormessage={errormessage}
+          errormessage={errormessage?.email?.message}
         />
+
         <TextFieldWithBtn
           label='인증번호'
           {...register('code')}
@@ -29,11 +42,12 @@ export const ConfirmEmail = forwardRef<HTMLInputElement, ConfrimEmailProps>(
           placeholder='인증번호를 입력해주세요.'
           message='이메일로 발송된 인증번호를 입력하세요.'
           timer={formatTime(time)}
-          buttonDisabled={authButtonState}
+          buttonDisabled={!authButtonState}
           onButtonClick={confirmEmail({
             email: watch('email'),
             code: watch('code'),
           })}
+          errormessage={errormessage?.codeValidation?.message}
         />
       </div>
     );
