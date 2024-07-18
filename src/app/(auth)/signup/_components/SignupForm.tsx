@@ -15,13 +15,10 @@ const SignupForm = () => {
     VisibilityButtonIcon();
   const { visibility: checkPwVisibility, ButtonIcon: CheckPwButtonIcon } =
     VisibilityButtonIcon();
-  console.log('watch', watch());
-  console.log('error', errors);
   //toast로 처리?
   if (errors.codeValidation) console.log(errors.codeValidation?.message);
   if (errors.acceptPrivacyPolicy)
-    console.log(errors.acceptPrivacyPolicy.message);
-  if (errors.acceptTerms) console.log(errors.acceptTerms.message);
+    if (errors.acceptTerms) console.log(errors.acceptTerms.message);
   return (
     <form className='flex flex-col gap-9' onSubmit={handleSubmit}>
       <TextField

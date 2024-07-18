@@ -24,9 +24,6 @@ export const ConfirmEmail = forwardRef<HTMLInputElement, ConfrimEmailProps>(
   ) {
     const { sendEmail, authButtonState, formatTime, time, confirmEmail } =
       useEmailConfirm(setValue, trigger);
-    console.log('!!!!!', watch('codeValidation'));
-    console.log('!!!!!', errormessage?.code?.message);
-    console.log('!!!!!', errormessage?.codeValidation?.message);
     return (
       <div className='flex flex-col gap-9'>
         <TextFieldWithBtn

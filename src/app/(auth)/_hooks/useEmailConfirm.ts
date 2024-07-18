@@ -23,7 +23,6 @@ export const useEmailConfirm = (
 
   const confirmEmail = (data: EmailConfirmType) => async () => {
     const res = await confirmCode(data);
-    console.log(res.statusCode);
     if (res.statusCode === 'SUCCESS') {
       setValue('codeValidation', true);
       trigger('codeValidation');
@@ -33,7 +32,7 @@ export const useEmailConfirm = (
       setValue('codeValidation', false);
       trigger('codeValidation');
     }
-    return console.log(res);
+    return res;
   };
 
   return { sendEmail, authButtonState, formatTime, time, confirmEmail };
