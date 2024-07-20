@@ -3,7 +3,7 @@ import { CloseSVG } from '@/components/svg/CloseSVG';
 
 interface ModalHeaderProps {
   title: string;
-  description: string;
+  description?: string;
   onClose: () => void;
 }
 
