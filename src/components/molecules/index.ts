@@ -9,3 +9,5 @@ export * from './search';
 export * from './category';
 
 export * from './modal';
+
+export * from './imageInput';
