@@ -16,7 +16,7 @@ export const ModalFooter = ({
 }: ModalFooterProps) => {
   return (
     <footer className='py-10'>
-      <div className='flex gap-[10px]'>
+      <div className='flex items-center justify-center gap-[10px]'>
         {subButton ? (
           <>
             <Button size='small' onClick={onMainClick}>
