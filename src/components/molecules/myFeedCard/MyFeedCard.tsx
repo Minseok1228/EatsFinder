@@ -1,13 +1,17 @@
 'use client';
+import { FeedOptionMenu } from '@/app/(auth)/profile/[userId]/_components/FeedOptionMenu';
 import { CardHoverMsg } from '@/components/atoms/cardHoverMsg';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-
-export const MyFeedCard = () => {
+type MyfeedCardProps = {
+  key: string;
+};
+export const MyFeedCard = ({ key }: MyfeedCardProps) => {
   const [isHover, setIsHover] = useState(false);
   return (
     <div
+      key={key}
       className='relative h-[408px] w-[250px]'
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
