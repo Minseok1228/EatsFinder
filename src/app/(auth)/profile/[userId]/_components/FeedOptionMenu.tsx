@@ -1,4 +1,4 @@
-import { Button, MoreButton } from '@/components/atoms';
+'use client';
 import { OptionButton } from '@/components/atoms/button/OptionButton';
 import React from 'react';
 

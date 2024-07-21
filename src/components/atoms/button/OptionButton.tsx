@@ -1,8 +1,6 @@
-import { ButtonHTMLAttributes, ComponentProps } from 'react';
+import { ButtonProps } from '@/types/props';
 
-interface OptionButton extends ComponentProps<'button'> {}
-
-export const OptionButton = ({ ...props }: OptionButton) => {
+export const OptionButton = ({ ...props }: ButtonProps) => {
   return (
     <button
       {...props}
