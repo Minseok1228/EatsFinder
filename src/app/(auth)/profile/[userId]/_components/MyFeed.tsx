@@ -6,7 +6,7 @@ export const MyFeed = () => {
   return (
     <div className='grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6'>
       {arr.map((i) => (
-        <MyFeedCard key={i} />
+        <MyFeedCard uniqueKey={i} />
       ))}
     </div>
   );
