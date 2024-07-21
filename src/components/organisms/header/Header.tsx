@@ -51,9 +51,9 @@ export const Header = () => {
             })}
           </ul>
         </div>
-        <div>
+        <Link href={'/profile/ss'}>
           <ProfileImage size={50} />
-        </div>
+        </Link>
       </div>
     </header>
   );
