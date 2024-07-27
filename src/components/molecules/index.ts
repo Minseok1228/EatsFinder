@@ -11,3 +11,5 @@ export * from './category';
 export * from './modal';
 
 export * from './imageInput';
+
+export * from './rating';
