@@ -8,24 +8,20 @@ const CATEGORIES = {
 type Category = (typeof CATEGORIES)[keyof typeof CATEGORIES];
 
 interface Keyword {
-  id: number;
   category: Category;
   emoji: string;
   text: string;
 }
 
 class KeywordManager {
-  private _currentId: number;
   private _keywords: Keyword[];
 
   constructor() {
-    this._currentId = 1;
     this._keywords = [];
   }
 
   addKeyword(category: Category, emoji: string, text: string) {
-    const id = this._currentId++;
-    this._keywords.push({ id, category, emoji, text });
+    this._keywords.push({ category, emoji, text });
   }
 
   get keywords() {
