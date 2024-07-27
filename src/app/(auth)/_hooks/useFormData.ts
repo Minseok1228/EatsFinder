@@ -14,9 +14,9 @@ export const useLogin = () => {
   });
 
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
-    const res = await login(data);
-    const accessToken = res.accessToken;
-    console.log(res);
+    const response = await login(data);
+    const accessToken = response.accessToken;
+    console.log(response);
     if (accessToken) {
       window.location.href = '/';
     }
@@ -49,11 +49,11 @@ export const useSignup = () => {
   const onSubmit: SubmitHandler<SignupFormType> = async (data) => {
     const { acceptPrivacyPolicy, acceptTerms, code } = data;
     if (acceptPrivacyPolicy && acceptTerms && code) {
-      const res = await signup(data);
-      if (res.statusCode) {
-        alert(res.message);
+      const response = await signup(data);
+      if (response.statusCode) {
+        alert(response.message);
       }
-      if (!res.statusCode) {
+      if (!response.statusCode) {
         alert('회원가입이 완료되셨습니다.');
         window.location.href = '/login';
       }
