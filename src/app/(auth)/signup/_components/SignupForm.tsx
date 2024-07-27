@@ -7,6 +7,7 @@ import { TextFieldWithBtn } from '@/components/molecules/texTFieldWithBtn';
 import { Button } from '@/components/atoms';
 import { AgreeTerms } from './AgreeTerms';
 import { useSignup } from '../../_hooks/useFormData';
+import { useNicknameDuplicateCheck } from '../../_hooks/useAuth';
 
 const SignupForm = () => {
   const { register, handleSubmit, watch, errors, setValue, trigger } =
@@ -61,6 +62,9 @@ const SignupForm = () => {
       <TextFieldWithBtn
         {...register('nickname')}
         label='닉네임'
+        onButtonClick={() =>
+          useNicknameDuplicateCheck({ setValue, trigger, watch })
+        }
         placeholder='닉네임을 입력하세요.'
         buttonMessage='중복확인'
         message='한글,영문,숫자 조합 최소 2자~ 최대 12 까지 설정'

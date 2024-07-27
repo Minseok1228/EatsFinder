@@ -15,30 +15,56 @@ export const useEmailConfirm = (
     //쓰로틀링이 더 나을까?
     debounce(async () => {
       if (isValidEmail(email)) {
-        const res = await sendCode(email);
-        setAuthButtonState(true);
-        startTimer();
+        const response = await isDuplicateEmail(email);
+        if (response.statusCode === 'SUCCESS') {
+          const response = await sendCode(email);
+          if (response.statusCode === 'SUCCESS') {
+            console.log(response.message);
+          } else if (response.statusCode === 'ERROR') {
+            return console.log('인증번호가 만료되지 않았습니다');
+          }
+          console.log('이메일방송', response);
+          setAuthButtonState(true);
+          startTimer();
+        } else {
+          return console.log('이미 가입된 이메일 입니다.');
+        }
       }
     }, 1000);
 
   const confirmEmail = (data: EmailConfirmType) => async () => {
-    const res = await confirmCode(data);
-    if (res.statusCode === 'SUCCESS') {
+    const response = await confirmCode(data);
+    if (response.statusCode === 'SUCCESS') {
       setValue('codeValidation', true);
       trigger('codeValidation');
-    }
-
-    if (res.statusCode === 'ERROR') {
+    } else if (response.statusCode === 'ERROR') {
       setValue('codeValidation', false);
       trigger('codeValidation');
     }
-    return res;
+    return response;
   };
 
   return { sendEmail, authButtonState, formatTime, time, confirmEmail };
 };
+
+const isDuplicateEmail = async (email: string) => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_KOTLIN_SERVER}/auth/email/{provider}?email=${email}&provider=LOCAL`,
+      {
+        method: 'GET',
+        headers: {
+          accept: '*/*',
+        },
+      },
+    );
+    return response.json();
+  } catch (error) {
+    throw new Error('이메일 중복 검사 중 오류가 발생했습니다.');
+  }
+};
 const sendCode = async (email: string) => {
-  const res = await fetch(
+  const response = await fetch(
     `${process.env.NEXT_PUBLIC_KOTLIN_SERVER}/auth/email`,
     {
       method: 'POST',
@@ -52,11 +78,11 @@ const sendCode = async (email: string) => {
       }),
     },
   );
-  return res.json();
+  return response.json();
 };
 const confirmCode = async (data: EmailConfirmType) => {
   const { code, email } = data;
-  const res = await fetch(
+  const response = await fetch(
     `${process.env.NEXT_PUBLIC_KOTLIN_SERVER}/auth/email/verify-code?email=${email}&code=${code}`,
     {
       method: 'GET',
@@ -64,7 +90,7 @@ const confirmCode = async (data: EmailConfirmType) => {
     },
   );
 
-  return res.json();
+  return response.json();
 };
 const isValidEmail = (email: string) => {
   return emailRegex.test(email);

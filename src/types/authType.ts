@@ -11,6 +11,7 @@ export type SignupFormType = {
   password: string;
   passwordCheck: string;
   nickname: string;
+  nicknameDuplicated: boolean;
   acceptTerms: boolean;
   acceptPrivacyPolicy: boolean;
 };
@@ -21,6 +22,7 @@ export type SignupType = Omit<
   | 'acceptTerms'
   | 'acceptPrivacyPolicy'
   | 'codeValidation'
+  | 'nicknameDuplicated'
 >;
 export type EmailConfirmType = {
   email: string;
