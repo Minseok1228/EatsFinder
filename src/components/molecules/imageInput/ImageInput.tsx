@@ -1,13 +1,26 @@
 import { HTMLAttributes } from 'react';
+import { customTwMerge } from '@/utils/customTwMerge';
+import { Button } from '@/components/atoms';
 import { AddDefaultSVG } from '@/components/svg/AddSVG';
 
-interface ImageInputProps extends HTMLAttributes<HTMLInputElement> {}
+interface ImageInputProps extends HTMLAttributes<HTMLInputElement> {
+  expand: boolean;
+}
 
-export const ImageInput = ({ ...props }: ImageInputProps) => {
+export const ImageInput = ({ expand, ...props }: ImageInputProps) => {
   return (
-    <label className='block h-[250px] w-[250px] cursor-pointer overflow-hidden rounded-3xl border border-dashed border-primary-400'>
+    <label
+      className={customTwMerge(
+        'block h-[250px] w-[250px] cursor-pointer overflow-hidden rounded-3xl border border-dashed border-primary-400',
+        expand && 'w-full',
+      )}
+    >
       <div className='flex h-full w-full items-center justify-center fill-primary-400 [&>svg]:h-12 [&>svg]:w-12'>
-        <AddDefaultSVG />
+        {expand ? (
+          <Button variant='stroke'>사진 업로드 하기</Button>
+        ) : (
+          <AddDefaultSVG />
+        )}
       </div>
       <input
         className='sr-only'
