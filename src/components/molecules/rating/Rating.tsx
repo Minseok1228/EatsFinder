@@ -3,15 +3,13 @@ import { useState } from 'react';
 import { RatingstarSVG } from '@/components/svg/RatingstarSVG';
 import { customTwMerge } from '@/utils/customTwMerge';
 
-export const Rating = ({
-  number,
-  rating,
-  onClick,
-}: {
+interface RatingProps {
   number: number;
   rating: number;
-  onClick: () => void;
-}) => {
+  onClick: (value: number) => void;
+}
+
+export const Rating = ({ number, rating, onClick }: RatingProps) => {
   const [hoverValue, setHoverValue] = useState<null | number>(null);
 
   return (
@@ -27,7 +25,7 @@ export const Rating = ({
             <input
               type='radio'
               className='sr-only'
-              onClick={onClick}
+              onClick={() => onClick(idx + 1)}
               aria-label='rating'
             />
             <span
