@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { Header, Footer } from '@/components/organisms';
 import { Pretendard, TossFace } from '@/assets/fonts';
 import './globals.css';
+import { KAKAO_API_KEY } from '@/constants/baseUrl';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -23,7 +24,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <Script
-          src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_API_KEY}&libraries=services,clusterer&autoload=false`}
+          src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_API_KEY}&libraries=services,clusterer&autoload=false`}
           strategy='beforeInteractive'
         />
       </body>

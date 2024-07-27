@@ -4,6 +4,7 @@ import { EmailConfirmType, SignupFormType } from '@/types/authType';
 import { debounce } from 'lodash';
 import { emailRegex } from '@/utils/zodSchema';
 import { UseFormSetValue, UseFormTrigger } from 'react-hook-form';
+import { KOTLIN_SERVER } from '@/constants/baseUrl';
 
 export const useEmailConfirm = (
   setValue: UseFormSetValue<SignupFormType>,
@@ -50,7 +51,7 @@ export const useEmailConfirm = (
 const isDuplicateEmail = async (email: string) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_KOTLIN_SERVER}/auth/email/{provider}?email=${email}&provider=LOCAL`,
+      `${KOTLIN_SERVER}/auth/email/{provider}?email=${email}&provider=LOCAL`,
       {
         method: 'GET',
         headers: {
@@ -64,26 +65,23 @@ const isDuplicateEmail = async (email: string) => {
   }
 };
 const sendCode = async (email: string) => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_KOTLIN_SERVER}/auth/email`,
-    {
-      method: 'POST',
-      headers: {
-        accept: '*/*',
-        'Content-Type': 'application/json',
-      },
-
-      body: JSON.stringify({
-        email,
-      }),
+  const response = await fetch(`${KOTLIN_SERVER}/auth/email`, {
+    method: 'POST',
+    headers: {
+      accept: '*/*',
+      'Content-Type': 'application/json',
     },
-  );
+
+    body: JSON.stringify({
+      email,
+    }),
+  });
   return response.json();
 };
 const confirmCode = async (data: EmailConfirmType) => {
   const { code, email } = data;
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_KOTLIN_SERVER}/auth/email/verify-code?email=${email}&code=${code}`,
+    `${KOTLIN_SERVER}/auth/email/verify-code?email=${email}&code=${code}`,
     {
       method: 'GET',
       headers: { accept: '*/*' },
