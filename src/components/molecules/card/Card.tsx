@@ -1,6 +1,6 @@
 import { Checkbox } from '@/components/atoms';
 import { OfficialLogoSVG } from '@/components/svg/OfficialLogoSVG';
-import { RatingstarFillSVG } from '@/components/svg/RatingstarSVG';
+import { RatingstarSVG } from '@/components/svg/RatingstarSVG';
 
 export const Card = () => {
   return (
@@ -20,8 +20,10 @@ export const Card = () => {
           <span className='text-gray-500 body-14'>
             서울 중구 만리재로 209-1
           </span>
-          <div className='flex items-center gap-1 text-primary-400 subTitle-20'>
-            <span>{RatingstarFillSVG()}</span>
+          <div className='flex items-center gap-1 fill-primary-400 text-primary-400 subTitle-20'>
+            <span>
+              <RatingstarSVG />
+            </span>
             <span>4.5</span>
           </div>
         </div>
