@@ -1,3 +1,4 @@
+'use client';
 import { HTMLAttributes } from 'react';
 import { customTwMerge } from '@/utils/customTwMerge';
 import { Button } from '@/components/atoms';
@@ -17,7 +18,9 @@ export const ImageInput = ({ expand, ...props }: ImageInputProps) => {
     >
       <div className='flex h-full w-full items-center justify-center fill-primary-400 [&>svg]:h-12 [&>svg]:w-12'>
         {expand ? (
-          <Button variant='stroke'>사진 업로드 하기</Button>
+          <div className='flex h-[60px] w-[280px] items-center justify-center rounded-2xl border border-primary-400 text-primary-400 subTitle-18'>
+            사진 업로드 하기
+          </div>
         ) : (
           <AddDefaultSVG />
         )}
