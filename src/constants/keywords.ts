@@ -1,17 +1,87 @@
-export const KEYWORDS = {
-  1: { category: '음식/가격', emoji: '😋', text: '맛있어요' },
-  2: { category: '음식/가격', emoji: '🍚', text: '양이 많아요' },
-  3: { category: '음식/가격', emoji: '⏰', text: '빨리 나와요' },
-  4: { category: '음식/가격', emoji: '💸', text: '가성비 굿' },
-  5: { category: '음식/가격', emoji: '🧂', text: '간이 세요' },
-  6: { category: '분위기', emoji: '🌉', text: '근사해요' },
-  7: { category: '분위기', emoji: '📸', text: '사진이 잘나와요' },
-  8: { category: '분위기', emoji: '🏞', text: '공간이 넓어요' },
-  9: { category: '분위기', emoji: '🧘‍♀️', text: '아늑해요' },
-  10: { category: '분위기', emoji: '💬', text: '대화하기 좋아요' },
-  11: { category: '분위기', emoji: '🛋', text: '좌석이 편해요' },
-  12: { category: '분위기', emoji: '🍛', text: '혼밥하기 좋아요' },
-  13: { category: '분위기', emoji: '🏝', text: '이국적이에요' },
-  14: { category: '서비스/기타', emoji: '😊', text: '친절해요' },
-  15: { category: '서비스/기타', emoji: '🚙', text: '주차가 편해요' },
-};
+const CATEGORIES = {
+  FOOD_PRICE: '음식/가격',
+  ATMOSPHERE_SPACE: '분위기/공간',
+  BEVERAGE_DESSERT: '음료/디저트',
+  SERVICE_MISC: '서비스/기타',
+} as const;
+
+type Category = (typeof CATEGORIES)[keyof typeof CATEGORIES];
+
+interface Keyword {
+  id: number;
+  category: Category;
+  emoji: string;
+  text: string;
+}
+
+class KeywordManager {
+  private _currentId: number;
+  private _keywords: Keyword[];
+
+  constructor() {
+    this._currentId = 1;
+    this._keywords = [];
+  }
+
+  addKeyword(category: Category, emoji: string, text: string) {
+    const id = this._currentId++;
+    this._keywords.push({ id, category, emoji, text });
+  }
+
+  get keywords() {
+    return this._keywords;
+  }
+}
+
+const keywordManager = new KeywordManager();
+
+// 음식/가격
+keywordManager.addKeyword(CATEGORIES.FOOD_PRICE, '😋', '맛있어요');
+keywordManager.addKeyword(CATEGORIES.FOOD_PRICE, '🍚', '양이 많아요');
+keywordManager.addKeyword(CATEGORIES.FOOD_PRICE, '⏰', '빨리 나와요');
+keywordManager.addKeyword(CATEGORIES.FOOD_PRICE, '💸', '가성비 굿');
+keywordManager.addKeyword(CATEGORIES.FOOD_PRICE, '🧂', '간이 세요');
+keywordManager.addKeyword(CATEGORIES.FOOD_PRICE, '🫥', '싱거워요');
+
+// 분위기/공간
+keywordManager.addKeyword(CATEGORIES.ATMOSPHERE_SPACE, '🌉', '근사해요');
+keywordManager.addKeyword(CATEGORIES.ATMOSPHERE_SPACE, '📸', '사진이 잘나와요');
+keywordManager.addKeyword(CATEGORIES.ATMOSPHERE_SPACE, '🏞', '공간이 넓어요');
+keywordManager.addKeyword(CATEGORIES.ATMOSPHERE_SPACE, '🧘‍♀️', '아늑해요');
+keywordManager.addKeyword(CATEGORIES.ATMOSPHERE_SPACE, '💬', '대화하기 좋아요');
+keywordManager.addKeyword(CATEGORIES.ATMOSPHERE_SPACE, '🛋', '좌석이 편해요');
+keywordManager.addKeyword(CATEGORIES.ATMOSPHERE_SPACE, '🍛', '혼밥하기 좋아요');
+keywordManager.addKeyword(CATEGORIES.ATMOSPHERE_SPACE, '🏝', '이국적이에요');
+keywordManager.addKeyword(CATEGORIES.ATMOSPHERE_SPACE, '😎', '트렌디해요');
+keywordManager.addKeyword(CATEGORIES.ATMOSPHERE_SPACE, '🤫', '조용해요');
+keywordManager.addKeyword(CATEGORIES.ATMOSPHERE_SPACE, '⭐️', '프라이빗해요');
+keywordManager.addKeyword(CATEGORIES.ATMOSPHERE_SPACE, '🙋‍♀️', '아이들이 많아요');
+keywordManager.addKeyword(
+  CATEGORIES.ATMOSPHERE_SPACE,
+  '👩‍❤️‍👨',
+  '소개팅할 땐 여기',
+);
+
+// 음료/디저트
+keywordManager.addKeyword(CATEGORIES.BEVERAGE_DESSERT, '🍰', '달달해요');
+keywordManager.addKeyword(CATEGORIES.BEVERAGE_DESSERT, '🫖', '향이 좋아요');
+keywordManager.addKeyword(
+  CATEGORIES.BEVERAGE_DESSERT,
+  '🫓',
+  '달지 않아서 좋아요',
+);
+keywordManager.addKeyword(CATEGORIES.BEVERAGE_DESSERT, '☕️', '고소한 커피에요');
+keywordManager.addKeyword(CATEGORIES.BEVERAGE_DESSERT, '🥴', '산미가 있어요');
+keywordManager.addKeyword(CATEGORIES.BEVERAGE_DESSERT, '🧀', '꾸덕해요');
+keywordManager.addKeyword(CATEGORIES.BEVERAGE_DESSERT, '🍵', '차와 잘어울려요');
+
+// 서비스/기타
+keywordManager.addKeyword(CATEGORIES.SERVICE_MISC, '😊', '친절해요');
+keywordManager.addKeyword(CATEGORIES.SERVICE_MISC, '🚙', '주차가 편해요');
+keywordManager.addKeyword(CATEGORIES.SERVICE_MISC, '🚻', '화장실이 깨끗해요');
+keywordManager.addKeyword(CATEGORIES.SERVICE_MISC, '📶', '와이파이가 있어요');
+keywordManager.addKeyword(CATEGORIES.SERVICE_MISC, '🐶', '애견동반 가능');
+keywordManager.addKeyword(CATEGORIES.SERVICE_MISC, '🥩', '고기를 구워줘요');
+keywordManager.addKeyword(CATEGORIES.SERVICE_MISC, '🥗', '셀프바가 있어요');
+
+export const keywords = keywordManager.keywords;
