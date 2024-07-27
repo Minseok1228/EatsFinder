@@ -7,6 +7,7 @@ import {
 import React, { ComponentProps, ReactNode } from 'react';
 import { RecentLoginMsg } from './RecentLoginMsg';
 import Link from 'next/link';
+import { KOTLIN_SERVER, NODE_SERVER } from '@/constants/baseUrl';
 interface SocialLoginBtnProps extends ComponentProps<'button'> {
   icon: ReactNode;
   provider: string;
@@ -19,8 +20,8 @@ const SocialLoginBtn = ({
   ...props
 }: SocialLoginBtnProps) => {
   const href = 'NAVER'
-    ? `${process.env.NEXT_PUBLIC_NODE_SERVER}/auth/login/${provider}`
-    : `${process.env.NEXT_PUBLIC_KOTIL_SERVER}/auth/login/${provider}`;
+    ? `${NODE_SERVER}/auth/login/${provider}`
+    : `${KOTLIN_SERVER}/auth/login/${provider}`;
   return (
     <div className='relative flex flex-col items-center'>
       <Link href={href}>{icon}</Link>
