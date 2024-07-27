@@ -45,9 +45,10 @@ export const signupSchema = z
         message:
           '한글,영문,숫자를 사용하여 최소 2자에서 최대 12자의 닉네임을 입력해주세요.',
       }),
-    nicknameDuplicated: z.boolean().refine((data) => data === true, {
-      message: '중복된 닉네임 입니다.',
-    }),
+    nicknameDuplicated: z.boolean(),
+    // .refine((data) => data === true, {
+    //   message: '중복된 닉네임 입니다.',
+    // })
     acceptTerms: z
       .boolean()
       .default(false)
@@ -64,4 +65,8 @@ export const signupSchema = z
   .refine((data) => data.password === data.passwordCheck, {
     message: '비밀번호가 일치하지 않습니다.',
     path: ['passwordCheck'],
+  })
+  .refine((data) => data.nicknameDuplicated === true, {
+    message: '이미 사용중인 닉네임 입니다.',
+    path: ['nickname'],
   });

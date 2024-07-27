@@ -53,7 +53,6 @@ export const isDuplicatedNickname = async (nickname: string) => {
       },
     },
   );
-  console.log('sdfsdf', response);
   return response.json();
 };
 type isDuplicatedNicknameProps = {
@@ -67,13 +66,14 @@ export const useNicknameDuplicateCheck = async ({
   trigger,
 }: isDuplicatedNicknameProps) => {
   console.log(watch('nickname'));
-  // const response = await isDuplicatedNickname(watch('nickname'));
-  // if (response.error) {
-  //   setValue('nicknameDuplicated', false);
-  //   trigger('nicknameDuplicated');
-  // }
-  setValue('nicknameDuplicated', true);
-  trigger('nicknameDuplicated');
-  // console.log('aa', response.error);
-  // return console.log(response);
+  const response = await isDuplicatedNickname(watch('nickname'));
+  if (response.error) {
+    setValue('nicknameDuplicated', false);
+    trigger('nicknameDuplicated');
+    console.log(response.message);
+  } else {
+    setValue('nicknameDuplicated', true);
+    trigger('nicknameDuplicated');
+    console.log(response.message);
+  }
 };
