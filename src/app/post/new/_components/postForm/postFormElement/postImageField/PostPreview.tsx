@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 import { customTwMerge } from '@/utils/customTwMerge';
 import { CloseSVG } from '@/components/svg/CloseSVG';
@@ -14,11 +15,11 @@ export const PostPreview = ({
   onMainImgChange: () => void;
 }) => {
   return (
-    <div className='relative h-[250px] w-[250px] rounded-3xl'>
+    <div className='relative h-[250px] w-[250px] overflow-hidden rounded-3xl'>
       <Image src={src} fill alt='preview' />
       <div
         className={customTwMerge(
-          'subTitle-10 absolute left-6 top-6 flex h-[18px] w-[34px] cursor-pointer items-center justify-center rounded-lg bg-gray-100 text-gray-300',
+          'absolute left-6 top-6 flex h-[18px] w-[34px] cursor-pointer items-center justify-center rounded-lg bg-gray-100 text-gray-300 subTitle-10',
           isMainImg && 'bg-primary-400 text-white',
         )}
         onClick={() => onMainImgChange()}
