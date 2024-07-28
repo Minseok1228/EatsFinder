@@ -1,16 +1,24 @@
+'use client';
+import usePostFormContext from '../../_hooks/usePostFormContext';
 import { Button } from '@/components/atoms';
-import { ImageInput } from '@/components/molecules';
 import { PostFormLeftSection } from './PostFormLeftSection';
 import { PostFormRightSection } from './PostFormRightSection';
+import { PostImageField } from './postFormField';
 
 export const PostForm = () => {
+  const { handleSubmit } = usePostFormContext();
+
   return (
-    <form>
+    <form
+      onSubmit={handleSubmit((data) => {
+        console.log(data.imgs);
+      })}
+    >
       <div className='mb-20'>
         <h2 className='mb-12 text-center text-gray-700 title-34'>
           사진 선택하기(최대 5장)
         </h2>
-        <ImageInput expand={true} />
+        <PostImageField />
       </div>
       <div>
         <h2 className='mb-12 text-center text-gray-700 title-34'>
@@ -21,7 +29,7 @@ export const PostForm = () => {
           <PostFormRightSection />
         </div>
         <div className='mt-20 flex justify-center'>
-          <Button>등록하기</Button>
+          <Button type='submit'>등록하기</Button>
         </div>
       </div>
     </form>

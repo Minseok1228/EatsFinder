@@ -1,7 +1,6 @@
 'use client';
 import { HTMLAttributes } from 'react';
 import { customTwMerge } from '@/utils/customTwMerge';
-import { Button } from '@/components/atoms';
 import { AddDefaultSVG } from '@/components/svg/AddSVG';
 
 interface ImageInputProps extends HTMLAttributes<HTMLInputElement> {
