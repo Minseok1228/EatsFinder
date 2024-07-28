@@ -1,4 +1,4 @@
-import { KOTLIN_SERVER, NODE_SERVER } from '@/constants/baseUrl';
+import { KOTLIN_SERVER, NEST_SERVER } from '@/constants/baseUrl';
 import { CookieOptions } from '@/types/authType';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -10,7 +10,7 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
   const provider = searchParams.get('provider');
   console.log('provider', provider);
   const state = searchParams.get('state');
-  const baseUrl = provider === 'naver' ? NODE_SERVER : KOTLIN_SERVER;
+  const baseUrl = provider === 'naver' ? NEST_SERVER : KOTLIN_SERVER;
   console.log(baseUrl);
   const response = await fetch(
     `${baseUrl}/auth/callback/${provider}?code=${code}&state=${state}`,

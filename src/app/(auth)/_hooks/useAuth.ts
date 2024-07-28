@@ -1,4 +1,4 @@
-import { NODE_SERVER } from '@/constants/baseUrl';
+import { NEST_SERVER } from '@/constants/baseUrl';
 import { LoginFormType, SignupFormType } from '@/types/authType';
 import { SignupType } from '@/types/authType';
 import { UseFormSetValue, UseFormTrigger, UseFormWatch } from 'react-hook-form';
@@ -21,7 +21,7 @@ export const login = async (data: LoginFormType) => {
 
 export const signup = async (data: SignupType) => {
   const { email, name, nickname, password, phoneNumber } = data;
-  const response = await fetch(`${NODE_SERVER}/auth/signup`, {
+  const response = await fetch(`${NEST_SERVER}/auth/signup`, {
     method: 'POST',
     headers: {
       accept: '*/*',
@@ -39,7 +39,7 @@ export const signup = async (data: SignupType) => {
   return response.json();
 };
 export const isDuplicatedNickname = async (nickname: string) => {
-  const response = await fetch(`${NODE_SERVER}/users/nickname/${nickname}`, {
+  const response = await fetch(`${NEST_SERVER}/users/nickname/${nickname}`, {
     method: 'GET',
     headers: {
       accept: '*/*',

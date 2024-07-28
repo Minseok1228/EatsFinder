@@ -1,4 +1,4 @@
-import { NODE_SERVER } from '@/constants/baseUrl';
+import { NEST_SERVER } from '@/constants/baseUrl';
 import { CookieOptions } from '@/types/authType';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -6,7 +6,7 @@ import { NextRequest } from 'next/server';
 
 export const POST = async (req: NextRequest) => {
   const { email, password } = await req.json();
-  const response = await fetch(`${NODE_SERVER}/auth/login`, {
+  const response = await fetch(`${NEST_SERVER}/auth/login`, {
     method: 'POST',
     headers: {
       accept: '*/*',

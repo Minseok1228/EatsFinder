@@ -1,10 +1,10 @@
-import { NODE_SERVER } from '@/constants/baseUrl';
+import { NEST_SERVER } from '@/constants/baseUrl';
 import { PostContentType } from '@/types/postType';
 
 export const getPostContent = async (
   postId: string,
 ): Promise<PostContentType> => {
-  const res = await fetch(`${NODE_SERVER}/posts/${postId}`, {
+  const res = await fetch(`${NEST_SERVER}/posts/${postId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

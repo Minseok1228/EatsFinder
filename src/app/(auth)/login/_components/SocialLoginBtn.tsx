@@ -7,7 +7,7 @@ import {
 import React, { ComponentProps, ReactNode } from 'react';
 import { RecentLoginMsg } from './RecentLoginMsg';
 import Link from 'next/link';
-import { KOTLIN_SERVER, NODE_SERVER } from '@/constants/baseUrl';
+import { KOTLIN_SERVER, NEST_SERVER } from '@/constants/baseUrl';
 interface SocialLoginBtnProps extends ComponentProps<'button'> {
   icon: ReactNode;
   provider: string;
@@ -21,7 +21,7 @@ const SocialLoginBtn = ({
 }: SocialLoginBtnProps) => {
   const href =
     provider === 'NAVER'
-      ? `${NODE_SERVER}/auth/login/${provider}`
+      ? `${NEST_SERVER}/auth/login/${provider}`
       : `${KOTLIN_SERVER}/auth/login/${provider}`;
   return (
     <div className='relative flex flex-col items-center'>
