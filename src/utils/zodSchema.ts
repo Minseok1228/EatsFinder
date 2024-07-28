@@ -120,7 +120,7 @@ export const postFormSchema = z.object({
   // placeId: z.number({
   //   required_error: '맛집을 선택해주세요',
   // }),
-  // content: z.string(),
+  content: z.string(),
   starRating: z.number(),
   // menus: z.string().array().max(5).optional(),
   // keywords: z.string().array().max(5).optional(),

@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import { type PostFormValue } from '@/utils/zodSchema';
 
 const usePostFormContext = () => {
-  const { handleSubmit, watch, setValue, getValues } =
+  const { register, handleSubmit, watch, setValue, getValues } =
     useFormContext<PostFormValue>();
 
   const preview = watch('preview');
@@ -58,6 +58,7 @@ const usePostFormContext = () => {
     starRating,
     preview,
     mainImgIndex,
+    register,
     handleSubmit,
     handleStarRatingChange,
     handleImageChange,
