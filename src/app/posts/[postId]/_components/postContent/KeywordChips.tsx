@@ -1,5 +1,5 @@
 import { Chip } from '@/components/atoms';
-import { keywords } from '@/constants/keywords';
+import { KEYWORDS } from '@/constants/keywords';
 
 interface KeywordIdsProps {
   keywordIds: string;
@@ -7,7 +7,7 @@ interface KeywordIdsProps {
 
 const KeywordChips = ({ keywordIds }: KeywordIdsProps) => {
   const splitedKeywordIds = keywordIds.split(',');
-  const filteredKeywords = keywords.filter((keyword) =>
+  const filteredKeywords = KEYWORDS.filter((keyword) =>
     splitedKeywordIds.includes(keyword.text),
   );
 
