@@ -19,9 +19,10 @@ const SocialLoginBtn = ({
   provider,
   ...props
 }: SocialLoginBtnProps) => {
-  const href = 'NAVER'
-    ? `${NODE_SERVER}/auth/login/${provider}`
-    : `${KOTLIN_SERVER}/auth/login/${provider}`;
+  const href =
+    provider === 'NAVER'
+      ? `${NODE_SERVER}/auth/login/${provider}`
+      : `${KOTLIN_SERVER}/auth/login/${provider}`;
   return (
     <div className='relative flex flex-col items-center'>
       <Link href={href}>{icon}</Link>

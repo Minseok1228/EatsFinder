@@ -38,6 +38,7 @@ export const useEmailConfirm = (
     if (response.statusCode === 'SUCCESS') {
       setValue('codeValidation', true);
       trigger('codeValidation');
+      console.log('인증완료');
     } else if (response.statusCode === 'ERROR') {
       setValue('codeValidation', false);
       trigger('codeValidation');

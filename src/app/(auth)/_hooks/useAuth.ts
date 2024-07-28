@@ -5,7 +5,7 @@ import { UseFormSetValue, UseFormTrigger, UseFormWatch } from 'react-hook-form';
 
 export const login = async (data: LoginFormType) => {
   const { email, password } = data;
-  const response = await fetch(`${NODE_SERVER}/auth/login`, {
+  const response = await fetch(`api/auth/login`, {
     method: 'POST',
     headers: {
       accept: '*/*',
@@ -16,7 +16,7 @@ export const login = async (data: LoginFormType) => {
       password,
     }),
   });
-  return response.json();
+  return response;
 };
 
 export const signup = async (data: SignupType) => {

@@ -6,7 +6,6 @@ import { searchParams } from '@/types/authType';
 import { LoginError } from './LoginError';
 
 export const LoginPage = ({ searchParams }: searchParams) => {
-  console.log(searchParams?.error);
   return (
     <>
       <h2 className='mb-6 text-gray-800 title-30'>로그인</h2>

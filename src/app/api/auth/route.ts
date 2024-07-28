@@ -1,29 +1,19 @@
-import { NODE_SERVER } from '@/constants/baseUrl';
+import { KOTLIN_SERVER, NODE_SERVER } from '@/constants/baseUrl';
 import { CookieOptions } from '@/types/authType';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function POST() {
-  const res = await fetch(`${NODE_SERVER}/auth/signup`, {
-    method: 'POST',
-    headers: {
-      accept: '*/*',
-      'Content-Type': 'application/json',
-    },
-  });
-  const data = await res.json();
-
-  return Response.json({ data });
-}
 export const GET = async (req: NextRequest, res: NextResponse) => {
   const searchParams = req.nextUrl.searchParams;
   const code = searchParams.get('code');
   const provider = searchParams.get('provider');
+  console.log('provider', provider);
   const state = searchParams.get('state');
-
+  const baseUrl = provider === 'naver' ? NODE_SERVER : KOTLIN_SERVER;
+  console.log(baseUrl);
   const response = await fetch(
-    `${NODE_SERVER}/auth/callback/${provider}?code=${code}&state=${state}`,
+    `${baseUrl}/auth/callback/${provider}?code=${code}&state=${state}`,
     {
       method: 'GET',
       headers: {
@@ -33,7 +23,6 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
   );
 
   const data = await response.json();
-
   if (data.statusCode) {
     return redirect('/login?error=fail');
   }
@@ -51,7 +40,6 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
   const cookie = cookiesStore.get('jwt');
   if (cookie) {
     return redirect('/');
-    return res;
   }
 
   return redirect('/login');

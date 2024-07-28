@@ -6,7 +6,6 @@ import { useSaveLoginState } from '../../_hooks/useSaveLoginState';
 
 export const SaveLoginState = () => {
   const { loginSave, handleLoginSave } = useSaveLoginState();
-  console.log(loginSave);
   return (
     <button
       type='button'
