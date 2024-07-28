@@ -21,6 +21,10 @@ export interface PlacesType {
   name: string;
   address: string;
   roadAddress: string;
+  telephone: string;
   x: number;
   y: number;
+  category: string;
+  categoryName: string;
+  categoryCode: string;
 }
