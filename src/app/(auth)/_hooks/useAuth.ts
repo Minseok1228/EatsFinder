@@ -52,20 +52,23 @@ type isDuplicatedNicknameProps = {
   trigger: UseFormTrigger<SignupFormType>;
   watch: UseFormWatch<SignupFormType>;
 };
-export const useNicknameDuplicateCheck = async ({
-  watch,
-  setValue,
-  trigger,
-}: isDuplicatedNicknameProps) => {
-  console.log(watch('nickname'));
-  const response = await isDuplicatedNickname(watch('nickname'));
-  if (response.error) {
-    setValue('nicknameDuplicated', false);
-    trigger('nicknameDuplicated');
-    console.log(response.message);
-  } else {
-    setValue('nicknameDuplicated', true);
-    trigger('nicknameDuplicated');
-    console.log(response.message);
-  }
+export const useNicknameDuplicateCheck = () => {
+  const handleNicknameChecker = async ({
+    watch,
+    setValue,
+    trigger,
+  }: isDuplicatedNicknameProps) => {
+    console.log(watch('nickname'));
+    const response = await isDuplicatedNickname(watch('nickname'));
+    if (response.error) {
+      setValue('nicknameDuplicated', false);
+      trigger('nicknameDuplicated');
+      console.log(response.message);
+    } else {
+      setValue('nicknameDuplicated', true);
+      trigger('nicknameDuplicated');
+      console.log(response.message);
+    }
+  };
+  return { handleNicknameChecker };
 };
