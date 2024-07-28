@@ -13,14 +13,13 @@ export const Rating = ({ number, rating, onClick }: RatingProps) => {
   const [hoverValue, setHoverValue] = useState<null | number>(null);
 
   return (
-    <div className='flex'>
+    <div className='flex gap-3' onMouseLeave={() => setHoverValue(null)}>
       {Array.from({ length: number }).map((_, idx) => {
         return (
           <label
             key={idx}
             className='cursor-pointer'
-            onMouseOver={() => setHoverValue(idx)}
-            onMouseOut={() => setHoverValue(null)}
+            onMouseEnter={() => setHoverValue(idx)}
           >
             <input
               type='radio'
@@ -30,7 +29,7 @@ export const Rating = ({ number, rating, onClick }: RatingProps) => {
             />
             <span
               className={customTwMerge(
-                'fill-gray-300',
+                'fill-gray-300 [&>svg]:h-10 [&>svg]:w-10',
                 (hoverValue !== null ? hoverValue >= idx : rating > idx) &&
                   'fill-primary-400',
               )}
