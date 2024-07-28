@@ -1,4 +1,5 @@
 import { NODE_SERVER } from '@/constants/baseUrl';
+import { CookieOptions } from '@/types/authType';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { NextRequest, NextResponse } from 'next/server';
@@ -34,24 +35,24 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
   const data = await response.json();
 
   if (data.statusCode) {
-    return redirect('/login?error=');
-    //쿼리 딸려오면 로그인창에서 유저에게 로그인이 필요하다고 보여주기
+    return redirect('/login?error=fail');
   }
   const cookiesStore = cookies();
-  console.log(data);
-  // cookiesStore.get('loginasdlf');
-  // 로그인 저장 유무를 쿠키에 저장함
-  // 해당 값에 따라 조건문을 통해서 epxires => 넣는거죠
+  const loginSaveState = cookiesStore.get('isLoginSave');
+  const options: CookieOptions = {
+    path: '/',
+    httpOnly: true,
+  };
+  if (loginSaveState) {
+    options['maxAge'] = 2592000;
+  }
 
-  const expireTime = 2592000000;
-  cookiesStore.set('jwt', `${data.accessToken}`);
-  cookiesStore.set('test', `data`);
+  cookiesStore.set('jwt', `${data.accessToken}`, options);
   const cookie = cookiesStore.get('jwt');
-  const all = cookiesStore.getAll();
-  console.log('all', all);
-  console.log('cookie', cookie);
-  // 쿠키에 jwt 토큰이 있나 없나로 로그인 유무를 확인
-  //토큰처리
-  // return req;
-  return redirect('/');
+  if (cookie) {
+    return redirect('/');
+    return res;
+  }
+
+  return redirect('/login');
 };

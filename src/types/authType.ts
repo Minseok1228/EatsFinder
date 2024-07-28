@@ -28,3 +28,20 @@ export type EmailConfirmType = {
   email: string;
   code: string;
 };
+export type searchParams = {
+  params?: { slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+};
+export interface CookieOptions {
+  domain?: string | undefined;
+  expires?: number | Date | undefined;
+  httpOnly?: boolean | undefined;
+  maxAge?: number | undefined;
+  name?: string | undefined;
+  partitioned?: boolean | undefined;
+  path?: string | undefined;
+  priority?: 'medium' | 'low' | 'high' | undefined;
+  sameSite?: boolean | 'lax' | 'strict' | 'none' | undefined;
+  secure?: boolean | undefined;
+  value?: string | undefined;
+}

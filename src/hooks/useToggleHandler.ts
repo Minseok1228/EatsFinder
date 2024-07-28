@@ -6,5 +6,5 @@ export const useToggleHandler = () => {
   const handleValue = () => {
     setValue((prev) => !prev);
   };
-  return { value, handleValue };
+  return { value, handleValue, setValue };
 };
