@@ -5,7 +5,7 @@ const CATEGORIES = {
   SERVICE_MISC: '서비스/기타',
 } as const;
 
-type Category = (typeof CATEGORIES)[keyof typeof CATEGORIES];
+export type Category = (typeof CATEGORIES)[keyof typeof CATEGORIES];
 
 interface Keyword {
   category: Category;
