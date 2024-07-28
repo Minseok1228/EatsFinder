@@ -8,6 +8,7 @@ const usePostFormContext = () => {
 
   const preview = watch('preview');
   const mainImgIndex = watch('mainImgIndex');
+  const starRating = watch('starRating');
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const imgs = getValues('imgs');
@@ -49,10 +50,16 @@ const usePostFormContext = () => {
     if (index < mainImgIndex) setValue('mainImgIndex', mainImgIndex - 1);
   };
 
+  const handleStarRatingChange = (rating: number) => {
+    setValue('starRating', rating);
+  };
+
   return {
+    starRating,
     preview,
     mainImgIndex,
     handleSubmit,
+    handleStarRatingChange,
     handleImageChange,
     handleImageRemove,
     handleMainImgChange,

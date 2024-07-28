@@ -6,10 +6,10 @@ import { customTwMerge } from '@/utils/customTwMerge';
 interface RatingProps {
   number: number;
   rating: number;
-  onClick: (value: number) => void;
+  onStarRatingChange: (rating: number) => void;
 }
 
-export const Rating = ({ number, rating, onClick }: RatingProps) => {
+export const Rating = ({ number, rating, onStarRatingChange }: RatingProps) => {
   const [hoverValue, setHoverValue] = useState<null | number>(null);
 
   return (
@@ -24,7 +24,7 @@ export const Rating = ({ number, rating, onClick }: RatingProps) => {
             <input
               type='radio'
               className='sr-only'
-              onClick={() => onClick(idx + 1)}
+              onClick={() => onStarRatingChange(idx + 1)}
               aria-label='rating'
             />
             <span

@@ -2,9 +2,12 @@
 import { useState } from 'react';
 import { Rating } from '@/components/molecules';
 import { PostFormLabel } from './PostFormLabel';
+import { Search } from '@/components/molecules';
+import usePostFormContext from '../../_hooks/usePostFormContext';
 
 export const PostFormLeftSection = () => {
-  const [rating, setRating] = useState(0);
+  const { starRating, handleStarRatingChange } = usePostFormContext();
+
   return (
     <div className='flex flex-col gap-12'>
       <div>
@@ -12,18 +15,16 @@ export const PostFormLeftSection = () => {
         <div className='flex h-[50px] cursor-pointer items-center rounded border border-gray-100 px-[10px] text-gray-200 body-16'>
           클릭해서 추천 맛집을 찾아보세요
         </div>
-        {/* <div className='mt-3 min-h-[540px] rounded-3xl px-5 py-6 shadow-[0_0_20px_rgba(0,0,0,0.1)]'>
+        <div className='mt-3 min-h-[540px] rounded-3xl px-5 py-6 shadow-[0_0_20px_rgba(0,0,0,0.1)]'>
           <Search />
-        </div> */}
+        </div>
       </div>
       <div>
         <PostFormLabel>사용자 별점</PostFormLabel>
         <Rating
           number={5}
-          rating={rating}
-          onClick={(index) => {
-            setRating(index);
-          }}
+          rating={starRating}
+          onStarRatingChange={handleStarRatingChange}
         />
       </div>
       <div className='flex flex-col'>
