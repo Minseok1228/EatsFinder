@@ -1,0 +1,15 @@
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { postFormSchema } from '@/utils/zodSchema';
+
+const usePostForm = () => {
+  const method = useForm({
+    mode: 'onChange',
+    defaultValues: { mainImgIndex: 0, imgs: [], preview: [] },
+    resolver: zodResolver(postFormSchema),
+  });
+
+  return method;
+};
+
+export default usePostForm;
