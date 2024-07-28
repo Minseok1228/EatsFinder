@@ -1,3 +1,1 @@
-export * from './PostKeywordField';
-
-export * from './PostFormLabel';
+export * from './PostForm';
