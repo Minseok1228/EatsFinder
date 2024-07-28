@@ -115,3 +115,18 @@ export const changePasswordSchema = z
     message: '비밀번호가 일치하지 않습니다.',
     path: ['passwordCheck'],
   });
+
+export const postFormSchema = z.object({
+  // placeId: z.number({
+  //   required_error: '맛집을 선택해주세요',
+  // }),
+  // content: z.string(),
+  // starRating: z.number(),
+  // menus: z.string().array().max(5).optional(),
+  // keywords: z.string().array().max(5).optional(),
+  imgs: z.any().array(),
+  preview: z.string().array(),
+  mainImgIndex: z.number(),
+});
+
+export type PostFormValue = z.infer<typeof postFormSchema>;
