@@ -4,6 +4,8 @@ import { usePathname } from 'next/navigation';
 import { AuthHeader } from '@/app/(auth)/_components/AuthHeader';
 import { NavLink, ProfileImage } from '@/components/atoms';
 import { LogoImgSVG } from '@/components/svg/LogoSVG';
+import { UserDropdownMenu } from '@/components/molecules/userDropdownMenu/UserDropdownMenu';
+import { useDropdownHandler } from '@/hooks/useDropdownHandler';
 
 const NAV_DATA = [
   {
@@ -29,7 +31,8 @@ export const Header = () => {
   if (path.startsWith('/login') || path.startsWith('/signup')) {
     return <AuthHeader />;
   }
-
+  const { isDropdownOpen, dropdownOpenHanlder, dropdownRef } =
+    useDropdownHandler();
   return (
     <header className='mb-[3.75rem] flex h-20 items-center justify-around'>
       <div className='flex w-full max-w-[1440px] items-center justify-between px-9'>
@@ -51,9 +54,12 @@ export const Header = () => {
             })}
           </ul>
         </div>
-        <Link href={'/profile/ss'}>
-          <ProfileImage size={50} />
-        </Link>
+        <div className='relative' ref={dropdownRef}>
+          <button onClick={dropdownOpenHanlder}>
+            <ProfileImage size={50} />
+          </button>
+          {isDropdownOpen && <UserDropdownMenu />}
+        </div>
       </div>
     </header>
   );
