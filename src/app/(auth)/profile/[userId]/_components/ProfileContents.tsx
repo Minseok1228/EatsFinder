@@ -4,7 +4,6 @@ import { useTabHandler } from '@/hooks/useTabHandler';
 import React from 'react';
 import { MyFeed } from './MyFeed';
 import { Timeline } from './Timeline';
-
 export const ProfileContents = () => {
   const tabLabels = ['내 피드', '내 활동'];
   const { activeIndex, handleTabClick } = useTabHandler();

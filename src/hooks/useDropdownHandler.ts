@@ -6,7 +6,7 @@ export const useDropdownHandler = () => {
   const {
     value: isDropdownOpen,
     setValue: setIsDropdownOpen,
-    handleValue: dropdownOpenHanlder,
+    handleValue: dropdownHanlder,
   } = useToggleHandler();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
@@ -18,7 +18,6 @@ export const useDropdownHandler = () => {
         setIsDropdownOpen(false);
       }
     };
-
     if (isDropdownOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     } else {
@@ -29,5 +28,5 @@ export const useDropdownHandler = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isDropdownOpen, setIsDropdownOpen]);
-  return { isDropdownOpen, dropdownOpenHanlder, dropdownRef };
+  return { isDropdownOpen, dropdownHanlder, dropdownRef };
 };

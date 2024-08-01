@@ -1,6 +1,9 @@
+'use client';
+
 import Image from 'next/image';
 import { customTwMerge } from '@/utils/customTwMerge';
 import { DefaultIconSVG } from '@/components/svg/DefaultIconSVG';
+import { useState } from 'react';
 
 interface ProfileImageProps {
   src?: string | null;
@@ -16,14 +19,20 @@ const profileImageSize = {
 };
 
 export const ProfileImage = ({ src, size }: ProfileImageProps) => {
-  if (src)
+  const [imgSrc, setImgSrc] = useState(src);
+
+  const handleError = () => {
+    setImgSrc(null);
+  };
+  if (imgSrc)
     return (
       <Image
         className='aspect-square rounded-full object-cover'
-        src={src}
+        src={imgSrc}
         width={size}
         height={size}
         alt='profile image'
+        onError={handleError}
       />
     );
 

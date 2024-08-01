@@ -1,3 +1,16 @@
+export type UserData = {
+  id: number;
+  nickname: string;
+  email: string;
+  phoneNumber: string;
+  profileImage: string;
+  followingCount: number;
+  followerCount: number;
+  postCount: number;
+};
+export type ProfilePageProps = {
+  userData: UserData;
+};
 export type LoginFormType = {
   email: string;
   password: string;
