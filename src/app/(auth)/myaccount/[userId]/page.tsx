@@ -1,7 +1,8 @@
 import React from 'react';
+import { MyAccountPage } from './_components/MyAccountPage';
 
 const page = () => {
-  return <div>내계정</div>;
+  return <MyAccountPage />;
 };
 
 export default page;

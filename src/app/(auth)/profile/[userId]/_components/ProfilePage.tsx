@@ -4,17 +4,15 @@ import { UserProfile } from './UserProfile';
 import { Suspense } from 'react';
 import { Loading } from '@/app/(auth)/_components/Loading';
 import { cookies } from 'next/headers';
+import { getUserInfo } from '@/utils/getUserInfo';
 
-export const ProfilePage = ({ userData }: ProfilePageProps) => {
-  const data = cookies().get('userInfo');
-  if (!data) {
-    return;
-  }
-  const userInfo = JSON.parse(data.value);
+export const ProfilePage = async () => {
+  const userInfo = await getUserInfo();
+
   return (
     <div className='flex flex-col gap-20'>
       <Suspense fallback={<Loading />}>
-        <UserProfile userData={userInfo} />
+        <UserProfile />
         <ProfileContents />
       </Suspense>
     </div>

@@ -7,14 +7,14 @@ import { useToggleHandler } from '@/hooks/useToggleHandler';
 import { Profile } from './Profile';
 import { ProfilePageProps } from '@/types/authType';
 
-export const UserProfile = ({ userData }: ProfilePageProps) => {
+export const UserProfile = () => {
   const { value: isEdit, handleValue: editHandler } = useToggleHandler();
   return (
     <>
       {isEdit ? (
-        <ProfileEdit handler={editHandler} userData={userData} />
+        <ProfileEdit handler={editHandler} />
       ) : (
-        <Profile handler={editHandler} userData={userData} />
+        <Profile handler={editHandler} />
       )}
     </>
   );

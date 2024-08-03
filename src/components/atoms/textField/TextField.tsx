@@ -29,7 +29,7 @@ export const TextField = forwardRef<HTMLInputElement, AuthInputProps>(
               underStoke
                 ? 'border-b border-b-gray-100 focus:border-b-primary-400'
                 : 'rounded border border-gray-100 focus:border-primary-400'
-            } ${errormessage && `border-error`} ${icon && `pr-6`} ${button && `pr-[98px]`} disabled:bg-gray-50`}
+            } ${errormessage && `border-error`} ${icon && `pr-6`} ${button && `pr-[98px]`} disabled:bg-gray-50 disabled:text-gray-200`}
           />
           {(icon || button) && (
             <div className='absolute right-1 top-1/2 flex -translate-y-1/2'>

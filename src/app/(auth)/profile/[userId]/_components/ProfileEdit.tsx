@@ -1,12 +1,15 @@
+import { Loading } from '@/app/(auth)/_components/Loading';
 import { Button, ProfileImage } from '@/components/atoms';
 import { TextField } from '@/components/atoms/textField';
 import { EditSVG } from '@/components/svg/EditSVG';
 import { UserData } from '@/types/authType';
+import { getUserInfo } from '@/utils/getUserInfo';
 type ProfileEditProps = {
   handler: () => void;
-  userData: UserData;
 };
-export const ProfileEdit = ({ handler, userData }: ProfileEditProps) => {
+export const ProfileEdit = async ({ handler }: ProfileEditProps) => {
+  const userData = await getUserInfo();
+  if (!userData) return <Loading />;
   const { nickname, phoneNumber, profileImage } = userData;
   return (
     <div>

@@ -1,13 +1,16 @@
 import { Button, ProfileImage } from '@/components/atoms';
 import { ProfileInfo } from './ProfileInfo';
 import { UserProfileStats } from './UserProfileStats';
-import { UserData } from '@/types/authType';
 import { addDashes } from '@/utils/formatPhoneNumber';
+import { getUserInfo } from '@/utils/getUserInfo';
+import { Loading } from '@/app/(auth)/_components/Loading';
 type ProfileProps = {
   handler: () => void;
-  userData: UserData;
 };
-export const Profile = ({ handler, userData }: ProfileProps) => {
+export const Profile = async ({ handler }: ProfileProps) => {
+  const userData = await getUserInfo();
+  if (!userData) return <Loading />;
+
   const {
     email,
     followerCount,
