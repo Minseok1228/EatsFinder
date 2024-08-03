@@ -15,10 +15,8 @@ export const useLogin = () => {
 
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
     const response = await login(data);
-    const accessToken = response.accessToken;
-    console.log(response);
-    if (accessToken) {
-      window.location.href = '/';
+    if (response) {
+      window.location.href = `${response.url}`;
     }
   };
 
@@ -28,10 +26,7 @@ export const useLogin = () => {
     errors,
   };
 };
-/**
- * code도 boolean => 인증메세지 받으면 true
- * 모든 폼이 작성되고, accept랑 code가 true 일경우에만 발송
- */
+
 export const useSignup = () => {
   const {
     register,

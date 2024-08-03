@@ -16,7 +16,8 @@ const SignupForm = () => {
     VisibilityButtonIcon();
   const { visibility: checkPwVisibility, ButtonIcon: CheckPwButtonIcon } =
     VisibilityButtonIcon();
-  //toast로 처리?
+
+  const { handleNicknameChecker } = useNicknameDuplicateCheck();
   if (errors.codeValidation) console.log(errors.codeValidation?.message);
   if (errors.acceptPrivacyPolicy)
     if (errors.acceptTerms) console.log(errors.acceptTerms.message);
@@ -63,7 +64,11 @@ const SignupForm = () => {
         {...register('nickname')}
         label='닉네임'
         onButtonClick={() =>
-          useNicknameDuplicateCheck({ setValue, trigger, watch })
+          handleNicknameChecker({
+            watch,
+            setValue,
+            trigger,
+          })
         }
         placeholder='닉네임을 입력하세요.'
         buttonMessage='중복확인'

@@ -12,7 +12,7 @@ export const SaveLoginState = () => {
       onClick={handleLoginSave}
       className='flex items-center gap-1'
     >
-      {loginSave ? <CheckBoxDefaultSVG /> : <CheckBoxCheckedSVG />}
+      {loginSave ? <CheckBoxCheckedSVG /> : <CheckBoxDefaultSVG />}
       <span>로그인상태 저장</span>
     </button>
   );
