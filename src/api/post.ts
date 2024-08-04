@@ -1,6 +1,20 @@
 import { NEST_SERVER } from '@/constants/baseUrl';
 import { PostContentType, PlaceRequestType } from '@/types/postType';
 
+export const createNewPost = async (formData: FormData) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_NODE_SERVER}/posts`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+    body: formData,
+  });
+
+  const data = await res.json();
+
+  return data;
+};
+
 export const getPostContent = async (
   postId: string,
 ): Promise<PostContentType> => {

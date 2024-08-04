@@ -6,14 +6,10 @@ import { PostFormRightSection } from './PostFormRightSection';
 import { PostImageField } from './postFormElement';
 
 export const PostForm = () => {
-  const { handleSubmit } = usePostFormContext();
+  const { handlePostFormSubmit } = usePostFormContext();
 
   return (
-    <form
-      onSubmit={handleSubmit((data) => {
-        console.log(data);
-      })}
-    >
+    <form onSubmit={handlePostFormSubmit}>
       <div className='mb-20'>
         <h2 className='mb-12 text-center text-gray-700 title-34'>
           사진 선택하기(최대 5장)

@@ -1,6 +1,7 @@
 import { ChangeEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { type PostFormValue } from '@/utils/zodSchema';
+import { createNewPost } from '@/api/post';
 
 const usePostFormContext = () => {
   const { register, handleSubmit, watch, setValue, getValues } =
@@ -97,6 +98,26 @@ const usePostFormContext = () => {
     setValue('keywords', newKeywords);
   };
 
+  const handlePostFormSubmit = handleSubmit(async (formData) => {
+    const mainImg = formData.imgs[formData.mainImgIndex];
+    const imgs = formData.imgs
+      .slice(0, formData.mainImgIndex)
+      .concat(formData.imgs.slice(formData.mainImgIndex + 1));
+    const menuTag = formData.menus.join(', ');
+    const keywordTag = formData.keywords.join(', ');
+
+    const postForm = new FormData();
+
+    postForm.append('mainImg', mainImg);
+    imgs.forEach((img) => postForm.append('imgs', img));
+    postForm.append('menuTag', menuTag);
+    postForm.append('keywordTag', keywordTag);
+    postForm.append('starRating', formData.starRating.toString());
+    postForm.append('placeId', formData.placeId.toString());
+
+    const data = await createNewPost(postForm);
+  });
+
   return {
     placeName,
     placeId,
@@ -107,7 +128,7 @@ const usePostFormContext = () => {
     keywords,
     register,
     handleSetPlace,
-    handleSubmit,
+    handlePostFormSubmit,
     handleStarRatingChange,
     handleImageChange,
     handleImageRemove,
