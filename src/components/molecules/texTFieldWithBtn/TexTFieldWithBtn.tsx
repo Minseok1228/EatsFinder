@@ -4,7 +4,6 @@ import { forwardRef } from 'react';
 
 interface TextFieldWithBtnProps extends TextFieldProps {
   buttonMessage: string;
-  timer?: string;
   buttonDisabled?: boolean;
   onButtonClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
