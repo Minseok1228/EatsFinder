@@ -7,6 +7,7 @@ const usePostFormContext = () => {
     useFormContext<PostFormValue>();
 
   const placeName = watch('placeName');
+  const placeId = watch('placeId');
   const preview = watch('preview');
   const mainImgIndex = watch('mainImgIndex');
   const starRating = watch('starRating');
@@ -94,6 +95,7 @@ const usePostFormContext = () => {
 
   return {
     placeName,
+    placeId,
     starRating,
     preview,
     mainImgIndex,
