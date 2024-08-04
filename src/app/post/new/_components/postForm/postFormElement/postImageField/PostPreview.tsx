@@ -19,7 +19,7 @@ export const PostPreview = ({
       <Image src={src} fill alt='preview' />
       <div
         className={customTwMerge(
-          'absolute left-6 top-6 flex h-[18px] w-[34px] cursor-pointer items-center justify-center rounded-lg bg-gray-100 text-gray-300 subTitle-10',
+          'absolute left-6 top-6 flex h-[26px] w-[50px] cursor-pointer items-center justify-center rounded-xl bg-gray-100 text-gray-300 subTitle-14',
           isMainImg && 'bg-primary-400 text-white',
         )}
         onClick={() => onMainImgChange()}
