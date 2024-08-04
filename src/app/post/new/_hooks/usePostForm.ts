@@ -5,7 +5,14 @@ import { postFormSchema } from '@/utils/zodSchema';
 const usePostForm = () => {
   const method = useForm({
     mode: 'onChange',
-    defaultValues: { starRating: 0, mainImgIndex: 0, imgs: [], preview: [] },
+    defaultValues: {
+      starRating: 0,
+      mainImgIndex: 0,
+      imgs: [],
+      preview: [],
+      menus: [],
+      keywords: [],
+    },
     resolver: zodResolver(postFormSchema),
   });
 

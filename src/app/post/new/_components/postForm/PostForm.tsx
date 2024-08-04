@@ -3,7 +3,7 @@ import usePostFormContext from '../../_hooks/usePostFormContext';
 import { Button } from '@/components/atoms';
 import { PostFormLeftSection } from './PostFormLeftSection';
 import { PostFormRightSection } from './PostFormRightSection';
-import { PostImageField } from './postFormField';
+import { PostImageField } from './postFormElement';
 
 export const PostForm = () => {
   const { handleSubmit } = usePostFormContext();
@@ -11,7 +11,7 @@ export const PostForm = () => {
   return (
     <form
       onSubmit={handleSubmit((data) => {
-        console.log(data.imgs);
+        console.log(data);
       })}
     >
       <div className='mb-20'>

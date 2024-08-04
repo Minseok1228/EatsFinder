@@ -9,6 +9,8 @@ const usePostFormContext = () => {
   const preview = watch('preview');
   const mainImgIndex = watch('mainImgIndex');
   const starRating = watch('starRating');
+  const menus = watch('menus');
+  const keywords = watch('keywords');
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const imgs = getValues('imgs');
@@ -54,16 +56,53 @@ const usePostFormContext = () => {
     setValue('starRating', rating);
   };
 
+  const handleMenuAdd = (menu: string) => {
+    const menus = getValues('menus');
+    if (!menus) setValue('menus', [menu]);
+    else {
+      menus.push(menu);
+      setValue('menus', menus);
+    }
+  };
+
+  const handleMenuRemove = (index: number) => {
+    const menus = getValues('menus');
+    if (!menus) return;
+
+    const newMenus = menus.slice(0, index).concat(menus.slice(index + 1));
+    setValue('menus', newMenus);
+  };
+
+  const handlekeywordToggle = (keyword: string) => {
+    const keywords = getValues('keywords') || [];
+    let newKeywords: Array<string>;
+
+    if (keywords.includes(keyword)) {
+      newKeywords = keywords.filter((it) => it !== keyword);
+    } else {
+      newKeywords = [...keywords, keyword];
+    }
+
+    setValue('keywords', newKeywords);
+  };
+
+  const handleSetPlace = (name: string, id: number) => {};
+
   return {
     starRating,
     preview,
     mainImgIndex,
+    menus,
+    keywords,
     register,
     handleSubmit,
     handleStarRatingChange,
     handleImageChange,
     handleImageRemove,
     handleMainImgChange,
+    handleMenuAdd,
+    handleMenuRemove,
+    handlekeywordToggle,
   };
 };
 
