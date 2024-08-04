@@ -117,13 +117,14 @@ export const changePasswordSchema = z
   });
 
 export const postFormSchema = z.object({
-  // placeId: z.number({
-  //   required_error: '맛집을 선택해주세요',
-  // }),
+  placeId: z.number({
+    required_error: '맛집을 선택해주세요',
+  }),
+  placeName: z.string(),
   content: z.string(),
   starRating: z.number(),
-  // menus: z.string().array().max(5).optional(),
-  // keywords: z.string().array().max(5).optional(),
+  menus: z.string().array().max(5).optional(),
+  keywords: z.string().array().max(5).optional(),
   imgs: z.any().array(),
   preview: z.string().array(),
   mainImgIndex: z.number(),
