@@ -6,11 +6,17 @@ const usePostFormContext = () => {
   const { register, handleSubmit, watch, setValue, getValues } =
     useFormContext<PostFormValue>();
 
+  const placeName = watch('placeName');
   const preview = watch('preview');
   const mainImgIndex = watch('mainImgIndex');
   const starRating = watch('starRating');
   const menus = watch('menus');
   const keywords = watch('keywords');
+
+  const handleSetPlace = (placeName: string, placeId: number) => {
+    setValue('placeName', placeName);
+    setValue('placeId', placeId);
+  };
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const imgs = getValues('imgs');
@@ -86,15 +92,15 @@ const usePostFormContext = () => {
     setValue('keywords', newKeywords);
   };
 
-  const handleSetPlace = (name: string, id: number) => {};
-
   return {
+    placeName,
     starRating,
     preview,
     mainImgIndex,
     menus,
     keywords,
     register,
+    handleSetPlace,
     handleSubmit,
     handleStarRatingChange,
     handleImageChange,

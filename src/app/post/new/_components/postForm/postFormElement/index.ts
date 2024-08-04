@@ -1,1 +1,3 @@
-export * from './postImagField';
+export * from './postImageField';
+
+export * from './postPlaceField';
