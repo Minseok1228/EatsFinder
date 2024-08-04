@@ -14,6 +14,7 @@ export interface TextFieldProps extends ComponentProps<'input'> {
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   function TextField(
     {
+      className,
       label,
       message,
       errormessage,
@@ -42,11 +43,16 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           <input
             {...props}
             ref={ref}
-            className={`w-full p-[10px] text-gray-900 caret-primary-400 body-16 focus:outline-none ${
+            className={customTwMerge(
+              'w-full p-[10px] text-gray-900 caret-primary-400 body-16 focus:outline-none disabled:bg-gray-50 disabled:text-gray-200',
               underStoke
                 ? 'border-b border-b-gray-100 focus:border-b-primary-400'
-                : 'rounded border border-gray-100 focus:border-primary-400'
-            } ${errormessage && `border-error`} ${icon && `pr-6`} ${button && `pr-[98px]`} disabled:bg-gray-50 disabled:text-gray-200`}
+                : 'rounded border border-gray-100 focus:border-primary-400',
+              errormessage && 'border-error',
+              icon && 'pr-6',
+              button && 'pr-[98px]',
+              className,
+            )}
           />
           {(icon || button) && (
             <div className='absolute right-1 top-1/2 flex -translate-y-1/2'>
