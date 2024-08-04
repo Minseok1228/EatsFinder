@@ -81,13 +81,17 @@ const usePostFormContext = () => {
   };
 
   const handlekeywordToggle = (keyword: string) => {
-    const keywords = getValues('keywords') || [];
+    const keywords = watch('keywords') || [];
     let newKeywords: Array<string>;
 
     if (keywords.includes(keyword)) {
       newKeywords = keywords.filter((it) => it !== keyword);
     } else {
-      newKeywords = [...keywords, keyword];
+      if (keywords.length < 5) newKeywords = [...keywords, keyword];
+      else {
+        alert('키워드는 최대 5개 선택이 가능합니다.');
+        return;
+      }
     }
 
     setValue('keywords', newKeywords);
