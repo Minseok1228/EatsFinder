@@ -34,7 +34,7 @@ export const PostPlaceSearch = forwardRef<HTMLDivElement, PostPlaceSearchProps>(
       <div
         ref={ref}
         className={customTwMerge(
-          'absolute mt-3 h-[540px] w-full overflow-auto rounded-3xl bg-white py-6 shadow-[0_0_20px_rgba(0,0,0,0.1)] outline-none',
+          'absolute z-50 mt-3 h-[540px] w-full overflow-auto rounded-3xl bg-white py-6 shadow-[0_0_20px_rgba(0,0,0,0.1)] outline-none',
           className,
         )}
         {...props}

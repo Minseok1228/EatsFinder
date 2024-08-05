@@ -1,6 +1,5 @@
 import usePostFormContext from '../../_hooks/usePostFormContext';
-import { PostFormLabel } from './PostFormLabel';
-import { PostKeywordField } from './PostKeywordField';
+import { PostFormLabel, PostKeywordField } from './postFormElement';
 
 export const PostFormRightSection = () => {
   const { keywords, handlekeywordToggle } = usePostFormContext();
