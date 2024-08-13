@@ -3,9 +3,11 @@ import { CloseSVG } from '@/components/svg/CloseSVG';
 
 export const MenuTag = ({
   children,
+  closeIcon,
   onClick,
 }: {
   children: ReactNode;
+  closeIcon?: boolean;
   onClick: () => void;
 }) => {
   return (
@@ -14,7 +16,7 @@ export const MenuTag = ({
       onClick={onClick}
     >
       <span>{children}</span>
-      <CloseSVG />
+      {closeIcon && <CloseSVG />}
     </span>
   );
 };
