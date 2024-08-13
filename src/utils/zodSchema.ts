@@ -46,9 +46,6 @@ export const signupSchema = z
           '한글,영문,숫자를 사용하여 최소 2자에서 최대 12자의 닉네임을 입력해주세요.',
       }),
     nicknameDuplicated: z.boolean(),
-    // .refine((data) => data === true, {
-    //   message: '중복된 닉네임 입니다.',
-    // })
     acceptTerms: z
       .boolean()
       .default(false)
@@ -69,4 +66,36 @@ export const signupSchema = z
   .refine((data) => data.nicknameDuplicated === true, {
     message: '이미 사용중인 닉네임 입니다.',
     path: ['nickname'],
+  });
+
+export const profileEditSchema = z.object({
+  nickname: z
+    .string({ required_error: '닉네임을 입력해주세요.' })
+    .regex(nicknameRegex, {
+      message:
+        '한글,영문,숫자를 사용하여 최소 2자에서 최대 12자의 닉네임을 입력해주세요.',
+    }),
+  // nicknameDuplicated: z.boolean(),
+  phoneNumber: z
+    .string({ required_error: '전화번호를 입력해주세요.' })
+    .regex(phoneRegex, { message: '전화번호 양식에 맞게 작성해주세요.' }),
+});
+// .refine((data) => data.nicknameDuplicated === true, {
+//   message: '이미 사용중인 닉네임 입니다.',
+//   path: ['nickname'],
+// });
+
+export const changePasswordSchema = z
+  .object({
+    password: z
+      .string({ required_error: '비밀번호를 입력해주세요.' })
+      .regex(passwordRegex, {
+        message:
+          '영문, 숫자, 특수문자(! ? @ # $ % ^ & *)을 포함한 8~16자리를 입력해주세요.',
+      }),
+    passwordCheck: z.string({ required_error: '비밀번호를 확인해주세요.' }),
+  })
+  .refine((data) => data.password === data.passwordCheck, {
+    message: '비밀번호가 일치하지 않습니다.',
+    path: ['passwordCheck'],
   });

@@ -4,13 +4,12 @@ import { UserProfileStats } from './UserProfileStats';
 import { addDashes } from '@/utils/formatPhoneNumber';
 import { getUserInfo } from '@/utils/getUserInfo';
 import { Loading } from '@/app/(auth)/_components/Loading';
+import { UserData } from '@/types/authType';
 type ProfileProps = {
   handler: () => void;
+  userData: UserData;
 };
-export const Profile = async ({ handler }: ProfileProps) => {
-  const userData = await getUserInfo();
-  if (!userData) return <Loading />;
-
+export const Profile = ({ handler, userData }: ProfileProps) => {
   const {
     email,
     followerCount,

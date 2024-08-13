@@ -1,5 +1,7 @@
 import { UserData } from '@/types/authType';
 import { ProfilePage } from './_components/ProfilePage';
+import { getUserInfo } from '@/utils/getUserInfo';
+import { Loading } from '../../_components/Loading';
 const userData: UserData = {
   id: 0,
   nickname: 'nickname',
@@ -12,7 +14,9 @@ const userData: UserData = {
   followerCount: 0,
   postCount: 0,
 };
-export default function page() {
+export default async function page() {
+  const userData = await getUserInfo();
+  if (!userData) return <Loading />;
   return (
     <>
       <ProfilePage userData={userData} />

@@ -1,7 +1,14 @@
-import { NEST_SERVER } from '@/constants/baseUrl';
-import { LoginFormType, SignupFormType } from '@/types/authType';
+import { KOTLIN_SERVER, NEST_SERVER } from '@/constants/baseUrl';
+import {
+  ChagePasswordType,
+  LoginFormType,
+  ProfileEditType,
+  SignupFormType,
+} from '@/types/authType';
 import { SignupType } from '@/types/authType';
+import { getUserInfo, getUserToken } from '@/utils/getUserInfo';
 import { UseFormSetValue, UseFormTrigger, UseFormWatch } from 'react-hook-form';
+const accessToken = getUserToken();
 
 export const login = async (data: LoginFormType) => {
   const { email, password } = data;
@@ -58,7 +65,6 @@ export const useNicknameDuplicateCheck = () => {
     setValue,
     trigger,
   }: isDuplicatedNicknameProps) => {
-    console.log(watch('nickname'));
     const response = await isDuplicatedNickname(watch('nickname'));
     if (response.error) {
       setValue('nicknameDuplicated', false);
@@ -71,4 +77,38 @@ export const useNicknameDuplicateCheck = () => {
     }
   };
   return { handleNicknameChecker };
+};
+
+export const editUserProfile = async (data: ProfileEditType) => {
+  const { nickname, phoneNumber } = data;
+  const response = await fetch(`${KOTLIN_SERVER}/my-profile`, {
+    method: 'PATCH',
+    headers: {
+      accept: '*/*',
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({
+      nickname,
+      phoneNumber,
+      profileImage: null,
+    }),
+  });
+  return response.json();
+};
+export const changePassword = async (data: ChagePasswordType) => {
+  const { password, passwordCheck } = data;
+  const response = await fetch(`${KOTLIN_SERVER}/my-profile/new-password`, {
+    method: 'PUT',
+    headers: {
+      accept: '*/*',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({
+      password,
+      passwordCheck,
+    }),
+  });
+  return response.json();
 };

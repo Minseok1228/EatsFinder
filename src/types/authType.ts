@@ -28,6 +28,14 @@ export type SignupFormType = {
   acceptTerms: boolean;
   acceptPrivacyPolicy: boolean;
 };
+export type ProfileEditType = {
+  nickname: string;
+  phoneNumber: string;
+};
+export type ChagePasswordType = {
+  password: string;
+  passwordCheck: string;
+};
 export type SignupType = Omit<
   SignupFormType,
   | 'passwordCheck'

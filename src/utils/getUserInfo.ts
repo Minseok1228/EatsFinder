@@ -10,3 +10,7 @@ export const getUserInfo = async () => {
   const userInfo: UserData = await JSON.parse(data.value);
   return userInfo;
 };
+export const getUserToken = async () => {
+  const token = cookies().get('jwt');
+  return token;
+};

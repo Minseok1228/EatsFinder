@@ -1,8 +1,18 @@
-import { LoginFormType, SignupFormType } from '@/types/authType';
+import {
+  ChagePasswordType,
+  LoginFormType,
+  ProfileEditType,
+  SignupFormType,
+} from '@/types/authType';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { login, signup } from './useAuth';
+import { changePassword, editUserProfile, login, signup } from './useAuth';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { loginSchema, signupSchema } from '@/utils/zodSchema';
+import {
+  changePasswordSchema,
+  loginSchema,
+  profileEditSchema,
+  signupSchema,
+} from '@/utils/zodSchema';
 export const useLogin = () => {
   const {
     register,
@@ -40,7 +50,6 @@ export const useSignup = () => {
     resolver: zodResolver(signupSchema),
   });
 
-  //statuscode에 따른 값
   const onSubmit: SubmitHandler<SignupFormType> = async (data) => {
     const { acceptPrivacyPolicy, acceptTerms, code } = data;
     if (acceptPrivacyPolicy && acceptTerms && code) {
@@ -62,5 +71,51 @@ export const useSignup = () => {
     errors,
     setValue,
     trigger,
+  };
+};
+export const useProfileEdit = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    trigger,
+    formState: { errors },
+  } = useForm<ProfileEditType>({
+    mode: 'onBlur',
+    resolver: zodResolver(profileEditSchema),
+  });
+  const onSubmit: SubmitHandler<ProfileEditType> = async (data) => {
+    console.log('Submitted data:', data);
+    const response = await editUserProfile(data);
+    console.log('res data', data);
+  };
+  return {
+    register,
+    handleSubmit: handleSubmit(onSubmit),
+    watch,
+    trigger,
+    errors,
+  };
+};
+
+export const useChangePassword = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<ChagePasswordType>({
+    mode: 'onBlur',
+    resolver: zodResolver(changePasswordSchema),
+  });
+  const onSubmit: SubmitHandler<ChagePasswordType> = async (data) => {
+    console.log('Change data:', data);
+    const response = await changePassword(data);
+    console.log(data);
+  };
+  return {
+    register,
+    handleSubmit: handleSubmit(onSubmit),
+    errors,
   };
 };
