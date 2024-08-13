@@ -52,6 +52,18 @@ export const PostPlaceSearch = forwardRef<HTMLDivElement, PostPlaceSearchProps>(
             }}
           />
         </div>
+        {places.map((place) => (
+          <Place
+            key={place.id}
+            imgSrc={place.thumbnailUrl}
+            name={place.name}
+            address={place.address}
+            isRegistered={true}
+            onClick={() => {
+              onPlaceClick(place.name, place.id);
+            }}
+          />
+        ))}
         {kakaoPlaces.map((kakaoPlace, index) => (
           <Place
             key={kakaoPlace.id}
@@ -59,17 +71,6 @@ export const PostPlaceSearch = forwardRef<HTMLDivElement, PostPlaceSearchProps>(
             address={kakaoPlace.road_address_name}
             onClick={() => {
               onKakaoPlaceClick(index);
-            }}
-          />
-        ))}
-        {places.map((place) => (
-          <Place
-            key={place.id}
-            name={place.name}
-            address={place.address}
-            isRegistered={true}
-            onClick={() => {
-              onPlaceClick(place.name, place.id);
             }}
           />
         ))}
