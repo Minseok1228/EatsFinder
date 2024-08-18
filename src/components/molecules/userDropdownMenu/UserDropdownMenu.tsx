@@ -51,3 +51,19 @@ export const UserDropdownMenu = () => {
     </div>
   );
 };
+/**
+ *  
+ <Modal
+        title='타이틀'
+        description='설명'
+        onMainClick={() => {
+          console.log('main');
+        }}
+        mainButton='메인버튼'
+        isOpen={true}
+        onClose={() => {
+          console.log('닫힘');
+        }}
+        subButton='서브버튼'
+      />
+ */

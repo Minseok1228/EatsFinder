@@ -39,7 +39,19 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
   cookiesStore.set('jwt', `${data.accessToken}`, options);
   const cookie = cookiesStore.get('jwt');
   if (cookie) {
-    return redirect('/');
+    console.log('2222222222222222222222222222222222222222');
+    const response = await fetch(`${KOTLIN_SERVER}/my-profile`, {
+      method: 'GET',
+      headers: {
+        accept: '*/*',
+        Authorization: `Bearer ${data.accessToken}`,
+      },
+    });
+    const userInfo = await response.json();
+    console.log(userInfo);
+    console.log(JSON.stringify(userInfo));
+    cookiesStore.set('userInfo', JSON.stringify(userInfo), options);
+    redirect('/');
   }
 
   return redirect('/login');

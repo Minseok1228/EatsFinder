@@ -6,7 +6,7 @@ import {
   SignupFormType,
 } from '@/types/authType';
 import { SignupType } from '@/types/authType';
-import { getUserInfo, getUserToken } from '@/utils/getUserInfo';
+import { getUserToken } from '@/utils/getUserInfo';
 import { UseFormSetValue, UseFormTrigger, UseFormWatch } from 'react-hook-form';
 const accessToken = getUserToken();
 

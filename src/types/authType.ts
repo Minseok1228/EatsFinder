@@ -7,6 +7,7 @@ export type UserData = {
   followingCount: number;
   followerCount: number;
   postCount: number;
+  userType: string;
 };
 export type ProfilePageProps = {
   userData: UserData;
