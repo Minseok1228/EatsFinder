@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { MenuTag } from './MenuTag';
 import { PostFormLabel } from '../postFormLabel';
 import { getMenus } from '@/api/post';
 import usePostFormContext from '@/app/post/new/_hooks/usePostFormContext';
+import { isKorean, createHangulRegex } from '@/utils/hangul';
 
 export const PostMenuField = () => {
   const [isShow, setIsShow] = useState(false);
@@ -12,6 +13,13 @@ export const PostMenuField = () => {
   const [recommendedMenus, setRecommendedMenus] = useState<
     { id: number; menu: string }[]
   >([]);
+  const [placeMenus, setPlaceMenus] = useState<string[]>([
+    '고르곤졸라 피자',
+    '참나물 파스타',
+    '피쉬 앤 칩스',
+    '고구마',
+    'spagetti',
+  ]);
   const recommendedMenusRef = useRef(null);
 
   useEffect(() => {
@@ -31,6 +39,25 @@ export const PostMenuField = () => {
   useEffect(() => {
     if (menus.length === 5) setIsShow(false);
   }, [menus]);
+
+  const filteredPlaceMenu = useMemo(() => {
+    const reg = new RegExp(
+      menu.split('').reduce((acc, cur) => {
+        if (isKorean(cur)) {
+          const reg = createHangulRegex(cur);
+          console.log(reg.source);
+          return acc + reg.source;
+        }
+        return acc + cur;
+      }, '^'),
+    );
+
+    return placeMenus.filter((menu) => {
+      return reg.test(menu);
+    });
+  }, [menu, placeMenus]);
+
+  console.log(filteredPlaceMenu);
 
   return (
     <div>
@@ -84,6 +111,11 @@ export const PostMenuField = () => {
               {recommendedMenus.map((menu) => (
                 <MenuTag key={menu.id} onClick={() => handleMenuAdd(menu.menu)}>
                   {menu.menu}
+                </MenuTag>
+              ))}
+              {filteredPlaceMenu.map((menu, index) => (
+                <MenuTag key={index} onClick={() => {}}>
+                  {menu}
                 </MenuTag>
               ))}
             </div>
