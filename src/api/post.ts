@@ -5,7 +5,8 @@ export const createNewPost = async (formData: FormData) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_NODE_SERVER}/posts`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'multipart/form-data',
+      Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3MjI4NjkyOTUsImV4cCI6MTcyMzQ3NDA5NX0.4h75MwgyZaU07yVUY67FOUX63eN7E3ihLgqex0dHep8',
     },
     body: formData,
   });
@@ -71,7 +72,7 @@ export const getKakaoPlace = async (placeName: string) => {
     {
       method: 'GET',
       headers: {
-        Authorization: `KakaoAK 98389c96fbf146dbe00971e671d786a1`,
+        Authorization: `KakaoAK ${process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY}`,
       },
     },
   );
@@ -91,6 +92,20 @@ export const getMenus = async (placeId: number) => {
       },
     },
   );
+
+  const data = await res.json();
+
+  return data;
+};
+
+export const createMenu = async (menu: string, placeId: number) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_NODE_SERVER}/menus`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ menu, placeId }),
+  });
 
   const data = await res.json();
 
