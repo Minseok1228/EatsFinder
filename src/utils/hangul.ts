@@ -21,33 +21,33 @@ const CHOSUNG = {
 } as const;
 
 const JONGSUNG_TO_CHOSUNG = [
-  'ㄱ',
-  'ㄲ',
-  'ㅅ',
-  'ㄴ',
-  'ㅈ',
-  'ㅎ',
-  'ㄷ',
-  'ㄹ',
-  'ㄱ',
-  'ㅁ',
-  'ㅂ',
-  'ㅅ',
-  'ㅌ',
-  'ㅍ',
-  'ㅎ',
-  'ㅁ',
-  'ㅂ',
-  'ㅅ',
-  'ㅅ',
-  'ㅆ',
-  'ㅇ',
-  'ㅈ',
-  'ㅊ',
-  'ㅋ',
-  'ㅌ',
-  'ㅍ',
-  'ㅎ',
+  ['ㄱ', 0],
+  ['ㄲ', 0],
+  ['ㅅ', 1],
+  ['ㄴ', 0],
+  ['ㅈ', 4],
+  ['ㅎ', 4],
+  ['ㄷ', 0],
+  ['ㄹ', 0],
+  ['ㄱ', 8],
+  ['ㅁ', 8],
+  ['ㅂ', 8],
+  ['ㅅ', 8],
+  ['ㅌ', 8],
+  ['ㅍ', 8],
+  ['ㅎ', 8],
+  ['ㅁ', 0],
+  ['ㅂ', 0],
+  ['ㅅ', 17],
+  ['ㅅ', 0],
+  ['ㅆ', 0],
+  ['ㅇ', 0],
+  ['ㅈ', 0],
+  ['ㅊ', 0],
+  ['ㅋ', 0],
+  ['ㅌ', 0],
+  ['ㅍ', 0],
+  ['ㅎ', 0],
 ] as const;
 
 type ChosungType = keyof typeof CHOSUNG;
@@ -90,13 +90,12 @@ export const createHangulRegex = (char: string) => {
   }
 
   const jongsungIndex = (char.charCodeAt(0) - KR_START) % KR_JONGSUNG_COUNT;
+  const [chosung, offset] = JONGSUNG_TO_CHOSUNG[jongsungIndex - 1];
   const withoutJongsung = String.fromCharCode(
-    char.charCodeAt(0) - jongsungIndex,
+    char.charCodeAt(0) - jongsungIndex + offset,
   );
 
-  const regOnlyChosung = createHangulRegexOnlyChosung(
-    JONGSUNG_TO_CHOSUNG[jongsungIndex - 1],
-  );
+  const regOnlyChosung = createHangulRegexOnlyChosung(chosung);
 
   return new RegExp(`(${char}|${withoutJongsung}${regOnlyChosung.source})`);
 };
