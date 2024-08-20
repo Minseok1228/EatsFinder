@@ -81,6 +81,11 @@ export const useNicknameDuplicateCheck = () => {
 
 export const editUserProfile = async (data: ProfileEditType) => {
   const { nickname, phoneNumber } = data;
+  const formData = new FormData();
+  formData.append('nickname', nickname);
+  formData.append('phoneNumber', phoneNumber);
+  formData.append('profileImage', '');
+  console.log('cccc');
   const response = await fetch(`${KOTLIN_SERVER}/my-profile`, {
     method: 'PATCH',
     headers: {
@@ -88,26 +93,26 @@ export const editUserProfile = async (data: ProfileEditType) => {
       'Content-Type': 'multipart/form-data',
       Authorization: `Bearer ${accessToken}`,
     },
-    body: JSON.stringify({
-      nickname,
-      phoneNumber,
-      profileImage: null,
-    }),
+    body: formData,
   });
+  console.log('dddd');
+
   return response.json();
 };
 export const changePassword = async (data: ChagePasswordType) => {
   const { password, passwordCheck } = data;
+  const token = await accessToken;
+  console.log('토큰', token);
   const response = await fetch(`${KOTLIN_SERVER}/my-profile/new-password`, {
     method: 'PUT',
     headers: {
       accept: '*/*',
+      Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${accessToken}`,
     },
     body: JSON.stringify({
-      password,
-      passwordCheck,
+      newPassword: password,
+      passwordConfirm: passwordCheck,
     }),
   });
   return response.json();

@@ -23,6 +23,7 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
   );
 
   const data = await response.json();
+
   if (data.statusCode) {
     return redirect('/login?error=fail');
   }
@@ -39,7 +40,6 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
   cookiesStore.set('jwt', `${data.accessToken}`, options);
   const cookie = cookiesStore.get('jwt');
   if (cookie) {
-    console.log('2222222222222222222222222222222222222222');
     const response = await fetch(`${KOTLIN_SERVER}/my-profile`, {
       method: 'GET',
       headers: {
