@@ -7,6 +7,14 @@ const nextConfig = {
         protocol: 'https',
         hostname: process.env.NEXT_PUBLIC_S3_SERVER,
       },
+      {
+        protocol: 'http',
+        hostname: 'k.kakaocdn.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+      },
     ],
   },
 };
