@@ -39,7 +39,7 @@ export const ProfileImage = ({ src, size }: ProfileImageProps) => {
   return (
     <div
       className={customTwMerge(
-        `cursor-pointer rounded-full [&>svg]:h-full [&>svg]:w-full`,
+        `rounded-full [&>svg]:h-full [&>svg]:w-full`,
         profileImageSize[size],
       )}
     >

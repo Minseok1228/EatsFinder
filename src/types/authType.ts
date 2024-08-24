@@ -32,6 +32,7 @@ export type SignupFormType = {
 export type ProfileEditType = {
   nickname: string;
   phoneNumber: string;
+  profileImage: File | Blob;
 };
 export type ChagePasswordType = {
   password: string;

@@ -1,9 +1,12 @@
 'use client';
 import { useProfileEdit } from '@/app/(auth)/_hooks/useFormData';
+import { useImageInput } from '@/app/(auth)/_hooks/useImageInput';
 import { Button, ProfileImage } from '@/components/atoms';
 import { TextField } from '@/components/atoms/textField';
 import { EditSVG } from '@/components/svg/EditSVG';
 import { UserData } from '@/types/authType';
+import Image from 'next/image';
+import { useRef, useState } from 'react';
 type ProfileEditProps = {
   handler: () => void;
   userData: UserData;
@@ -11,17 +14,41 @@ type ProfileEditProps = {
 export const ProfileEdit = ({ handler, userData }: ProfileEditProps) => {
   const { nickname, phoneNumber, profileImage } = userData;
   const { register, watch, handleSubmit, errors } = useProfileEdit();
+  const imageInputRef = useRef<HTMLInputElement | null>(null);
+  const { handleFileChange, handleImageInput, previewImage } = useImageInput();
   console.log(watch());
   return (
     <div>
       <form className='flex flex-col items-center' onSubmit={handleSubmit}>
         <div className='flex flex-col items-center gap-2'>
-          <button className='relative'>
-            <ProfileImage src={profileImage} size={100} />
+          <div className='relative'>
+            <div
+              className='relative h-[100px] w-[100px] cursor-pointer overflow-hidden rounded-full'
+              onClick={() => handleImageInput(imageInputRef)}
+            >
+              <input
+                type='file'
+                accept='image/*'
+                ref={imageInputRef}
+                className='hidden'
+                onChange={(e) => handleFileChange(e)}
+              />
+              {previewImage ? (
+                <Image
+                  src={previewImage}
+                  alt='profile image preview'
+                  fill={true}
+                  className='object-cover'
+                />
+              ) : (
+                <ProfileImage src={profileImage} size={100} />
+              )}
+            </div>
             <div className='absolute bottom-1 right-1'>
               <EditSVG x='20' y='20' />
             </div>
-          </button>
+          </div>
+
           <TextField
             label='닉네임'
             defaultValue={nickname}
