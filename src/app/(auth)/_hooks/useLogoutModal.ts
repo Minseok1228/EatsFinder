@@ -6,11 +6,8 @@ export const useLogoutModal = () => {
     e.stopPropagation();
     setIsModalOpen(true);
   };
-  const logoutButton = () => {
-    console.log('aa');
-  };
+  const logoutButton = () => {};
   const closeModal = () => {
-    console.log('close');
     setIsModalOpen(false);
   };
   return { isModalOpen, closeModal, openLogoutModal, logoutButton };

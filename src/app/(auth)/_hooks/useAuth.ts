@@ -93,24 +93,15 @@ export const editUserProfile = async (data: ProfileEditType) => {
     formData.append('profileImage', file);
   }
   try {
-    console.log(typeof profileImage);
-    console.log('FormData:', formData.get('profileImage'));
-    console.log('FormData:', formData.get('phoneNumber'));
-    console.log('FormData:', formData.get('nickname'));
-
     const token = await accessToken;
     if (!token) {
       throw new Error('Access token is missing');
     }
 
-    console.log('Token:', token);
-
     const response = await fetch(`${KOTLIN_SERVER}/my-profile`, {
       method: 'PATCH',
       headers: {
         accept: '*/*',
-        // 'Content-Type': 'multipart/form-data',
-        // -> Multipart/form-data는 브라우저가 자동으로 설정합니다. 주석 처리해보세요.
         Authorization: `Bearer ${token}`,
       },
       body: formData,
@@ -127,33 +118,10 @@ export const editUserProfile = async (data: ProfileEditType) => {
     console.error('Error occurred:', error);
   }
 };
-// export const editUserProfile = async (data: ProfileEditType) => {
-//   const { nickname, phoneNumber } = data;
-//   const formData = new FormData();
-//   formData.append('nickname', nickname);
-//   formData.append('phoneNumber', phoneNumber);
-//   formData.append('profileImage', '');
-//   console.log('cccc');
-//   const token = await accessToken;
-//   console.log('token', token);
 
-//   const response = await fetch(`${KOTLIN_SERVER}/my-profile`, {
-//     method: 'PATCH',
-//     headers: {
-//       accept: '*/*',
-//       'Content-Type': 'multipart/form-data',
-//       Authorization: `Bearer ${token}`,
-//     },
-//     body: formData,
-//   });
-//   console.log('응답', response);
-
-//   return response.json();
-// };
 export const changePassword = async (data: ChagePasswordType) => {
   const { password, passwordCheck } = data;
   const token = await accessToken;
-  console.log('토큰', token);
   const response = await fetch(`${KOTLIN_SERVER}/my-profile/new-password`, {
     method: 'PUT',
     headers: {

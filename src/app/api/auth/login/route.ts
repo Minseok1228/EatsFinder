@@ -18,7 +18,6 @@ export const POST = async (req: NextRequest) => {
     }),
   });
   const data = await response.json();
-  console.log(data);
   if (data.statusCode) {
     return redirect('/login?error=fail');
   }
@@ -43,8 +42,6 @@ export const POST = async (req: NextRequest) => {
       },
     });
     const userInfo = await response.json();
-    console.log(userInfo);
-    console.log(JSON.stringify(userInfo));
     cookiesStore.set('userInfo', JSON.stringify(userInfo), options);
     redirect('/');
   }

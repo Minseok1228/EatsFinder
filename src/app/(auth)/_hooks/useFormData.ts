@@ -54,7 +54,6 @@ export const useSignup = () => {
     const { acceptPrivacyPolicy, acceptTerms, code } = data;
     if (acceptPrivacyPolicy && acceptTerms && code) {
       const response = await signup(data);
-      console.log('서버 응답값', response);
       if (response.statusCode) {
         alert(response.message);
       }
@@ -88,10 +87,7 @@ export const useProfileEdit = () => {
   });
 
   const onSubmit: SubmitHandler<ProfileEditType> = async (data) => {
-    console.log('Submitted data:', data);
     const response = await editUserProfile(data);
-    console.log(response);
-    console.log('res data', data);
   };
   return {
     register,
@@ -114,11 +110,7 @@ export const useChangePassword = () => {
   });
   const onSubmit: SubmitHandler<ChagePasswordType> = async (data) => {
     try {
-      console.log('try', data);
       const response = await changePassword(data);
-      console.log('end');
-
-      console.log('Response:', response);
     } catch (error) {
       console.error('Error changing password:', error);
     }

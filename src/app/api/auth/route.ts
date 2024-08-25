@@ -8,10 +8,8 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
   const searchParams = req.nextUrl.searchParams;
   const code = searchParams.get('code');
   const provider = searchParams.get('provider');
-  console.log('provider', provider);
   const state = searchParams.get('state');
   const baseUrl = provider === 'naver' ? NEST_SERVER : KOTLIN_SERVER;
-  console.log(baseUrl);
   const response = await fetch(
     `${baseUrl}/auth/callback/${provider}?code=${code}&state=${state}`,
     {
@@ -48,8 +46,6 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
       },
     });
     const userInfo = await response.json();
-    console.log(userInfo);
-    console.log(JSON.stringify(userInfo));
     cookiesStore.set('userInfo', JSON.stringify(userInfo), options);
     redirect('/');
   }

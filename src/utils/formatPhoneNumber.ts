@@ -13,13 +13,10 @@ export const addDashes = (phoneNumber: string) => {
   return formattedNumber;
 };
 export const deleteDashes = (phoneNumber: string) => {
-  console.log('hi');
   const socialChecker = phoneNumber.slice(0, 3);
   if (socialChecker === '+82') {
-    console.log('aaa');
     return phoneNumber.split('-').join('').slice(3, 14);
   }
-  console.log('bbb');
 
   return phoneNumber.split('-').join('');
 };
