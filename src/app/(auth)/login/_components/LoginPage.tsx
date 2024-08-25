@@ -10,7 +10,7 @@ export const LoginPage = ({ searchParams }: searchParams) => {
     <>
       <h2 className='mb-6 text-gray-800 title-30'>로그인</h2>
       <div className='flex flex-col gap-8'>
-        {searchParams?.error && <LoginError />}
+        {/* {searchParams?.error && <LoginError />} */}
         <LoginForm />
         <SocialLoginBtnGroup />
       </div>

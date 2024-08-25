@@ -6,6 +6,9 @@ import { NavLink, ProfileImage } from '@/components/atoms';
 import { LogoImgSVG } from '@/components/svg/LogoSVG';
 import { UserDropdownMenu } from '@/components/molecules/userDropdownMenu/UserDropdownMenu';
 import { useDropdownHandler } from '@/hooks/useDropdownHandler';
+import { Modal } from '..';
+import { useState } from 'react';
+import { useLogoutModal } from '@/app/(auth)/_hooks/useLogoutModal';
 
 const NAV_DATA = [
   {
@@ -32,6 +35,9 @@ export const Header = () => {
     return <AuthHeader />;
   }
   const { isDropdownOpen, dropdownHanlder, dropdownRef } = useDropdownHandler();
+
+  const { closeModal, isModalOpen, logoutButton, openLogoutModal } =
+    useLogoutModal();
   return (
     <header className='mb-[3.75rem] flex h-20 items-center justify-around'>
       <div className='flex w-full max-w-[1440px] items-center justify-between px-9'>
@@ -59,7 +65,22 @@ export const Header = () => {
           onClick={dropdownHanlder}
         >
           <ProfileImage size={50} />
-          {isDropdownOpen && <UserDropdownMenu />}
+          {isDropdownOpen && (
+            <UserDropdownMenu
+              openLogoutModal={openLogoutModal}
+              dropdownHanlder={dropdownHanlder}
+            />
+          )}
+          <Modal
+            isOpen={isModalOpen}
+            onClose={() => closeModal}
+            title='로그아웃'
+            description='로그아웃하시려면 확인을 눌러주세요.'
+            subButton='취소'
+            onMainClick={logoutButton}
+            onSubClick={closeModal}
+            mainButton='확인'
+          />
         </div>
       </div>
     </header>

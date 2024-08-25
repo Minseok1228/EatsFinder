@@ -19,11 +19,11 @@ export const ModalFooter = ({
       <div className='flex items-center justify-center gap-[10px]'>
         {subButton ? (
           <>
-            <Button size='small' onClick={onMainClick}>
-              {mainButton}
-            </Button>
             <Button variant='stroke' size='small' onClick={onSubClick}>
               {subButton}
+            </Button>
+            <Button size='small' onClick={onMainClick}>
+              {mainButton}
             </Button>
           </>
         ) : (

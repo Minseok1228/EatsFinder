@@ -16,8 +16,10 @@ export const useDropdownHandler = () => {
         !dropdownRef.current.contains(event.target as Node)
       ) {
         setIsDropdownOpen(false);
+        console.log('이거');
       }
     };
+
     if (isDropdownOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     } else {
