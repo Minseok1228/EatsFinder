@@ -6,16 +6,20 @@ import { TextField } from '@/components/atoms/textField';
 import { EditSVG } from '@/components/svg/EditSVG';
 import { UserData } from '@/types/authType';
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 type ProfileEditProps = {
   handler: () => void;
   userData: UserData;
 };
 export const ProfileEdit = ({ handler, userData }: ProfileEditProps) => {
   const { nickname, phoneNumber, profileImage } = userData;
-  const { register, watch, handleSubmit, errors } = useProfileEdit();
+  const { register, watch, handleSubmit, errors, setValue } = useProfileEdit();
   const imageInputRef = useRef<HTMLInputElement | null>(null);
   const { handleFileChange, handleImageInput, previewImage } = useImageInput();
+  useEffect(() => {
+    setValue('profileImage', userData.profileImage);
+    if (previewImage) setValue('profileImage', previewImage);
+  }, [previewImage]);
   console.log(watch());
   return (
     <div>
@@ -27,6 +31,7 @@ export const ProfileEdit = ({ handler, userData }: ProfileEditProps) => {
               onClick={() => handleImageInput(imageInputRef)}
             >
               <input
+                {...register('profileImage')}
                 type='file'
                 accept='image/*'
                 ref={imageInputRef}

@@ -78,27 +78,78 @@ export const useNicknameDuplicateCheck = () => {
   };
   return { handleNicknameChecker };
 };
-
+const urlToFile = async (url: string, filename: string): Promise<File> => {
+  const response = await fetch(url);
+  const blob = await response.blob();
+  return new File([blob], filename, { type: blob.type });
+};
 export const editUserProfile = async (data: ProfileEditType) => {
-  const { nickname, phoneNumber } = data;
+  const { nickname, phoneNumber, profileImage } = data;
   const formData = new FormData();
   formData.append('nickname', nickname);
   formData.append('phoneNumber', phoneNumber);
-  formData.append('profileImage', '');
-  console.log('cccc');
-  const response = await fetch(`${KOTLIN_SERVER}/my-profile`, {
-    method: 'PATCH',
-    headers: {
-      accept: '*/*',
-      'Content-Type': 'multipart/form-data',
-      Authorization: `Bearer ${accessToken}`,
-    },
-    body: formData,
-  });
-  console.log('dddd');
+  if (profileImage) {
+    const file = await urlToFile(profileImage, 'profile.png');
+    formData.append('profileImage', file);
+  }
+  try {
+    console.log(typeof profileImage);
+    console.log('FormData:', formData.get('profileImage'));
+    console.log('FormData:', formData.get('phoneNumber'));
+    console.log('FormData:', formData.get('nickname'));
 
-  return response.json();
+    const token = await accessToken;
+    if (!token) {
+      throw new Error('Access token is missing');
+    }
+
+    console.log('Token:', token);
+
+    const response = await fetch(`${KOTLIN_SERVER}/my-profile`, {
+      method: 'PATCH',
+      headers: {
+        accept: '*/*',
+        // 'Content-Type': 'multipart/form-data',
+        // -> Multipart/form-data는 브라우저가 자동으로 설정합니다. 주석 처리해보세요.
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
+
+    console.log('응답:', await response.json());
+
+    if (!response.ok) {
+      throw new Error(`Server responded with status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error occurred:', error);
+  }
 };
+// export const editUserProfile = async (data: ProfileEditType) => {
+//   const { nickname, phoneNumber } = data;
+//   const formData = new FormData();
+//   formData.append('nickname', nickname);
+//   formData.append('phoneNumber', phoneNumber);
+//   formData.append('profileImage', '');
+//   console.log('cccc');
+//   const token = await accessToken;
+//   console.log('token', token);
+
+//   const response = await fetch(`${KOTLIN_SERVER}/my-profile`, {
+//     method: 'PATCH',
+//     headers: {
+//       accept: '*/*',
+//       'Content-Type': 'multipart/form-data',
+//       Authorization: `Bearer ${token}`,
+//     },
+//     body: formData,
+//   });
+//   console.log('응답', response);
+
+//   return response.json();
+// };
 export const changePassword = async (data: ChagePasswordType) => {
   const { password, passwordCheck } = data;
   const token = await accessToken;

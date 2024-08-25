@@ -55,7 +55,6 @@ export const useSignup = () => {
     if (acceptPrivacyPolicy && acceptTerms && code) {
       const response = await signup(data);
       console.log('서버 응답값', response);
-      //이
       if (response.statusCode) {
         alert(response.message);
       }
@@ -81,11 +80,13 @@ export const useProfileEdit = () => {
     handleSubmit,
     watch,
     trigger,
+    setValue,
     formState: { errors },
   } = useForm<ProfileEditType>({
     mode: 'onBlur',
     resolver: zodResolver(profileEditSchema),
   });
+
   const onSubmit: SubmitHandler<ProfileEditType> = async (data) => {
     console.log('Submitted data:', data);
     const response = await editUserProfile(data);
@@ -98,6 +99,7 @@ export const useProfileEdit = () => {
     watch,
     trigger,
     errors,
+    setValue,
   };
 };
 

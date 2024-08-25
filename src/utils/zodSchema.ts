@@ -5,6 +5,14 @@ const phoneRegex = /^010\d{8}$/;
 const passwordRegex =
   /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!?\@#\$%\^&\*])[A-Za-z0-9!?\@#\$%\^&\*]{8,16}$/i;
 const nicknameRegex = /^[가-힣a-zA-Z0-9]{2,12}$/;
+const MAX_FILE_SIZE = 1024 * 1024 * 5;
+const ACCEPTED_IMAGE_MIME_TYPES = [
+  'image/jpeg',
+  'image/jpg',
+  'image/png',
+  'image/webp',
+];
+const ACCEPTED_IMAGE_TYPES = ['jpeg', 'jpg', 'png', 'webp'];
 export const loginSchema = z.object({
   email: z
     .string({ required_error: '이메일을 입력해주세요.' })
@@ -69,6 +77,14 @@ export const signupSchema = z
   });
 
 export const profileEditSchema = z.object({
+  profileImage: z.any().nullable(),
+  // .refine((files) => {
+  //   return files?.[0]?.size <= MAX_FILE_SIZE;
+  // }, `Max image size is 5MB.`)
+  // .refine(
+  //   (files) => ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
+  //   'Only .jpg, .jpeg, .png and .webp formats are supported.',
+  // )
   nickname: z
     .string({ required_error: '닉네임을 입력해주세요.' })
     .regex(nicknameRegex, {
