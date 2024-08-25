@@ -11,6 +11,6 @@ export const getUserInfo = async () => {
   return userInfo;
 };
 export const getUserToken = async () => {
-  const token = cookies().get('jwt');
+  const token = cookies().get('jwt')?.value;
   return token;
 };
