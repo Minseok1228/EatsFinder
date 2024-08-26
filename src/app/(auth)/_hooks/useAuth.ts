@@ -1,7 +1,14 @@
-import { NEST_SERVER } from '@/constants/baseUrl';
-import { LoginFormType, SignupFormType } from '@/types/authType';
+import { KOTLIN_SERVER, NEST_SERVER } from '@/constants/baseUrl';
+import {
+  ChagePasswordType,
+  LoginFormType,
+  ProfileEditType,
+  SignupFormType,
+} from '@/types/authType';
 import { SignupType } from '@/types/authType';
+import { getUserToken } from '@/utils/getUserInfo';
 import { UseFormSetValue, UseFormTrigger, UseFormWatch } from 'react-hook-form';
+const accessToken = getUserToken();
 
 export const login = async (data: LoginFormType) => {
   const { email, password } = data;
@@ -58,7 +65,6 @@ export const useNicknameDuplicateCheck = () => {
     setValue,
     trigger,
   }: isDuplicatedNicknameProps) => {
-    console.log(watch('nickname'));
     const response = await isDuplicatedNickname(watch('nickname'));
     if (response.error) {
       setValue('nicknameDuplicated', false);
@@ -71,4 +77,62 @@ export const useNicknameDuplicateCheck = () => {
     }
   };
   return { handleNicknameChecker };
+};
+const urlToFile = async (url: string, filename: string): Promise<File> => {
+  const response = await fetch(url);
+  const blob = await response.blob();
+  return new File([blob], filename, { type: blob.type });
+};
+export const editUserProfile = async (data: ProfileEditType) => {
+  const { nickname, phoneNumber, profileImage } = data;
+  const formData = new FormData();
+  formData.append('nickname', nickname);
+  formData.append('phoneNumber', phoneNumber);
+  if (profileImage) {
+    const file = await urlToFile(profileImage, 'profile.png');
+    formData.append('profileImage', file);
+  }
+  try {
+    const token = await accessToken;
+    if (!token) {
+      throw new Error('Access token is missing');
+    }
+
+    const response = await fetch(`${KOTLIN_SERVER}/my-profile`, {
+      method: 'PATCH',
+      headers: {
+        accept: '*/*',
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
+
+    console.log('응답:', await response.json());
+
+    if (!response.ok) {
+      throw new Error(`Server responded with status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error occurred:', error);
+  }
+};
+
+export const changePassword = async (data: ChagePasswordType) => {
+  const { password, passwordCheck } = data;
+  const token = await accessToken;
+  const response = await fetch(`${KOTLIN_SERVER}/my-profile/new-password`, {
+    method: 'PUT',
+    headers: {
+      accept: '*/*',
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      newPassword: password,
+      passwordConfirm: passwordCheck,
+    }),
+  });
+  return response.json();
 };

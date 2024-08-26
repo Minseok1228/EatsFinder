@@ -1,4 +1,4 @@
-import { NEST_SERVER } from '@/constants/baseUrl';
+import { KOTLIN_SERVER, NEST_SERVER } from '@/constants/baseUrl';
 import { CookieOptions } from '@/types/authType';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -34,6 +34,15 @@ export const POST = async (req: NextRequest) => {
   cookiesStore.set('jwt', `${data.accessToken}`, options);
   const cookie = cookiesStore.get('jwt');
   if (cookie) {
+    const response = await fetch(`${KOTLIN_SERVER}/my-profile`, {
+      method: 'GET',
+      headers: {
+        accept: '*/*',
+        Authorization: `Bearer ${data.accessToken}`,
+      },
+    });
+    const userInfo = await response.json();
+    cookiesStore.set('userInfo', JSON.stringify(userInfo), options);
     redirect('/');
   }
 

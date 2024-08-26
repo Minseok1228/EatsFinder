@@ -1,3 +1,17 @@
+export type UserData = {
+  id: number;
+  nickname: string;
+  email: string;
+  phoneNumber: string;
+  profileImage: string;
+  followingCount: number;
+  followerCount: number;
+  postCount: number;
+  userType: string;
+};
+export type ProfilePageProps = {
+  userData: UserData;
+};
 export type LoginFormType = {
   email: string;
   password: string;
@@ -14,6 +28,16 @@ export type SignupFormType = {
   nicknameDuplicated: boolean;
   acceptTerms: boolean;
   acceptPrivacyPolicy: boolean;
+};
+export type ProfileEditType = {
+  nickname: string;
+  phoneNumber: string;
+  profileImage: string;
+  // profileImage: File | Blob;
+};
+export type ChagePasswordType = {
+  password: string;
+  passwordCheck: string;
 };
 export type SignupType = Omit<
   SignupFormType,

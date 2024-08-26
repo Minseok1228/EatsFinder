@@ -15,15 +15,15 @@ export const ModalFooter = ({
   onSubClick,
 }: ModalFooterProps) => {
   return (
-    <footer className='py-10'>
+    <footer className='select-none py-10'>
       <div className='flex items-center justify-center gap-[10px]'>
         {subButton ? (
           <>
-            <Button size='small' onClick={onMainClick}>
-              {mainButton}
-            </Button>
             <Button variant='stroke' size='small' onClick={onSubClick}>
               {subButton}
+            </Button>
+            <Button size='small' onClick={onMainClick}>
+              {mainButton}
             </Button>
           </>
         ) : (
