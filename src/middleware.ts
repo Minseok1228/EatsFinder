@@ -7,6 +7,7 @@ function isAuthenticated(request: NextRequest) {
 }
 
 const authPages = ['/myaccount', '/find-account', '/settings', '/support'];
+//탈퇴 마이잇츠 게시글 작성/수정
 const guestPages = ['/login', '/signup'];
 
 export function middleware(request: NextRequest) {

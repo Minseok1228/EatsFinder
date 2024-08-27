@@ -6,12 +6,14 @@ export const useLogoutModal = () => {
     e.stopPropagation();
     setIsModalOpen(true);
   };
-  const logoutButton = async () => {
+  const logoutButton = async (setIsLoggedIn: any) => {
     const res = await fetch('/api/auth/logout', {
       method: 'POST',
     });
+    setIsLoggedIn(false);
     console.log('res', res);
-    window.location.reload();
+    // 비로그인 제한 페이지에서 로그아웃시 미들웨어실행
+    // window.location.reload();
   };
   const closeModal = () => {
     setIsModalOpen(false);

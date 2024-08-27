@@ -2,13 +2,16 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { AuthHeader } from '@/app/(auth)/_components/AuthHeader';
-import { NavLink, ProfileImage } from '@/components/atoms';
+import { Button, NavLink, ProfileImage } from '@/components/atoms';
 import { LogoImgSVG } from '@/components/svg/LogoSVG';
 import { UserDropdownMenu } from '@/components/molecules/userDropdownMenu/UserDropdownMenu';
 import { useDropdownHandler } from '@/hooks/useDropdownHandler';
 import { Modal } from '..';
 import { useState } from 'react';
 import { useLogoutModal } from '@/app/(auth)/_hooks/useLogoutModal';
+import { AlarmBellSVG } from '@/components/svg/AlarmBellSVG';
+import { cookies } from 'next/headers';
+import { getUserInfo } from '@/utils/getUserInfo';
 
 const NAV_DATA = [
   {
@@ -35,9 +38,10 @@ export const Header = () => {
     return <AuthHeader />;
   }
   const { isDropdownOpen, dropdownHanlder, dropdownRef } = useDropdownHandler();
-
   const { closeModal, isModalOpen, logoutButton, openLogoutModal } =
     useLogoutModal();
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
   return (
     <header className='mb-[3.75rem] flex h-20 items-center justify-around'>
       <div className='flex w-full max-w-[1440px] items-center justify-between px-9'>
@@ -59,29 +63,38 @@ export const Header = () => {
             })}
           </ul>
         </div>
-        <div
-          className='relative cursor-pointer'
-          ref={dropdownRef}
-          onClick={dropdownHanlder}
-        >
-          <ProfileImage size={50} />
-          {isDropdownOpen && (
-            <UserDropdownMenu
-              openLogoutModal={openLogoutModal}
-              dropdownHanlder={dropdownHanlder}
-            />
-          )}
-          <Modal
-            isOpen={isModalOpen}
-            onClose={() => closeModal}
-            title='로그아웃'
-            description='로그아웃하시려면 확인을 눌러주세요.'
-            subButton='취소'
-            onMainClick={logoutButton}
-            onSubClick={closeModal}
-            mainButton='확인'
-          />
-        </div>
+        {isLoggedIn ? (
+          <div className='flex items-center gap-6'>
+            <AlarmBellSVG />
+            <div
+              className='relative cursor-pointer'
+              ref={dropdownRef}
+              onClick={dropdownHanlder}
+            >
+              <ProfileImage size={50} />
+              {isDropdownOpen && (
+                <UserDropdownMenu
+                  openLogoutModal={openLogoutModal}
+                  dropdownHanlder={dropdownHanlder}
+                />
+              )}
+              <Modal
+                isOpen={isModalOpen}
+                onClose={() => closeModal}
+                title='로그아웃'
+                description='로그아웃하시려면 확인을 눌러주세요.'
+                subButton='취소'
+                onMainClick={() => logoutButton(setIsLoggedIn)}
+                onSubClick={closeModal}
+                mainButton='확인'
+              />
+            </div>
+          </div>
+        ) : (
+          <Button size={'mini'}>
+            <Link href={'/login'}>로그인</Link>
+          </Button>
+        )}
       </div>
     </header>
   );
