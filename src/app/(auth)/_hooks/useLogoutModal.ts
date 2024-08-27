@@ -6,7 +6,13 @@ export const useLogoutModal = () => {
     e.stopPropagation();
     setIsModalOpen(true);
   };
-  const logoutButton = () => {};
+  const logoutButton = async () => {
+    const res = await fetch('/api/auth/logout', {
+      method: 'POST',
+    });
+    console.log('res', res);
+    window.location.reload();
+  };
   const closeModal = () => {
     setIsModalOpen(false);
   };
