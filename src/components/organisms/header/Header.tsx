@@ -41,19 +41,11 @@ export const Header = ({ userInfo }: HeaderProps) => {
   }
   const userState = !!userInfo;
   const [isLoggedIn, setIsLoggedIn] = useState(userState);
-  // useEffect(() => {
-  //   const fetchUserInfo = async () => {
-  //     const userInfo = await getUserInfo();
-  //     console.log(userInfo);
-  //     if (userInfo) {
-  //       console.log(userInfo);
-  //       localStorage.setItem('userInfo', JSON.stringify(userInfo));
-  //       setIsLoggedIn(true);
-  //     }
-  //     setIsLoggedIn(false);
-  //   };
-  //   fetchUserInfo();
-  // }, []);
+  useEffect(() => {
+    if (userInfo) {
+      localStorage.setItem('userInfo', JSON.stringify(userInfo));
+    }
+  }, [userInfo]);
 
   const { isDropdownOpen, dropdownHanlder, dropdownRef } = useDropdownHandler();
   const { closeModal, isModalOpen, logoutButton, openLogoutModal } =
