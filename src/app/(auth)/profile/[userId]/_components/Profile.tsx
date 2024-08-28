@@ -2,7 +2,7 @@ import { Button, ProfileImage } from '@/components/atoms';
 import { ProfileInfo } from './ProfileInfo';
 import { UserProfileStats } from './UserProfileStats';
 import { addDashes } from '@/utils/formatPhoneNumber';
-import { getUserInfo } from '@/utils/getUserInfo';
+import { getServerUserInfo } from '@/utils/getServerUserInfo';
 import { Loading } from '@/app/(auth)/_components/Loading';
 import { UserData } from '@/types/authType';
 type ProfileProps = {

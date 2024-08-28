@@ -10,8 +10,10 @@ import { Modal } from '..';
 import { useEffect, useState } from 'react';
 import { useLogoutModal } from '@/app/(auth)/_hooks/useLogoutModal';
 import { AlarmBellSVG } from '@/components/svg/AlarmBellSVG';
-import { getUserInfo } from '@/utils/getUserInfo';
+import { getServerUserInfo } from '@/utils/getServerUserInfo';
 import { UserData } from '@/types/authType';
+import Image from 'next/image';
+import { getClientUserInfo } from '@/utils/getClientUserInfo';
 
 const NAV_DATA = [
   {
@@ -46,11 +48,10 @@ export const Header = ({ userInfo }: HeaderProps) => {
       localStorage.setItem('userInfo', JSON.stringify(userInfo));
     }
   }, [userInfo]);
-
   const { isDropdownOpen, dropdownHanlder, dropdownRef } = useDropdownHandler();
   const { closeModal, isModalOpen, logoutButton, openLogoutModal } =
     useLogoutModal();
-
+  console.log(userInfo);
   return (
     <header className='mb-[3.75rem] flex h-20 items-center justify-around'>
       <div className='flex w-full max-w-[1440px] items-center justify-between px-9'>
@@ -80,7 +81,7 @@ export const Header = ({ userInfo }: HeaderProps) => {
               ref={dropdownRef}
               onClick={dropdownHanlder}
             >
-              <ProfileImage size={50} />
+              <ProfileImage src={userInfo?.profileImage} size={50} />
               {isDropdownOpen && (
                 <UserDropdownMenu
                   openLogoutModal={openLogoutModal}
