@@ -7,11 +7,11 @@ import { LogoImgSVG } from '@/components/svg/LogoSVG';
 import { UserDropdownMenu } from '@/components/molecules/userDropdownMenu/UserDropdownMenu';
 import { useDropdownHandler } from '@/hooks/useDropdownHandler';
 import { Modal } from '..';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLogoutModal } from '@/app/(auth)/_hooks/useLogoutModal';
 import { AlarmBellSVG } from '@/components/svg/AlarmBellSVG';
-import { cookies } from 'next/headers';
 import { getUserInfo } from '@/utils/getUserInfo';
+import { UserData } from '@/types/authType';
 
 const NAV_DATA = [
   {
@@ -31,16 +31,33 @@ const NAV_DATA = [
     href: '/',
   },
 ];
-
-export const Header = () => {
+type HeaderProps = {
+  userInfo: UserData | undefined;
+};
+export const Header = ({ userInfo }: HeaderProps) => {
   const path = usePathname();
   if (path.startsWith('/login') || path.startsWith('/signup')) {
     return <AuthHeader />;
   }
+  const userState = !!userInfo;
+  const [isLoggedIn, setIsLoggedIn] = useState(userState);
+  // useEffect(() => {
+  //   const fetchUserInfo = async () => {
+  //     const userInfo = await getUserInfo();
+  //     console.log(userInfo);
+  //     if (userInfo) {
+  //       console.log(userInfo);
+  //       localStorage.setItem('userInfo', JSON.stringify(userInfo));
+  //       setIsLoggedIn(true);
+  //     }
+  //     setIsLoggedIn(false);
+  //   };
+  //   fetchUserInfo();
+  // }, []);
+
   const { isDropdownOpen, dropdownHanlder, dropdownRef } = useDropdownHandler();
   const { closeModal, isModalOpen, logoutButton, openLogoutModal } =
     useLogoutModal();
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <header className='mb-[3.75rem] flex h-20 items-center justify-around'>
