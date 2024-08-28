@@ -11,6 +11,7 @@ export const useLogoutModal = () => {
       method: 'POST',
     });
     setIsLoggedIn(false);
+    localStorage.clear();
     console.log('res', res);
     // 비로그인 제한 페이지에서 로그아웃시 미들웨어실행
     // window.location.reload();
