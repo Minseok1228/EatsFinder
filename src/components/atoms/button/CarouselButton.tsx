@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes } from 'react';
-import { RightSVG, LeftSVG } from '@/components/svg/ArrowSVG';
 import { customTwMerge } from '@/utils/customTwMerge';
+import { ArrowSVG } from '@/components/svg/ArrowSVG';
 
 export const NextButton = ({
   className,
@@ -17,7 +17,7 @@ export const NextButton = ({
       {...props}
     >
       <div className='fill-primary-400 align-middle [&>svg]:h-10 [&>svg]:w-10'>
-        <RightSVG />
+        <ArrowSVG direction='right' />
       </div>
     </button>
   );
@@ -38,7 +38,7 @@ export const PrevButton = ({
       {...props}
     >
       <div className='fill-primary-400 [&>svg]:h-10 [&>svg]:w-10'>
-        <LeftSVG />
+        <ArrowSVG direction='left' />
       </div>
     </button>
   );

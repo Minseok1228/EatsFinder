@@ -1,19 +1,17 @@
 import React, { InputHTMLAttributes, forwardRef } from 'react';
-import {
-  CheckBoxCheckedSVG,
-  CheckBoxBlankSVG,
-} from '@/components/svg/CheckBoxSVG';
-import {
-  BookmarkDefaultSVG,
-  BookmarkFillSVG,
-} from '@/components/svg/BookmarkSVG';
-import { FavDefaultSVG, FavFillSVG } from '@/components/svg/FavSVG';
+
 import { customTwMerge } from '@/utils/customTwMerge';
+import { BookmarkSVG } from '@/components/svg/BookmarkSVG';
+import { FavSVG } from '@/components/svg/FavSVG';
+import { CheckBoxSVG } from '@/components/svg/CheckBoxSVG';
 
 const icon = {
-  checkbox: [CheckBoxCheckedSVG(), CheckBoxBlankSVG()],
-  bookmark: [BookmarkFillSVG(), BookmarkDefaultSVG()],
-  fav: [FavFillSVG(), FavDefaultSVG()],
+  checkbox: [
+    CheckBoxSVG({ isChecked: 'check' }),
+    CheckBoxSVG({ isChecked: 'blank' }),
+  ],
+  bookmark: [BookmarkSVG({ isFill: true }), BookmarkSVG({ isFill: false })],
+  fav: [FavSVG({ isFill: true }), FavSVG({ isFill: false })],
 };
 
 interface CheckBoxProps extends InputHTMLAttributes<HTMLInputElement> {
