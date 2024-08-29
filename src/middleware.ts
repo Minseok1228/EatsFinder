@@ -6,7 +6,8 @@ function isAuthenticated(request: NextRequest) {
   return !!token;
 }
 
-const authPages = ['/profile', '/myaccount'];
+const authPages = ['/myaccount', '/find-account', '/settings', '/support'];
+//탈퇴 마이잇츠 게시글 작성/수정
 const guestPages = ['/login', '/signup'];
 
 export function middleware(request: NextRequest) {
@@ -33,5 +34,13 @@ export function middleware(request: NextRequest) {
 
 // 미들웨어가 적용될 경로를 설정
 export const config = {
-  matcher: ['/profile/:path*', '/login', '/signup', '/myaccount/:path*'],
+  matcher: [
+    '/profile/:path*',
+    '/login',
+    '/signup',
+    '/myaccount/:path*',
+    '/find-account',
+    '/settings',
+    '/support',
+  ],
 };

@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import { Header, Footer } from '@/components/organisms';
+import { Footer } from '@/components/organisms';
 import { Pretendard, TossFace } from '@/assets/fonts';
 import './globals.css';
 import { KAKAO_API_KEY } from '@/constants/baseUrl';
+import { HeaderFetchData } from './_components/HeaderFetchData';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,7 +20,8 @@ export default function RootLayout({
     <html lang='ko' className={`${Pretendard.variable} ${TossFace.variable}`}>
       <body>
         <div className='flex min-h-screen flex-col'>
-          <Header />
+          <HeaderFetchData />
+          {/* <Header /> */}
           <main className='mx-auto w-[1440px] grow p-9'>{children}</main>
           <Footer />
         </div>

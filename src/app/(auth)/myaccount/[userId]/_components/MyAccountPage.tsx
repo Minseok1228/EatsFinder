@@ -1,9 +1,9 @@
-import { getUserInfo } from '@/utils/getUserInfo';
+import { getServerUserInfo } from '@/utils/getServerUserInfo';
 import { AccountInfo } from './AccountInfo';
 import { AccountForm } from './AccountForm';
 
 export const MyAccountPage = async () => {
-  const userInfo = await getUserInfo();
+  const userInfo = await getServerUserInfo();
   return (
     <div className='mb-[84px] mt-6 flex flex-col items-center gap-9'>
       <h3 className='text-gray-700 subTitle-28'>내 계정</h3>

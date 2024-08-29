@@ -2,7 +2,7 @@
 import { UserData } from '@/types/authType';
 import { cookies } from 'next/headers';
 
-export const getUserInfo = async () => {
+export const getServerUserInfo = async () => {
   const data = cookies().get('userInfo');
   if (!data) {
     return;

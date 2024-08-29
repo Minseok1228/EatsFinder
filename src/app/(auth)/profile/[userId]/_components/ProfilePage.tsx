@@ -4,7 +4,7 @@ import { UserProfile } from './UserProfile';
 import { Suspense } from 'react';
 import { Loading } from '@/app/(auth)/_components/Loading';
 import { cookies } from 'next/headers';
-import { getUserInfo } from '@/utils/getUserInfo';
+import { getServerUserInfo } from '@/utils/getServerUserInfo';
 
 export const ProfilePage = ({ userData }: ProfilePageProps) => {
   return (
