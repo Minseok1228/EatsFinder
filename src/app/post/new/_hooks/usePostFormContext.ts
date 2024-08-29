@@ -81,14 +81,14 @@ const usePostFormContext = () => {
     setValue('menus', newMenus);
   };
 
-  const handlekeywordToggle = (keyword: string) => {
+  const handlekeywordToggle = (keywordId: string) => {
     const keywords = watch('keywords') || [];
     let newKeywords: Array<string>;
 
-    if (keywords.includes(keyword)) {
-      newKeywords = keywords.filter((it) => it !== keyword);
+    if (keywords.includes(keywordId)) {
+      newKeywords = keywords.filter((it) => it !== keywordId);
     } else {
-      if (keywords.length < 5) newKeywords = [...keywords, keyword];
+      if (keywords.length < 5) newKeywords = [...keywords, keywordId];
       else {
         alert('키워드는 최대 5개 선택이 가능합니다.');
         return;

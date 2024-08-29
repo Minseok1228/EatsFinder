@@ -18,9 +18,9 @@ export const PostKeywordField = ({
           key={keyword.text}
           emoji={keyword.emoji}
           text={keyword.text}
-          selected={keywords.includes(keyword.text)}
+          selected={keywords.includes(keyword.id)}
           onClick={() => {
-            onKeywordClick(keyword.text);
+            onKeywordClick(keyword.id);
           }}
         />
       ))}
