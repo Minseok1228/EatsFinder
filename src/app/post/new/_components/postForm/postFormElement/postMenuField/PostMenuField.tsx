@@ -45,7 +45,6 @@ export const PostMenuField = () => {
       menu.split('').reduce((acc, cur) => {
         if (isKorean(cur)) {
           const reg = createHangulRegex(cur);
-          console.log(reg.source);
           return acc + reg.source;
         }
         return acc + cur;
@@ -56,8 +55,6 @@ export const PostMenuField = () => {
       return reg.test(menu);
     });
   }, [menu, placeMenus]);
-
-  console.log(filteredPlaceMenu);
 
   return (
     <div>
@@ -100,7 +97,7 @@ export const PostMenuField = () => {
             }}
           />
         )}
-        {isShow && recommendedMenus.length > 0 && (
+        {true && (
           <div
             ref={recommendedMenusRef}
             className='absolute left-0 top-full z-50 mt-3 max-h-[25rem] w-full rounded-3xl bg-white px-5 py-6 shadow-[0_0_20px_rgba(0,0,0,0.1)]'
@@ -108,16 +105,20 @@ export const PostMenuField = () => {
           >
             <p className='mb-6 text-gray-800 body-18'>이런 메뉴는 어떠세요?</p>
             <div className='flex flex-wrap gap-3'>
-              {recommendedMenus.map((menu) => (
-                <MenuTag key={menu.id} onClick={() => handleMenuAdd(menu.menu)}>
-                  {menu.menu}
-                </MenuTag>
-              ))}
-              {filteredPlaceMenu.map((menu, index) => (
-                <MenuTag key={index} onClick={() => {}}>
-                  {menu}
-                </MenuTag>
-              ))}
+              {menu.length === 0
+                ? recommendedMenus.map((menu) => (
+                    <MenuTag
+                      key={menu.id}
+                      onClick={() => handleMenuAdd(menu.menu)}
+                    >
+                      {menu.menu}
+                    </MenuTag>
+                  ))
+                : filteredPlaceMenu.map((menu, index) => (
+                    <MenuTag key={index} onClick={() => handleMenuAdd(menu)}>
+                      {menu}
+                    </MenuTag>
+                  ))}
             </div>
           </div>
         )}
