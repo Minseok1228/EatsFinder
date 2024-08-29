@@ -2,7 +2,7 @@ import { NEST_SERVER } from '@/constants/baseUrl';
 import { PostContentType, PlaceRequestType } from '@/types/postType';
 
 export const createNewPost = async (formData: FormData) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_NODE_SERVER}/posts`, {
+  const res = await fetch(`${NEST_SERVER}/posts`, {
     method: 'POST',
     headers: {
       Authorization:
@@ -36,7 +36,7 @@ export const getPostContent = async (
 };
 
 export const createPlace = async (place: PlaceRequestType) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_NODE_SERVER}/places`, {
+  const res = await fetch(`${NEST_SERVER}/places`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -83,15 +83,12 @@ export const getKakaoPlace = async (placeName: string) => {
 };
 
 export const getMenus = async (placeId: number) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_NODE_SERVER}/menus/${placeId}`,
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+  const res = await fetch(`${NEST_SERVER}/menus/${placeId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
     },
-  );
+  });
 
   const data = await res.json();
 
@@ -99,7 +96,7 @@ export const getMenus = async (placeId: number) => {
 };
 
 export const createMenu = async (menu: string, placeId: number) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_NODE_SERVER}/menus`, {
+  const res = await fetch(`${NEST_SERVER}/menus`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
