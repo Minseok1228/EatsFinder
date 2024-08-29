@@ -1,18 +1,19 @@
 import { NEST_SERVER } from '@/constants/baseUrl';
 import { PostContentType, PlaceRequestType } from '@/types/postType';
+import { getUserToken } from '@/utils/getServerUserInfo';
 
 export const createNewPost = async (formData: FormData) => {
+  const token = await getUserToken();
   const res = await fetch(`${NEST_SERVER}/posts`, {
     method: 'POST',
     headers: {
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3MjI4NjkyOTUsImV4cCI6MTcyMzQ3NDA5NX0.4h75MwgyZaU07yVUY67FOUX63eN7E3ihLgqex0dHep8',
+      Authorization: `Bearer ${token}`,
     },
     body: formData,
   });
 
   const data = await res.json();
-
+  console.log(data);
   return data;
 };
 
