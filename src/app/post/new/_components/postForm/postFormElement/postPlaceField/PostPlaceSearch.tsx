@@ -57,7 +57,7 @@ export const PostPlaceSearch = forwardRef<HTMLDivElement, PostPlaceSearchProps>(
             key={place.id}
             imgSrc={place.thumbnailUrl}
             name={place.name}
-            address={place.address}
+            address={place.roadAddress}
             isRegistered={true}
             onClick={() => {
               onPlaceClick(place.name, place.id);
