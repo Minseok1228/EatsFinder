@@ -27,7 +27,7 @@ export const ImageInput = ({ expand, ...props }: ImageInputProps) => {
       <input
         className='sr-only'
         type='file'
-        accept='image/png, image/jpeg'
+        accept='image/png, image/jpeg, image/bmp, image/webp'
         multiple
         aria-label='upload images'
         {...props}
