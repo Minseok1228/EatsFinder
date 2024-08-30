@@ -20,7 +20,7 @@ export const createNewPost = async (formData: FormData) => {
 export const getPostContent = async (
   postId: string,
 ): Promise<PostContentType> => {
-  const res = await fetch(`${NEST_SERVER}/posts/${postId}`, {
+  const res = await fetch(`${NEST_SERVER}/posts/${postId}/details`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
