@@ -1,5 +1,5 @@
 import { Chip } from '@/components/atoms';
-import { RatingstarFillSVG } from '@/components/svg/RatingstarSVG';
+import { RatingStarSVG } from '@/components/svg/RatingstarSVG';
 
 interface StoreInfoProps {
   name: string;
@@ -19,7 +19,7 @@ const StoreInfo = ({ name, starRatings, menuTag }: StoreInfoProps) => {
           <div className='text-center text-gray-600 subTitle-18'>별점</div>
           <div className='flex items-center gap-1 text-primary-400 subTitle-20'>
             <span>
-              <RatingstarFillSVG />
+              <RatingStarSVG isFill='fill' />
             </span>
             <span>{starRatings}</span>
           </div>
