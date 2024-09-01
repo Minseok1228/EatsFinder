@@ -4,6 +4,7 @@ import { PostFormLabel } from '../postFormLabel';
 import { getMenus } from '@/api/post';
 import usePostFormContext from '@/app/post/new/_hooks/usePostFormContext';
 import { isKorean, createHangulRegex } from '@/utils/hangul';
+import { escapeRegExp } from 'lodash';
 
 export const PostMenuField = () => {
   const [isShow, setIsShow] = useState(false);
@@ -47,7 +48,7 @@ export const PostMenuField = () => {
           const reg = createHangulRegex(cur);
           return acc + reg.source;
         }
-        return acc + cur;
+        return acc + escapeRegExp(cur);
       }, '^'),
     );
 
@@ -97,7 +98,7 @@ export const PostMenuField = () => {
             }}
           />
         )}
-        {true && (
+        {isShow && (
           <div
             ref={recommendedMenusRef}
             className='absolute left-0 top-full z-50 mt-3 max-h-[25rem] w-full rounded-3xl bg-white px-5 py-6 shadow-[0_0_20px_rgba(0,0,0,0.1)]'

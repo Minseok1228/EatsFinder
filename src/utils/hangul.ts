@@ -20,6 +20,19 @@ const CHOSUNG = {
   ㅎ: '하'.charCodeAt(0),
 } as const;
 
+const MIX_JONGSUNG = {
+  ㄳ: 'rt',
+  ㄵ: 'sw',
+  ㄶ: 'sg',
+  ㄺ: 'fr',
+  ㄻ: 'fa',
+  ㄼ: 'fq',
+  ㄽ: 'ft',
+  ㄾ: 'fx',
+  ㄿ: 'fb',
+  ㅀ: 'fg',
+} as const;
+
 const JONGSUNG_TO_CHOSUNG = [
   ['ㄱ', 0],
   ['ㄲ', 0],
@@ -51,6 +64,7 @@ const JONGSUNG_TO_CHOSUNG = [
 ] as const;
 
 type ChosungType = keyof typeof CHOSUNG;
+type MixJongsungType = keyof typeof MIX_JONGSUNG;
 
 const KR_START = '가'.charCodeAt(0);
 const KR_SYLLABLE_COUNT = 588;
@@ -62,6 +76,10 @@ export const isKorean = (char: string) => {
 
 const isChosung = (char: string): char is ChosungType => {
   return char in CHOSUNG;
+};
+
+const isMixJongsung = (char: string): char is MixJongsungType => {
+  return char in MIX_JONGSUNG;
 };
 
 const hasJongsung = (char: string) => {
@@ -81,6 +99,10 @@ const createHangulRegexWithoutJongsung = (char: string) => {
 };
 
 export const createHangulRegex = (char: string) => {
+  if (isMixJongsung(char)) {
+    return new RegExp(MIX_JONGSUNG[char]);
+  }
+
   if (isChosung(char)) {
     return createHangulRegexOnlyChosung(char);
   }
