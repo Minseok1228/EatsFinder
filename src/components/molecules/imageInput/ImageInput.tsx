@@ -1,7 +1,7 @@
 'use client';
 import { HTMLAttributes } from 'react';
 import { customTwMerge } from '@/utils/customTwMerge';
-import { AddDefaultSVG } from '@/components/svg/AddSVG';
+import { AddSVG } from '@/components/svg/AddSVG';
 
 interface ImageInputProps extends HTMLAttributes<HTMLInputElement> {
   expand: boolean;
@@ -21,7 +21,7 @@ export const ImageInput = ({ expand, ...props }: ImageInputProps) => {
             사진 업로드 하기
           </div>
         ) : (
-          <AddDefaultSVG />
+          <AddSVG />
         )}
       </div>
       <input
