@@ -1,5 +1,5 @@
 import { ProfileImage } from '@/components/atoms';
-import { ThumbsUpSVG } from '@/components/svg/ThumbsSVG';
+import { ThumbsSVG } from '@/components/svg/ThumbsSVG';
 import { customTwMerge } from '@/utils/customTwMerge';
 
 interface CommentProps {
@@ -39,7 +39,7 @@ export const Comment = ({
               isLiked ? 'fill-primary-400' : 'fill-gray-400',
             )}
           >
-            <ThumbsUpSVG />
+            <ThumbsSVG />
           </div>
           <span className='text-gray-300 body-16'>24</span>
         </div>
