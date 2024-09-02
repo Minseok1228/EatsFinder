@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { RatingstarSVG } from '@/components/svg/RatingstarSVG';
+import { RatingStarSVG } from '@/components/svg/RatingstarSVG';
 import { customTwMerge } from '@/utils/customTwMerge';
 
 interface RatingProps {
@@ -27,14 +27,12 @@ export const Rating = ({ number, rating, onStarRatingChange }: RatingProps) => {
               onClick={() => onStarRatingChange(idx + 1)}
               aria-label='rating'
             />
-            <span
-              className={customTwMerge(
-                'fill-gray-300 [&>svg]:h-10 [&>svg]:w-10',
-                (hoverValue !== null ? hoverValue >= idx : rating > idx) &&
-                  'fill-primary-400',
+            <span className={customTwMerge('[&>svg]:h-10 [&>svg]:w-10')}>
+              {(hoverValue !== null ? hoverValue >= idx : rating > idx) ? (
+                <RatingStarSVG />
+              ) : (
+                <RatingStarSVG isFill='empty' />
               )}
-            >
-              <RatingstarSVG />
             </span>
           </label>
         );
