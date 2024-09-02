@@ -53,7 +53,7 @@ export const createPlace = async (place: PlaceRequestType) => {
 export const getPlace = async (placeName: string) => {
   if (!placeName) return;
 
-  const res = await fetch(`${NEST_SERVER}/places/${placeName}`, {
+  const res = await fetch(`${NEST_SERVER}/places/${placeName}/name`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
